@@ -15,12 +15,9 @@ public interface DataSource {
 
     User loadUser(String playerName);
 
-   // boolean isStored(String userName, String worldName);
-
     void saveGroups(Collection<Group> all);
 
     Map<String, Group> loadGroups();
 
-
-
+    boolean isStored(String userName);
 }

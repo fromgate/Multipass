@@ -23,11 +23,28 @@ public class Pass {
         this.priority = 0;
     }
 
-    public void remove(String perm) {
-        remove(new Permission(perm));
+    public Pass(Pass pass) {
+        groups = pass.groups;
+        permissions = pass.permissions;
+        priority = pass.priority;
+        prefix = pass.prefix;
+        suffix = pass.prefix;
     }
 
-    public void remove(Permission permission) {
+    public void removeGroup(String groupStr){
+        Group group = Groups.getGroup(groupStr);
+        if (group!=null) removeGroup(group);
+    }
+
+    public void removeGroup(Group group) {
+        if (this.groups.contains(group)) this.groups.remove(group);
+    }
+
+    public void removePermission(String perm) {
+        removePermission(new Permission(perm));
+    }
+
+    public void removePermission(Permission permission) {
         if (this.permissions.contains(permission))
             this.permissions.remove(permission);
     }
@@ -65,7 +82,7 @@ public class Pass {
         this.suffix = suffix;
     }
 
-    public void addGroup(String perm, boolean positive) {
+    public void setPermission(String perm, boolean positive) {
         setPermission(new Permission(perm, positive));
     }
 

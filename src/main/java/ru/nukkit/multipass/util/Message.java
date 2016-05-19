@@ -80,6 +80,7 @@ public enum Message {
 
     GROUP_ADDGROUP_NOTEXIST("Group %1% is not exist. Please check group name or create new group"),
     GROUP_ADDGROUP_OK("Group %2% was added to group %1%"),
+    GROUP_ADDGROUPW_OK("Group %2% was added to group %1% (world %3%)"),
 
     GROUP_SETGROUP_NOTEXIST("Group %1% is not exist. Please check group name or create new group"),
     GROUP_SETGROUP_OK("Group %2% was added to group %1%. All other groups were removed"),

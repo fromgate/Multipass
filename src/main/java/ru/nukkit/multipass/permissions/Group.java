@@ -5,6 +5,9 @@ package ru.nukkit.multipass.permissions;
  */
 public class Group extends BasePass {
 
+    public Group(String name, Pass pass) {
+        super(name,pass);
+    }
 
     public Group(String name) {
         super(name);

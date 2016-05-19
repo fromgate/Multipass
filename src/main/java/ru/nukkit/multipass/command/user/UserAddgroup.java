@@ -15,6 +15,6 @@ public class UserAddgroup extends Cmd {
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {
         Users.addGroup(args[0], args[2]);
-        return Message.USER_ADDGROUP_OK.print(sender, args[0], args[1]);
+        return Message.USER_ADDGROUP_OK.print(sender, args[0], args[2]);
     }
 }

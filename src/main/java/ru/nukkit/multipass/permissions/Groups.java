@@ -1,5 +1,6 @@
 package ru.nukkit.multipass.permissions;
 
+import ru.nukkit.multipass.WorldParam;
 import ru.nukkit.multipass.data.DataProvider;
 import ru.nukkit.multipass.util.Message;
 
@@ -36,6 +37,21 @@ public class Groups {
 
     public static Collection<Group> getAll() {
         return groups.values();
+    }
+
+
+
+    public static boolean addGroup(String id1, WorldParam wp) {
+        return (wp.world==null) ? addGroup(id1,wp.param) : addGroup(id1, wp.world, wp.param);
+    }
+
+    public static boolean addGroup(String id1, String world, String id2) {
+        Group group1 = getGroup(id1);
+        Group group2 = getGroup(id2);
+        if (group1 == null || group2 == null) return false;
+        group1.getWorldPassOrCreate(world).addGroup(group2);
+        saveGroups();
+        return true;
     }
 
     public static boolean addGroup(String id1, String id2) {

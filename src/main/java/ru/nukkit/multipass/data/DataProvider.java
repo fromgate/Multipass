@@ -21,11 +21,9 @@ public class DataProvider {
         return source.loadUser(playerName);
     }
 
-    /*
     public static boolean isRegistered(String userName) {
         return source.isStored(userName);
     }
-    */
 
     public static void saveUser(User user) {
         source.saveUser(user);

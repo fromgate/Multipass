@@ -45,12 +45,12 @@ public class Users {
 
     public static boolean isRegistered(String userName) {
         if (users.containsKey(userName)) return true;
-        return (isRegistered(userName));
+        return (DataProvider.isRegistered(userName));
     }
 
     public static void addGroup(String id, String group) {
         User user = Users.getUser(id);
-        user.setPermission(group);
+        user.setGroup(group);
         saveUser(user);
     }
 
@@ -59,9 +59,20 @@ public class Users {
         return user.inGroup(group);
     }
 
+    public static boolean inGroup(String world, String userName, String group) {
+        User user = Users.getUser(userName);
+        return user.inGroup(world, group);
+    }
+
     public static void removeGroup(String userName, String group) {
         User user = Users.getUser(userName);
-        if (user.inGroup(group)) user.remove(group);
+        if (user.inGroup(group)) user.removeGroup(group);
+        saveUser(user);
+    }
+
+    public static void removeGroup(String world, String userName, String group) {
+        User user = Users.getUser(userName);
+        if (user.inGroup(group)) user.removeGroup(world, group);
         saveUser(user);
     }
 
@@ -72,9 +83,16 @@ public class Users {
 
     public static void removePermission(String userName, String permStr) {
         User user = Users.getUser(userName);
-        user.remove(permStr);
+        user.removePermission(permStr);
         saveUser(user);
     }
+
+    public static void removePermission(String world, String userName, String permStr) {
+        User user = Users.getUser(userName);
+        user.removePermission(permStr);
+        saveUser(user);
+    }
+
 
     public static void setGroup(String userName, String groupStr) {
         User user = Users.getUser(userName);
@@ -82,29 +100,10 @@ public class Users {
         saveUser(user);
     }
 
-    public static void setPermission(String userName, String permStr) {
+    public static void setGroup(String world, String userName, String groupStr) {
         User user = Users.getUser(userName);
-        user.setPermission(permStr);
+        user.setGroup(groupStr);
         saveUser(user);
-    }
-
-    public static void reloadUsers() {
-        users.clear();
-        Server.getInstance().getOnlinePlayers().values().forEach(player -> loadUser(player.getName()));
-    }
-
-    public static void recalculatePermissions() {
-        Message.debugMessage("Recalculating online users permissions");
-        Server.getInstance().getOnlinePlayers().values().forEach(player -> {
-            User user = getUser(player.getName());
-            user.recalculatePermissions();
-        });
-    }
-
-    public static void saveUser(User user) {
-        Message.debugMessage("Saving user: " + user.getName());
-        DataProvider.saveUser(user);
-        user.recalculatePermissions();
     }
 
     public static void setPrefix(String userName, String prefix){
@@ -125,9 +124,40 @@ public class Users {
         saveUser(user);
     }
 
-
     public static void recalculatePermissions(String name) {
         User user = Users.getUser(name);
+        user.recalculatePermissions();
+    }
+
+    public static void setPermission(String userName, String permStr) {
+        User user = Users.getUser(userName);
+        user.setPermission(permStr);
+        saveUser(user);
+    }
+
+    public static void setPermission(String world, String userName, String permission) {
+        User user = Users.getUser(userName);
+        user.setPermission(world,permission);
+        saveUser(user);
+    }
+
+    public static void reloadUsers() {
+        users.clear();
+        Server.getInstance().getOnlinePlayers().values().forEach(player -> loadUser(player.getName()));
+    }
+
+    public static void recalculatePermissions() {
+        Message.debugMessage("Recalculating online users permissions");
+        Server.getInstance().getOnlinePlayers().values().forEach(player -> {
+            User user = getUser(player.getName());
+            user.recalculatePermissions();
+        });
+    }
+
+
+    public static void saveUser(User user) {
+        Message.debugMessage("Saving user: " + user.getName());
+        DataProvider.saveUser(user);
         user.recalculatePermissions();
     }
 }

@@ -35,10 +35,10 @@ public class UserInfo extends Cmd {
 
         List<String> ln = user.getGroupList();
         if (!ln.isEmpty()) print.add(Message.PERM_USER_GROUPS.getText(StringUtil.join(ln)));
-        ln = user.getPermissionList();
-        if (!ln.isEmpty()) {
+        List<String> pln = user.getPermissionList();
+        if (!pln.isEmpty()) {
             print.add(Message.PERM_USER_PERMS.getText());
-            for (String s : ln)
+            for (String s : pln)
                 print.add(Message.color2(s));
         }
         Paginator.printPage(sender, print, Message.PERM_USER_INFO.getText(userName), page);

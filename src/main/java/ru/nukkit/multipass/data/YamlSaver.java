@@ -4,6 +4,7 @@ import cn.nukkit.utils.Config;
 import cn.nukkit.utils.ConfigSection;
 import ru.nukkit.multipass.MultipassPlugin;
 import ru.nukkit.multipass.permissions.Group;
+import ru.nukkit.multipass.permissions.Pass;
 import ru.nukkit.multipass.permissions.User;
 import ru.nukkit.multipass.util.Message;
 
@@ -34,15 +35,23 @@ public class YamlSaver implements DataSource {
 
     @Override
     public User loadUser(String playerName) {
+        Message.debugMessage("Loading permissions",playerName);
         File file = getUserFile(playerName);
         User user = new User(playerName);
         Config cfg = new Config(Config.YAML);
         if (file.exists()) {
             cfg.load(file.toString());
-            user.setGroupList(cfg.getStringList("groups"));
-            user.setPermissionsList(cfg.getStringList("permissions"));
+            Pass pass = sectionToPass(cfg.getRootSection());
+            user = new User(playerName, pass);
+
+            ConfigSection worlds = cfg.getSection("worlds");
+            for (String world: worlds.getKeys(false)){
+                ConfigSection ws = worlds.getSection(world);
+                if (ws.isEmpty()) continue;
+                Pass wpass = sectionToPass(ws);
+                user.setWorldPass(world,wpass);
+            }
         }
-        cfg.save(file);
         return user;
     }
 
@@ -50,36 +59,33 @@ public class YamlSaver implements DataSource {
     public void saveUser(User user) {
         File file = getUserFile(user.getName());
         Message.debugMessage("Save user file: ", file.toString());
-        if (user.getPermissionList().isEmpty() && user.getGroupList().isEmpty()) {
+        if (user.getPermissionList().isEmpty() && user.getGroupList().isEmpty()&&user.getWorldPass().isEmpty()) {
             if (file.exists()) file.delete();
             Message.debugMessage(user.getName(), "data is empty. File removed");
         } else {
             Config cfg = new Config(file, Config.YAML);
-            cfg.set("groups", user.getGroupList());
-            cfg.set("permissions", user.getPermissionList());
-            Message.debugMessage("Saved user ", user.getName(), "Permissions:", user.getPermissionList().size(), "Groups:", user.getGroupList().size());
+            ConfigSection cfgSection = passToSection(user);
+            cfg.setAll(cfgSection);
+            user.getWorldPass().entrySet().forEach(e -> {
+                cfg.set(e.getKey(),passToSection(e.getValue()));
+                cfg.set(e.getKey(),e.getValue().getPermissionList());
+            });
+            Message.debugMessage(user.getName(), " saved.");
             cfg.save(file);
         }
     }
-
-    /*
-
-    @Override
-    public boolean isStored(String userName) {
-        File file = getUserFile(userName);
-        return file.exists();
-    } */
 
     @Override
     public void saveGroups(Collection<Group> groups) {
         Config cfg = new Config();
         groups.forEach(g -> {
-            ConfigSection section = new ConfigSection();
-            section.set("groups", g.getGroupList());
-            section.set("permissions", g.getPermissionList());
-            section.set("prefix", g.getPrefix());
-            section.set("suffix", g.getSuffix());
+            ConfigSection section = passToSection(g);
             cfg.set(g.getName(), section);
+            g.getWorldPass().entrySet().forEach(e ->{
+                ConfigSection ws = passToSection(e.getValue());
+                section.set(e.getKey(),ws);
+            });
+            cfg.set(g.getName(),section);
         });
         cfg.save(this.groupFile);
     }
@@ -90,15 +96,45 @@ public class YamlSaver implements DataSource {
         if (!groupFile.exists()) return groups;
         Config cfg = new Config(groupFile, Config.YAML);
         cfg.getSections().entrySet().forEach(e -> {
-            Group group = new Group(e.getKey());
-            ConfigSection section = (ConfigSection) e.getValue();
-            group.setPermissionsList(section.getStringList("permissions"));
-            group.setGroupList(section.getStringList("groups"));
-            group.setPrefix(section.getString("prefix", ""));
-            group.setSuffix(section.getString("suffix", ""));
+            Pass pass = sectionToPass((ConfigSection) e.getValue());
+            Group group = new Group(e.getKey(),pass);
+            ConfigSection worlds = cfg.getSection("worlds");
+            for (String world: worlds.getKeys(false)){
+                ConfigSection ws = worlds.getSection(world);
+                if (ws.isEmpty()) continue;
+                Pass wpass = sectionToPass(ws);
+                group.setWorldPass(world,wpass);
+            }
             groups.put(e.getKey(), group);
         });
         Message.debugMessage(groups.size(), "groups loaded");
         return groups;
     }
+
+    @Override
+    public boolean isStored(String userName) {
+        return getUserFile(userName).exists();
+    }
+
+
+    private ConfigSection passToSection(Pass pass){
+        ConfigSection section = new ConfigSection();
+        section.set("groups", pass.getGroupList());
+        section.set("permissions", pass.getPermissionList());
+        section.set("prefix",pass.getPrefix());
+        section.set("suffix",pass.getSuffix());
+        section.set("priority",pass.getPriority());
+        return section;
+    }
+
+    private Pass sectionToPass(ConfigSection section){
+        Pass pass = new Pass();
+        pass.setGroupList(section.getStringList("groups"));
+        pass.setPermissionsList(section.getStringList("permissions"));
+        pass.setPrefix(section.getString("prefix",""));
+        pass.setSuffix(section.getString("suffix",""));
+        pass.setPriority(section.getInt("priority",0));
+        return pass;
+    }
+
 }

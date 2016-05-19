@@ -39,10 +39,10 @@ public class GroupInfo extends Cmd {
             Message.GROUP_INFO_TITLE.print(sender, group.getName());
             List<String> ln = group.getGroupList();
             if (!ln.isEmpty()) Message.GROUP_INFO_GROUPS.print(sender, StringUtil.join(ln));
-            ln = group.getPermissionList();
-            if (!ln.isEmpty()) {
+            List<String> pln = group.getPermissionList();
+            if (!pln.isEmpty()) {
                 Message.GROUP_INFO_PERMTITLE.print(sender);
-                ln.forEach(s -> sender.sendMessage(Message.color1(s)));
+                pln.forEach(s -> sender.sendMessage(Message.color1(s)));
             }
         }
         return true;

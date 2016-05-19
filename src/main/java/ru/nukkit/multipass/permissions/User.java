@@ -4,11 +4,10 @@ import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.permission.PermissionAttachment;
 import ru.nukkit.multipass.MultipassPlugin;
+import ru.nukkit.multipass.util.HighBase;
 import ru.nukkit.multipass.util.Message;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Igor on 16.04.2016.
@@ -21,6 +20,10 @@ public class User extends BasePass {
         super(playerName);
     }
 
+    public User(String playerName, Pass pass) {
+        super(playerName, pass);
+    }
+
 
     public void recalculatePermissions() {
         Message.debugMessage("Recalculate permissions:", this.getName());
@@ -30,20 +33,25 @@ public class User extends BasePass {
         String world = useWorlds() ? player.getLevel().getName() : null;
 
         Set<Permission> perms = new HashSet<>();
+
         Group worldGroup = Groups.getGroup(MultipassPlugin.getCfg().defaultGroup);
-        if (worldGroup != null) perms.addAll(worldGroup.getPermissions());
-        if (world!=null) perms.addAll(worldGroup.getPermissions(world));
 
-
+        Set<Group> allGroups = new TreeSet<>(new HighBase());
+        if (worldGroup!=null) allGroups.add(worldGroup);
+        allGroups.addAll(this.getAllGroups());
 
         Iterator<Group> iterator = groups.iterator();
         while (iterator.hasNext()) {
             Group group = iterator.next();
             if (group == null || !Groups.exist(group.getName()))
                 iterator.remove();
-            else perms.addAll(group.getPermissions());
+            else {
+                perms.addAll(group.getPermissions());
+                if (world!=null) perms.addAll (group.getPermissions(world));
+            }
         }
-        perms.addAll(permissions);
+        perms.addAll(getPermissions());
+        if (world!=null) perms.addAll (getPermissions(world));
         perms.forEach(p -> {
             attachment.setPermission(p.getName(), p.isPositive());
             Message.debugMessage(p.isPositive() ? p.getName() : "-" + p.getName());
@@ -61,6 +69,15 @@ public class User extends BasePass {
         Group group = Groups.getGroup(groupStr);
         if (group == null) return false;
         return groups.contains(group);
+    }
+
+    public boolean inGroup(String world, String groupStr){
+        if (world == null) return false;
+        Group group = Groups.getGroup(groupStr);
+        if (group == null) return false;
+        Pass pass = getWorldPass(world);
+        if (pass == null) return false;
+        return pass.groups.contains(group);
     }
 
     private boolean useWorlds(){
