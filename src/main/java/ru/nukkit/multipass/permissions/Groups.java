@@ -1,7 +1,9 @@
 package ru.nukkit.multipass.permissions;
 
+import cn.nukkit.Server;
 import ru.nukkit.multipass.WorldParam;
 import ru.nukkit.multipass.data.DataProvider;
+import ru.nukkit.multipass.event.PermissionsUpdateEvent;
 import ru.nukkit.multipass.util.Message;
 
 import java.util.Collection;
@@ -33,6 +35,12 @@ public class Groups {
         Group group = new Group(id);
         groups.put(id, group);
         saveGroups();
+    }
+
+    public static void remove(String id) {
+        if (groups.containsKey(id)) groups.remove(id);
+        saveGroups();
+        Users.recalculatePermissions();
     }
 
     public static Collection<Group> getAll() {
@@ -100,6 +108,8 @@ public class Groups {
         if (group == null) return false;
         group.setSuffix(suffix);
         saveGroups();
+        PermissionsUpdateEvent event = new PermissionsUpdateEvent();
+        Server.getInstance().getPluginManager().callEvent(event);
         return true;
     }
 
@@ -114,5 +124,23 @@ public class Groups {
         groups = new TreeMap<String, Group>(String.CASE_INSENSITIVE_ORDER);
         groups.putAll(DataProvider.loadGroups());
         Users.recalculatePermissions();
+    }
+
+    public static boolean removePermission(String id, String permStr) {
+        Group group = getGroup(id);
+        if (group == null) return false;
+        group.removePermission(permStr);
+        return true;
+    }
+
+    public static boolean removePermission(String id, String world, String permStr) {
+        Group group = getGroup(id);
+        if (group == null) return false;
+        group.removePermission(world, permStr);
+        return true;
+    }
+
+    public static boolean removePermission(String id, WorldParam wp) {
+        return wp.world == null ? removePermission(id, wp.param) : removePermission(id, wp.world, wp.param);
     }
 }

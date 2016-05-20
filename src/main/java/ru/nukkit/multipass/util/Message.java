@@ -77,6 +77,7 @@ public enum Message {
     GROUP_EXIST("Failed to create new group. Group %1% already exists"),
     GROUP_NOTEXIST("Failed to remove group. Group %1% is not exist"),
     GROUP_CREATE_OK("Group %1% created"),
+    GROUP_REMOVE_OK("Group %1% removed"),
 
     GROUP_ADDGROUP_NOTEXIST("Group %1% is not exist. Please check group name or create new group"),
     GROUP_ADDGROUP_OK("Group %2% was added to group %1%"),
@@ -117,7 +118,10 @@ public enum Message {
     PERM_CHECK_NULLPLAYER("Failed to check permission. Player %1% is offline"),
     PERM_CHECK_HAS("Player %1% has permission %2%"),
     PERM_CHECK_HASNT("Player %1% has not permission %2%"),
-    PERM_RELOADED("Configuration reloaded!");
+    PERM_RELOADED("Configuration reloaded!"),
+    REMOVED_GROUP_DETECTED("User %1% is trying to use unknown group %2%. Please check user permissions/groups"),
+    PERM_USER_PREFIX("Prefixes: %1%"),
+    PERM_USER_SUFFIX("Suffixes: %1%");
 
 
     private static boolean debugMode = false;

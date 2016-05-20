@@ -3,6 +3,7 @@ package ru.nukkit.multipass.command.user;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
+import ru.nukkit.multipass.Multipass;
 import ru.nukkit.multipass.command.Cmd;
 import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.permissions.User;
@@ -32,8 +33,11 @@ public class UserInfo extends Cmd {
 
         User user = Users.getUser(userName);
         List<String> print = new ArrayList<>();
-
-        List<String> ln = user.getGroupList();
+        List<String> ln = Multipass.getPrefixes(userName);
+        if (!ln.isEmpty()) print.add(Message.PERM_USER_PREFIX.getText(StringUtil.join(ln)));
+        ln = Multipass.getSuffixes(userName);
+        if (!ln.isEmpty()) print.add(Message.PERM_USER_SUFFIX.getText(StringUtil.join(ln)));
+        ln = user.getGroupList();
         if (!ln.isEmpty()) print.add(Message.PERM_USER_GROUPS.getText(StringUtil.join(ln)));
         List<String> pln = user.getPermissionList();
         if (!pln.isEmpty()) {

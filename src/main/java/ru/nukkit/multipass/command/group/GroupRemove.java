@@ -18,7 +18,7 @@ public class GroupRemove extends Cmd {
     public boolean execute(CommandSender sender, Player player, String[] args) {
         String id = args[1];
         if (!Groups.exist(id)) return Message.GROUP_NOTEXIST.print(sender, id);
-        Groups.create(id);
-        return Message.GROUP_CREATE_OK.print(sender, id);
+        Groups.remove(id);
+        return Message.GROUP_REMOVE_OK.print(sender, id);
     }
 }

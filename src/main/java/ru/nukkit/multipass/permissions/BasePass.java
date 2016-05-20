@@ -26,17 +26,6 @@ public abstract class BasePass extends Pass {
         this.worldPass = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     }
 
-    public void remove(String world, String perm) {
-        remove(world, new Permission(perm));
-    }
-
-    public void remove(String world, Permission permission) {
-        Pass pass = getWorldPass(world);
-        if (pass == null) return;
-        pass.removePermission(permission);
-    }
-
-
     public Set<Group> getAllGroups(){
         Set<Group> algroups = new TreeSet<>(new HighBase());
         groups.forEach(g -> {

@@ -43,9 +43,10 @@ public class User extends BasePass {
         Iterator<Group> iterator = groups.iterator();
         while (iterator.hasNext()) {
             Group group = iterator.next();
-            if (group == null || !Groups.exist(group.getName()))
+            if (group == null || !Groups.exist(group.getName())) {
+                Message.REMOVED_GROUP_DETECTED.log(group == null ? "null" : group.getName(), player.getName());
                 iterator.remove();
-            else {
+            } else {
                 perms.addAll(group.getPermissions());
                 if (world!=null) perms.addAll (group.getPermissions(world));
             }

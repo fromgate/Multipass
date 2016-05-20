@@ -45,7 +45,9 @@ public class Multipass {
         List<String> list = new ArrayList<>();
         User user = Users.getUser(player);
         Set<BasePass> passes = user.getAllPasses();
-        passes.forEach(p -> list.add(p.getPrefix()));
+        passes.forEach(p -> {
+            if (!p.getPrefix().isEmpty()) list.add(p.getPrefix());
+        });
         return list;
     }
 
@@ -69,7 +71,9 @@ public class Multipass {
         List<String> list = new ArrayList<>();
         User user = Users.getUser(player);
         Set<BasePass> passes = user.getAllPasses();
-        passes.forEach(p -> list.add(p.getPrefix()));
+        passes.forEach(p -> {
+            if (!p.getSuffix().isEmpty()) list.add(p.getSuffix());
+        });
         return list;
     }
 
@@ -221,6 +225,39 @@ public class Multipass {
         if (prefix!=null) g.setPrefix(prefix);
         if (suffix!=null) g.setSuffix(suffix);
         if (priority>=0) g.setPriority(priority);
+    }
+
+    /**
+     * Get group's prefix.
+     * @param group - Group id
+     * @return - Prefix. If group not exist - prefix is Empty
+     */
+    public static String getGroupPrefix (String group){
+        Group g = Groups.getGroup(group);
+        if (g == null) return "";
+        return g.getPrefix();
+    }
+
+    /**
+     * Get group's suffix.
+     * @param group - Group id
+     * @return - Suffix. If group not exist - suffix is Empty
+     */
+    public static String getGroupSuffix (String group){
+        Group g = Groups.getGroup(group);
+        if (g == null) return "";
+        return g.getSuffix();
+    }
+
+    /**
+     * Get group's priority
+     * @param group - Group id
+     * @return - Priority. If group not exist - suffix is Empty
+     */
+    public static int getGroupPriority (String group){
+        Group g = Groups.getGroup(group);
+        if (g == null) return -1;
+        return g.getPriority();
     }
 
     /**

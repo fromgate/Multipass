@@ -3,6 +3,7 @@ package ru.nukkit.multipass.permissions;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import ru.nukkit.multipass.data.DataProvider;
+import ru.nukkit.multipass.event.PermissionsUpdateEvent;
 import ru.nukkit.multipass.util.Message;
 
 import java.util.Iterator;
@@ -159,5 +160,7 @@ public class Users {
         Message.debugMessage("Saving user: " + user.getName());
         DataProvider.saveUser(user);
         user.recalculatePermissions();
+        PermissionsUpdateEvent event = new PermissionsUpdateEvent(user.getName());
+        Server.getInstance().getPluginManager().callEvent(event);
     }
 }
