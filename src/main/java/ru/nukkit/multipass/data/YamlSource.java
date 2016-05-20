@@ -31,17 +31,15 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class YamlSaver implements DataSource {
+public class YamlSource implements DataSource {
 
     private File userDir;
     private File groupFile;
-    private File worldFile;
 
-    public YamlSaver() {
+    public YamlSource() {
         this.userDir = new File(MultipassPlugin.getPlugin().getDataFolder() + File.separator + "users");
         this.userDir.mkdirs();
         this.groupFile = new File(MultipassPlugin.getPlugin().getDataFolder() + File.separator + "groups.yml");
-        this.worldFile = new File(MultipassPlugin.getPlugin().getDataFolder() + File.separator + "worlds.yml");
     }
 
     private File getUserFile(String user) {

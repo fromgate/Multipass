@@ -21,34 +21,53 @@ package ru.nukkit.multipass.data;
 import ru.nukkit.multipass.permissions.Group;
 import ru.nukkit.multipass.permissions.Groups;
 import ru.nukkit.multipass.permissions.User;
+import ru.nukkit.multipass.util.Message;
 
 import java.util.Map;
 
-public class DataProvider {
+public enum DataProvider {
 
-    private static DataSource source;
+    YAML (YamlSource.class);
+    // TODO - DbLib support
+
+    private DataSource source;
+    DataProvider(Class<? extends DataSource> clazz) {
+        try {
+            source = clazz.newInstance();
+        } catch (Exception e){
+            source = null;
+            Message.PROVIDER_FAILED.log(clazz.getName());
+        }
+    }
+
+    public DataSource getSource(){
+        return this.source;
+    }
+
+    private static DataSource currentProvider;
+
 
     public static void init() {
-        source = new YamlSaver();
+        currentProvider = YAML.getSource();
     }
 
     public static User loadUser(String playerName) {
-        return source.loadUser(playerName);
+        return currentProvider.loadUser(playerName);
     }
 
     public static boolean isRegistered(String userName) {
-        return source.isStored(userName);
+        return currentProvider.isStored(userName);
     }
 
     public static void saveUser(User user) {
-        source.saveUser(user);
+        currentProvider.saveUser(user);
     }
 
     public static void saveGroups() {
-        source.saveGroups(Groups.getAll());
+        currentProvider.saveGroups(Groups.getAll());
     }
 
     public static Map<String, Group> loadGroups() {
-        return source.loadGroups();
+        return currentProvider.loadGroups();
     }
 }

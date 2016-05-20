@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="DbLib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../!Externals/DbLib.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../!Externals/DbLib.jar!/" />
+    </SOURCES>
+  </library>
+</component>

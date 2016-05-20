@@ -139,7 +139,8 @@ public enum Message {
     PERM_RELOADED("Configuration reloaded!"),
     REMOVED_GROUP_DETECTED("User %1% is trying to use unknown group %2%. Please check user permissions/groups"),
     PERM_USER_PREFIX("Prefixes: %1%"),
-    PERM_USER_SUFFIX("Suffixes: %1%");
+    PERM_USER_SUFFIX("Suffixes: %1%"),
+    PROVIDER_FAILED("Failed to init data provider: %1%");
 
 
     private static boolean debugMode = false;

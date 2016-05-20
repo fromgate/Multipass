@@ -3,4 +3,5 @@ main: ru.nukkit.multipass.MultipassPlugin
 version: "0.0.3"
 author: fromgate, nukkit.ru
 api: ["1.0.0"]
+softdepend: [DbLib]
 description: Permiter for your permissions!
