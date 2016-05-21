@@ -20,20 +20,25 @@ package ru.nukkit.multipass.command.user;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
+import ru.nukkit.multipass.WorldParam;
 import ru.nukkit.multipass.command.Cmd;
 import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.permissions.Users;
 import ru.nukkit.multipass.util.Message;
+import ru.nukkit.multipass.util.Util;
 
 /**
  * Created by Igor on 06.05.2016.
  */
 
 @CmdDefine(command = "user", alias = "userperm", allowConsole = true, subCommands = {"\\S+", "setperm|sperm|sp|addperm|aperm|ap", "\\S+"}, permission = "multipass.admin", description = Message.CMD_USER_SETPERM)
-public class UserSetperm extends Cmd {
+public class UserSetPerm extends Cmd {
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {
-        Users.setPermission(args[0], args[2]);
-        return Message.USER_SETPERM_OK.print(sender, args[0], args[2]);
+        String userName = args[0];
+        WorldParam wp = new WorldParam(args,2);
+        Users.setPermission(userName, wp);
+        wp.message(Message.USER_SETPERM_OK_INFORM, Message.USER_SETPERMW_OK_INFORM).print(Util.getPlayer(userName),wp.param, wp.world);
+        return wp.message(Message.USER_SETPERM_OK, Message.USER_SETPERMW_OK).print(sender, args[0], args[2]);
     }
 }

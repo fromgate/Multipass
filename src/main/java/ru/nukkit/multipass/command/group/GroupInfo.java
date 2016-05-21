@@ -25,7 +25,7 @@ import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.permissions.Group;
 import ru.nukkit.multipass.permissions.Groups;
 import ru.nukkit.multipass.util.Message;
-import ru.nukkit.multipass.util.StringUtil;
+import ru.nukkit.multipass.util.Util;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -44,14 +44,14 @@ public class GroupInfo extends Cmd {
             else {
                 List<String> groupList = new ArrayList<>();
                 groups.forEach(g -> groupList.add(g.getName()));
-                return Message.GROUP_LIST.print(sender, StringUtil.join(groupList));
+                return Message.GROUP_LIST.print(sender, Util.join(groupList));
             }
         } else {
             Group group = Groups.getGroup(args[0]);
             if (group == null) return Message.GROUP_INFOUNKNOWN.print(sender, args[0]);
             Message.GROUP_INFO_TITLE.print(sender, group.getName());
             List<String> ln = group.getGroupList();
-            if (!ln.isEmpty()) Message.GROUP_INFO_GROUPS.print(sender, StringUtil.join(ln));
+            if (!ln.isEmpty()) Message.GROUP_INFO_GROUPS.print(sender, Util.join(ln));
             List<String> pln = group.getPermissionList();
             if (!pln.isEmpty()) {
                 Message.GROUP_INFO_PERMTITLE.print(sender);

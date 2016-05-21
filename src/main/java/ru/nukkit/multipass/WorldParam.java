@@ -18,6 +18,8 @@
 
 package ru.nukkit.multipass;
 
+import ru.nukkit.multipass.util.Message;
+
 public class WorldParam {
     public String world;
     public String param;
@@ -40,6 +42,14 @@ public class WorldParam {
             this.world = args[num];
             this.param = args[num+1];
         }
+    }
+
+    public boolean hasWorld(){
+        return this.world != null;
+    }
+
+    public Message message (Message msg, Message worldMsg){
+        return this.world == null ? msg : worldMsg;
     }
 
 }

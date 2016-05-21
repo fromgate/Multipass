@@ -18,6 +18,8 @@
 
 package ru.nukkit.multipass.permissions;
 
+import ru.nukkit.multipass.MultipassPlugin;
+
 public class Group extends BasePass {
 
     public Group(String name, Pass pass) {
@@ -29,4 +31,8 @@ public class Group extends BasePass {
     }
 
 
+    public boolean isDefault() {
+        if (MultipassPlugin.getCfg().defaultGroup==null||MultipassPlugin.getCfg().defaultGroup.isEmpty()) return false;
+        return this.getName().equalsIgnoreCase(MultipassPlugin.getCfg().defaultGroup);
+    }
 }

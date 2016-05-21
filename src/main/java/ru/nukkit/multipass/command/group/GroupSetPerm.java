@@ -20,6 +20,7 @@ package ru.nukkit.multipass.command.group;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
+import ru.nukkit.multipass.WorldParam;
 import ru.nukkit.multipass.command.Cmd;
 import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.permissions.Groups;
@@ -30,9 +31,9 @@ public class GroupSetPerm extends Cmd {
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {
         String id = args[0];
+        WorldParam wp = new WorldParam(args,2);
         if (!Groups.exist(id)) return Message.GROUP_SETPERM_NOTEXIST.print(sender, id);
-        String permStr = args[2];
-        Groups.setPerm(id, permStr);
-        return Message.GROUP_SETPERM_OK.print(sender, id, permStr);
+        Groups.setPerm(id, wp);
+        return wp.message(Message.GROUP_SETPERM_OK, Message.GROUP_SETPERMW_OK).print(sender, id, wp.param, wp.world);
     }
 }

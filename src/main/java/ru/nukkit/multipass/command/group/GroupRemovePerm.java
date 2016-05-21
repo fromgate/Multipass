@@ -34,11 +34,8 @@ public class GroupRemovePerm extends Cmd {
         if (!Groups.exist(id)) return Message.GROUP_REMOVEPERM_NOTEXIST.print(sender, id);
         String permStr = args[2];
         WorldParam wp = new WorldParam(args,2);
-
         if (!Groups.isPermissionSet(id, permStr)) return Message.GROUP_REMOVEPERM_PERMUNSET.print(sender, id, permStr);
-
-
-        Groups.removePermission (id, permStr);
-        return Message.GROUP_REMOVEPERM_OK.print(sender, id, permStr);
+        Groups.removePermission (id, wp);
+        return wp.message(Message.GROUP_REMOVEPERM_OK, Message.GROUP_REMOVEPERMW_OK).print(sender,id,permStr,wp.world);
     }
 }

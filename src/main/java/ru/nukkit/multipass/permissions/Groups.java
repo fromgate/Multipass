@@ -64,33 +64,57 @@ public class Groups {
 
 
 
-    public static boolean addGroup(String id1, WorldParam wp) {
-        return (wp.world==null) ? addGroup(id1,wp.param) : addGroup(id1, wp.world, wp.param);
+    public static boolean addGroup(String groupId, WorldParam wp) {
+        return (wp.world==null) ? addGroup(groupId,wp.param) : addGroup(groupId, wp.world, wp.param);
     }
 
-    public static boolean addGroup(String id1, String world, String id2) {
-        Group group1 = getGroup(id1);
-        Group group2 = getGroup(id2);
+    public static boolean addGroup(String groupId1, String world, String groupId2) {
+        Group group1 = getGroup(groupId1);
+        Group group2 = getGroup(groupId2);
         if (group1 == null || group2 == null) return false;
         group1.getWorldPassOrCreate(world).addGroup(group2);
         saveGroups();
         return true;
     }
 
-    public static boolean addGroup(String id1, String id2) {
-        Group group1 = getGroup(id1);
-        Group group2 = getGroup(id2);
+    public static boolean addGroup(String groupId1, String groupId2) {
+        Group group1 = getGroup(groupId1);
+        Group group2 = getGroup(groupId2);
         if (group1 == null || group2 == null) return false;
         group1.addGroup(group2);
         saveGroups();
         return true;
     }
 
+    public static boolean setPerm(String id, WorldParam wp) {
+        return wp.world == null ? setPerm(id,wp.param) : setPerm(id, wp.world, wp.param);
+    }
+
+    private static boolean setPerm(String id, String world, String perm) {
+        Group group = getGroup(id);
+        if (group == null) return false;
+        group.setPermission(world, perm);
+        saveGroups();
+        return true;
+    }
+
     public static boolean setPerm(String id, String permStr) {
         Group group = getGroup(id);
-        Message.debugMessage(group.getPermissions().size());
         if (group == null) return false;
         group.setPermission(permStr);
+        saveGroups();
+        return true;
+    }
+
+    public static boolean setGroup(String id1, WorldParam wp) {
+        return wp.world==null ? setGroup(id1, wp.param) :  setGroup(id1, wp.world, wp.param);
+    }
+
+    public static boolean setGroup(String id1, String world, String param) {
+        Group group1 = getGroup(id1);
+        Group group2 = getGroup(param);
+        if (group1 == null || group2 == null) return false;
+        group1.getWorldPassOrCreate(world).setGroup(group2);
         saveGroups();
         return true;
     }

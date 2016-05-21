@@ -28,14 +28,11 @@ import ru.nukkit.multipass.permissions.User;
 import ru.nukkit.multipass.permissions.Users;
 import ru.nukkit.multipass.util.Message;
 import ru.nukkit.multipass.util.Paginator;
-import ru.nukkit.multipass.util.StringUtil;
+import ru.nukkit.multipass.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Igor on 06.05.2016.
- */
 @CmdDefine(command = "user", alias = "userperm", allowConsole = true, subCommands = "\\S+", permission = "multipass.admin", description = Message.CMD_USER)
 public class UserInfo extends Cmd {
     @Override
@@ -52,11 +49,11 @@ public class UserInfo extends Cmd {
         User user = Users.getUser(userName);
         List<String> print = new ArrayList<>();
         List<String> ln = Multipass.getPrefixes(userName);
-        if (!ln.isEmpty()) print.add(Message.PERM_USER_PREFIX.getText(StringUtil.join(ln)));
+        if (!ln.isEmpty()) print.add(Message.PERM_USER_PREFIX.getText(Util.join(ln)));
         ln = Multipass.getSuffixes(userName);
-        if (!ln.isEmpty()) print.add(Message.PERM_USER_SUFFIX.getText(StringUtil.join(ln)));
+        if (!ln.isEmpty()) print.add(Message.PERM_USER_SUFFIX.getText(Util.join(ln)));
         ln = user.getGroupList();
-        if (!ln.isEmpty()) print.add(Message.PERM_USER_GROUPS.getText(StringUtil.join(ln)));
+        if (!ln.isEmpty()) print.add(Message.PERM_USER_GROUPS.getText(Util.join(ln)));
         List<String> pln = user.getPermissionList();
         if (!pln.isEmpty()) {
             print.add(Message.PERM_USER_PERMS.getText());

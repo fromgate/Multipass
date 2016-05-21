@@ -19,21 +19,23 @@
 package ru.nukkit.multipass.command.user;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
+import ru.nukkit.multipass.WorldParam;
 import ru.nukkit.multipass.command.Cmd;
 import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.permissions.Users;
 import ru.nukkit.multipass.util.Message;
 
-/**
- * Created by Igor on 06.05.2016.
- */
 
 @CmdDefine(command = "user", alias = "userperm", allowConsole = true, subCommands = {"\\S+", "setgroup|setgrp|sgrp|sg", "\\S+"}, permission = "multipass.admin", description = Message.CMD_USER_SETGROUP)
-public class UserSetgroup extends Cmd {
+public class UserSetGroup extends Cmd {
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {
-        Users.setGroup(args[0], args[2]);
-        return Message.USER_SETGROUP_OK.print(sender, args[0], args[1]);
+        String userName = args[0];
+        WorldParam wp = new WorldParam(args,2);
+        Users.setGroup(userName, wp);
+        wp.message(Message.USER_SETGROUP_OK_INFORM, Message.USER_SETGROUPW_OK_INFORM).print(Server.getInstance().getPlayerExact(userName),wp.param, wp.world);
+        return wp.message (Message.USER_SETGROUP_OK, Message.USER_SETGROUPW_OK).print(sender, userName, wp.param, wp.world);
     }
 }

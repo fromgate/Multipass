@@ -103,4 +103,10 @@ public class User extends BasePass {
         return MultipassPlugin.getCfg().enableWorldSupport;
     }
 
+    public boolean isEmpty() {
+        return this.permissions.isEmpty() &&
+                (groups.isEmpty()||(groups.size()==1&&(groups.stream().toArray(Group[]::new)[0].isDefault()))) &&
+                this.getWorldPass().isEmpty() &&
+                this.prefix.isEmpty() && this.suffix.isEmpty() && (this.priority == 0);
+    }
 }

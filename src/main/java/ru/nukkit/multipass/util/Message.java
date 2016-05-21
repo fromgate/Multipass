@@ -70,7 +70,8 @@ public enum Message {
     CMD_WORLD_SET("/world <world> set <group> - set global world group"),
     CMD_WORLD("/world - show world group configuration"),
     CMD_PERM_CHECK("/perm check <player> <permission> - check player permission line"),
-
+    CMD_USER_SETPREFIX("/user <player> setprefix <user prefix> - set prefix"),
+    CMD_USER_SETSUFFIX("/user <player> setsuffix <user suffix> - set suffix"),
 
     PERM_USER_NOTREGISTER("User %1% is not registered on this server!"),
 
@@ -83,15 +84,35 @@ public enum Message {
     PERM_GROUP_PERMS("Permissions:"),
     PERM_GROUP_INFO("Group %1% info"),
     USER_SETPERM_OK("User %1% permission configured: %2%"),
+    USER_SETPERMW_OK("User %1% permission configured: %2% (world %3%)"),
+    USER_SETPERM_OK_INFORM("Your permissions was set: %1%"),
+    USER_SETPERMW_OK_INFORM("Your permissions was set: %1% (world: %3%)"),
+
     USER_REMOVEPERM_NOTFOUND("User %1% not found. Cannot remove permission"),
     USER_REMOVEPERM_NOTSET("Failed to remove permission %1% from user %2%. It was not configured"),
+    USER_REMOVEPERMW_NOTSET("Failed to remove permission %1% (world %3) from user %2%. It was not configured"),
     USER_REMOVEPERM_OK("Permission %1% removed from user %2%"),
+    USER_REMOVEPERMW_OK("Permission %1% (world %3%) removed from user %2%"),
+    USER_REMOVEPERM_OK_INFORM("Permission %1% was removed from you"),
+    USER_REMOVEPERMW_OK_INFORM("Permission %1% removed from user %2%"),
     USER_SETGROUP_OK("Player %1% moved to group %2%"),
+    USER_SETGROUPW_OK("Player %1% moved to group %2% (world %3%)"),
+
+    USER_SETGROUP_OK_INFORM("You moved to group %1%"),
+    USER_SETGROUPW_OK_INFORM("You moved to group %1% (world %3%)"),
+
     USER_ADDGROUP_OK("Player %1% added to group %2%"),
+    USER_ADDGROUP_OK_INFORM("You were added to group %1%"),
+    USER_ADDGROUPW_OK("Player %1% added to group %2% (world %3%)"),
+    USER_ADDGROUPW_OK_INFORM("You were added to group %1% (world %2%"),
 
     USER_REMOVEGROUP_NOTFOUND("User %1% not found. Cannot remove him from the group"),
     USER_REMOVEGROUP_NOTSET("Failed to remove player %2% from group %1%. It was not configured"),
+    USER_REMOVEGROUPW_NOTSET("Failed to remove player %2% from group %1% (world %3%). It was not configured"),
     USER_REMOVEGROUP_OK("Player %2% removed from group %1%"),
+    USER_REMOVEGROUPW_OK("Player %2% removed from group %1% (world %3%)"),
+    USER_REMOVEGROUP_OK_INFORM("You was removed from the group %1%"),
+    USER_REMOVEGROUPW_OK_INFORM("You was removed from the group %1% (world %2%"),
     GROUP_EXIST("Failed to create new group. Group %1% already exists"),
     GROUP_NOTEXIST("Failed to remove group. Group %1% is not exist"),
     GROUP_CREATE_OK("Group %1% created"),
@@ -103,13 +124,16 @@ public enum Message {
 
     GROUP_SETGROUP_NOTEXIST("Group %1% is not exist. Please check group name or create new group"),
     GROUP_SETGROUP_OK("Group %2% was added to group %1%. All other groups were removed"),
+    GROUP_SETGROUPW_OK("Group %2% was added to group %1% (world %3%). All other groups were removed"),
 
     GROUP_SETPERM_NOTEXIST("Failed to set permission. Group %1% is not exist"),
     GROUP_SETPERM_OK("Group %1% permission configured: %2%"),
+    GROUP_SETPERMW_OK("Group %1% permission configured: %2% (world: %3%)"),
 
     GROUP_REMOVEPERM_NOTEXIST("Failed to remove permission. Group %1% is not exist"),
     GROUP_REMOVEPERM_PERMUNSET("Failed to remove permission. Permission %2% is not configured for group %1%"),
     GROUP_REMOVEPERM_OK("Permission %2% removed from group %1%"),
+    GROUP_REMOVEPERMW_OK("Permission %2% removed from group %1% (world: %3%)"),
 
     GROUP_SETPREFIX_NOTEXIST("Failed to set prefix. Group %1% is not exist"),
     GROUP_SETSUFFIX_NOTEXIST("Failed to set suffix. Group %1% is not exist"),
@@ -140,7 +164,11 @@ public enum Message {
     REMOVED_GROUP_DETECTED("User %1% is trying to use unknown group %2%. Please check user permissions/groups"),
     PERM_USER_PREFIX("Prefixes: %1%"),
     PERM_USER_SUFFIX("Suffixes: %1%"),
-    PROVIDER_FAILED("Failed to init data provider: %1%");
+    PROVIDER_FAILED("Failed to init data provider: %1%"),
+    USER_PREFIX_OK("Prefix of user %1% is set to %2%"),
+    USER_PREFIX_OK_INFORM("Your prefix was changed to %1%"),
+    USER_SUFFIX_OK("Suffix of user %1% is set to %2%"),
+    USER_SUFFIX_OK_INFORM("Your suffix was changed to %1%");
 
 
     private static boolean debugMode = false;
@@ -239,7 +267,7 @@ public enum Message {
      * @return — always returns true.
      */
     public boolean print(CommandSender sender, Object... s) {
-        if (sender == null) return Message.LNG_PRINT_FAIL.log(this.name());
+        if (sender == null) return Message.LNG_PRINT_FAIL.debug(this.name());
         sender.sendMessage(getText(s));
         return true;
     }

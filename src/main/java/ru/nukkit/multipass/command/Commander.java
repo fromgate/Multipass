@@ -58,12 +58,14 @@ public class Commander {
         addNewCommand(PermCheck.class);
 
         //User command
-        addNewCommand(UserAddgroup.class);
+        addNewCommand(UserAddGroup.class);
         addNewCommand(UserInfo.class);
-        addNewCommand(UserRemovegroup.class);
-        addNewCommand(UserRemoveperm.class);
-        addNewCommand(UserSetgroup.class);
-        addNewCommand(UserSetperm.class);
+        addNewCommand(UserRemoveGroup.class);
+        addNewCommand(UserRemovePerm.class);
+        addNewCommand(UserSetGroup.class);
+        addNewCommand(UserSetPerm.class);
+        addNewCommand(UserSetPrefix.class);
+        addNewCommand(UserSetSuffix.class);
 
     }
 

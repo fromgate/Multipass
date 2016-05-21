@@ -72,7 +72,7 @@ public class YamlSource implements DataSource {
     public void saveUser(User user) {
         File file = getUserFile(user.getName());
         Message.debugMessage("Save user file: ", file.toString());
-        if (user.getPermissionList().isEmpty() && user.getGroupList().isEmpty()&&user.getWorldPass().isEmpty()) {
+        if (user.isEmpty()) {
             if (file.exists()) file.delete();
             Message.debugMessage(user.getName(), "data is empty. File removed");
         } else {
@@ -129,7 +129,6 @@ public class YamlSource implements DataSource {
         return getUserFile(userName).exists();
     }
 
-
     private ConfigSection passToSection(Pass pass){
         ConfigSection section = new ConfigSection();
         section.set("groups", pass.getGroupList());
@@ -149,5 +148,4 @@ public class YamlSource implements DataSource {
         pass.setPriority(section.getInt("priority",0));
         return pass;
     }
-
 }
