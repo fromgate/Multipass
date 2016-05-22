@@ -51,7 +51,9 @@ public class UserInfo extends Cmd {
         List<String> ln = Multipass.getPrefixes(userName);
         if (!ln.isEmpty()) print.add(Message.PERM_USER_PREFIX.getText(Util.join(ln)));
         ln = Multipass.getSuffixes(userName);
+        Message.debugMessage(Util.join(Multipass.getSuffixes(userName)));
         if (!ln.isEmpty()) print.add(Message.PERM_USER_SUFFIX.getText(Util.join(ln)));
+
         ln = user.getGroupList();
         if (!ln.isEmpty()) print.add(Message.PERM_USER_GROUPS.getText(Util.join(ln)));
         List<String> pln = user.getPermissionList();

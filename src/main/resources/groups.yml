@@ -1,0 +1,24 @@
+# Group configuration example:
+#
+#default:
+#  groups:                # List of group (all group defined in this file)
+#  - vip
+#  permissions:           # List of permissions.
+#  - plugin.vip
+#  - plugin.test
+#  prefix: '&6[VIP]'      # Group prefix, used by third-party plugins
+#  suffix: ''             # Group suffix, used by third-party plugins
+#  priority: 10           # Group priority
+#  worlds:                # List of per-world permissions and groups
+#    end:
+#      groups:
+#      - vip_end
+#      permissions:
+#      - -plugin.vip      # Negative permission starts with "-"
+#      - -plugin.test
+default:
+  groups: []
+  permissions: []
+  prefix: ''
+  suffix: ''
+  priority: 0

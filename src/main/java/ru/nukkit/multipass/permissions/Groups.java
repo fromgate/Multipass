@@ -19,6 +19,7 @@
 package ru.nukkit.multipass.permissions;
 
 import cn.nukkit.Server;
+import ru.nukkit.multipass.MultipassPlugin;
 import ru.nukkit.multipass.WorldParam;
 import ru.nukkit.multipass.data.DataProvider;
 import ru.nukkit.multipass.event.PermissionsUpdateEvent;
@@ -46,7 +47,7 @@ public class Groups {
     }
 
     public static void create(String id) {
-        if (groups.containsKey(id)) return;
+        if (id==null||id.isEmpty()||groups.containsKey(id)) return;
         Group group = new Group(id);
         groups.put(id, group);
         saveGroups();
@@ -162,6 +163,8 @@ public class Groups {
         Message.debugMessage("Loading groups");
         groups = new TreeMap<String, Group>(String.CASE_INSENSITIVE_ORDER);
         groups.putAll(DataProvider.loadGroups());
+        if (!exist(MultipassPlugin.getCfg().defaultGroup))
+            Groups.create(MultipassPlugin.getCfg().defaultGroup);
         Users.recalculatePermissions();
     }
 

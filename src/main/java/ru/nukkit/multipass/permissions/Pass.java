@@ -43,7 +43,7 @@ public class Pass {
         permissions = pass.permissions;
         priority = pass.priority;
         prefix = pass.prefix;
-        suffix = pass.prefix;
+        suffix = pass.suffix;
     }
 
     public void removeGroup(String groupStr){

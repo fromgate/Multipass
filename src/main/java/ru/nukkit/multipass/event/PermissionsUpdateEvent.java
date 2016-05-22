@@ -51,7 +51,8 @@ public class PermissionsUpdateEvent extends Event {
 
 
     /**
-     *
+     * Check is Permission update related to single player or it was a mass update
+     * (for example changing groups)
      * @return
      */
     public boolean isMassUpdate(){

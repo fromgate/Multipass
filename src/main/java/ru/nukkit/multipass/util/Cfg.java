@@ -32,16 +32,13 @@ public class Cfg extends SimpleConfig {
     @Path("general.debug")
     public boolean debugMode = true;
 
-    // Global or per-world permissions
+    // Default group, will be added automatically for all new users
     @Path("permissions.default-group")
     public String defaultGroup = "default";
 
+    // Global or per-world permissions
     @Path("permissions.multiworld")
     public boolean enableWorldSupport = false;
-
-
-
-
 
     public Cfg() {
         super(MultipassPlugin.getPlugin());

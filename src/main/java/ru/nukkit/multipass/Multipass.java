@@ -61,7 +61,9 @@ public class Multipass {
         User user = Users.getUser(player);
         Set<BasePass> passes = user.getAllPasses();
         passes.forEach(p -> {
-            if (!p.getPrefix().isEmpty()) list.add(p.getPrefix());
+            if (!p.getPrefix().isEmpty()) {
+                list.add(p.getPrefix());
+            }
         });
         return list;
     }
@@ -87,7 +89,9 @@ public class Multipass {
         User user = Users.getUser(player);
         Set<BasePass> passes = user.getAllPasses();
         passes.forEach(p -> {
-            if (!p.getSuffix().isEmpty()) list.add(p.getSuffix());
+            if (!p.getSuffix().isEmpty()) {
+                list.add(p.getSuffix());
+            }
         });
         return list;
     }

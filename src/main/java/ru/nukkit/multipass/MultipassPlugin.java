@@ -42,6 +42,7 @@ public class MultipassPlugin extends PluginBase {
     @Override
     public void onEnable() {
         instance = this;
+        saveResources();
         cfg = new Cfg();
         cfg.load();
         cfg.save();
@@ -50,6 +51,10 @@ public class MultipassPlugin extends PluginBase {
         Commander.init(this);
         DataProvider.init();
         Groups.init();
+    }
+
+    private void saveResources(){
+        this.saveResource("groups.yml",false);
     }
 
 }

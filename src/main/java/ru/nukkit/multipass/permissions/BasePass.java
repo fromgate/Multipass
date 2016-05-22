@@ -54,13 +54,12 @@ public abstract class BasePass extends Pass {
 
     public Set<BasePass> getAllPasses(){
         Set<BasePass> passes = new TreeSet<>(new HighBase());
-        passes.add(this);
         groups.forEach(p -> {
             if (!passes.contains(p)) {
-                passes.add(p);
                 passes.addAll(p.getAllPasses());
             }
         });
+        passes.add(this);
         return passes;
     }
 
