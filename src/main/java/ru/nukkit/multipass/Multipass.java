@@ -299,4 +299,13 @@ public class Multipass {
         List<String> groups = getGroups(player);
         return groups.isEmpty() ? "" : groups.get(0);
     }
+
+    /**
+     * Check group existence
+     * @param group - group id
+     * @return - group exists or not
+     */
+    public static boolean isGroupExist (String group){
+        return Groups.exist(group);
+    }
 }
