@@ -42,5 +42,4 @@ public class LeelooListener implements Listener {
         if (event.getFrom().getLevel().equals(event.getTo().getLevel())) return;
         Users.recalculatePermissions(event.getPlayer().getName());
     }
-
 }

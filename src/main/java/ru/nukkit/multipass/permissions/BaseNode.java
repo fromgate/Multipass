@@ -20,7 +20,6 @@ package ru.nukkit.multipass.permissions;
 
 import ru.nukkit.multipass.util.HighBase;
 import ru.nukkit.multipass.util.LowBase;
-import ru.nukkit.multipass.util.Message;
 
 import java.util.*;
 
@@ -43,8 +42,6 @@ public abstract class BaseNode extends Node {
         this.worldPass = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     }
 
-
-
     public Set<Group> getAllGroups(){
         Set<Group> algroups = new TreeSet<>(new HighBase());
         groups.forEach(g -> {
@@ -56,40 +53,18 @@ public abstract class BaseNode extends Node {
         return algroups;
     }
 
-
-
     public Set<BaseNode> getAllNodes(){
         return getAllNodes(true);
     }
 
-    private Set<BaseNode> getNodes(){
-        Set<BaseNode> nodes = new HashSet<>();
-        nodes.add(this);
-        nodes.addAll(this.groups);
-        return nodes;
-    }
-
-    public Set<BaseNode> getAllNodes (boolean acsending){
-        return getAllNodes( new TreeSet<>(acsending ? new HighBase() : new LowBase()));
-    }
-
-    private String p2s(Set<BaseNode> passes){
-        StringBuilder sb= new StringBuilder();
-        for (BaseNode b: passes){
-            if (sb.length()>0) sb.append(" ");
-            sb.append(b.getName());
-        }
-        return sb.toString();
-    }
-    public Set<BaseNode> getAllNodes(Set<BaseNode> passes ){
-        Message.debugMessage("this:",this.getName());
-        for (BaseNode node : getNodes()){
-            Message.debugMessage("passes.contains("+node.getName()+"):",passes.contains(node), p2s(passes));
-            if (passes.contains(node)) continue;
-            passes.add(node);
-            Message.debugMessage("add:",node.getName());
-            passes = node.getAllNodes(passes);
-        }
+    public Set<BaseNode> getAllNodes(boolean acsending) {
+        Set<BaseNode> passes = new TreeSet<>(acsending ? new HighBase() : new LowBase());//new TreeSet<>(new HighBase());
+        passes.add(this);
+        groups.forEach(p -> {
+            if (!passes.contains(p)) {
+                passes.addAll(p.getAllNodes());
+            }
+        });
         return passes;
     }
 
@@ -177,9 +152,6 @@ public abstract class BaseNode extends Node {
         getWorldPassOrCreate(world).setGroupList(groupList);
     }
 
-
-
-
     public String getName() {
         return name;
     }
@@ -239,25 +211,19 @@ public abstract class BaseNode extends Node {
         getWorldPass(world).removeGroup(group);
     }
 
-
-    /*
     @Override
     public boolean equals(Object o) {
         if (this == o) {
-
-            Message.debugMessage("1: equals");
             return true;
         }
         if (o == null || getClass() != o.getClass()) return false;
         BaseNode that = (BaseNode) o;
         boolean result = name != null ? name.equalsIgnoreCase(that.name) : false;
-        if (result) Message.debugMessage("1: equals");
         return result;
     }
 
     @Override
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
-    } */
-
+    }
 }

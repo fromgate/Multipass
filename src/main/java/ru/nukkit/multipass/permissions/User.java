@@ -53,76 +53,15 @@ public class User extends BaseNode {
         Set<Permission> perms = new LinkedHashSet<>();
         Set<BaseNode> nodes = this.getAllNodes(false);
         nodes.forEach(node -> {
-            Message.debugMessage("node:", node.getName(),node.getPermissions().size());
             perms.addAll(node.getPermissions());
             if (world!=null) node.getPermissions(world);
         });
-
-        /*
-        Group worldGroup = Groups.getGroup(MultipassPlugin.getCfg().defaultGroup);
-
-        Set<Group> allGroups = new TreeSet<>(new HighBase());
-
-        if (worldGroup!=null) allGroups.add(worldGroup);
-        allGroups.addAll(this.getAllGroups());
-
-        Iterator<Group> iterator = groups.iterator();
-        while (iterator.hasNext()) {
-            Group group = iterator.next();
-            if (group == null || !Groups.exist(group.getName())) {
-                Message.REMOVED_GROUP_DETECTED.log(group == null ? "null" : group.getName(), player.getName());
-                iterator.remove();
-            } else {
-                perms.addAll(group.getPermissions());
-                if (world!=null) perms.addAll (group.getPermissions(world));
-            }
-        }
-        perms.addAll(getPermissions());
-        if (world!=null) perms.addAll (getPermissions(world));
-        */
 
         perms.forEach(p -> {
             attachment.setPermission(p.getName(), p.isPositive());
             Message.debugMessage(p.isPositive() ? p.getName() : "-" + p.getName());
         });
     }
-
-
- /*   public void recalculatePermissions() {
-        Message.debugMessage("Recalculate permissions:", this.getName());
-        if (getAttachment() == null) return;
-        attachment.clearPermissions();
-        Player player = Server.getInstance().getPlayerExact(this.name);
-        String world = useWorlds() ? player.getLevel().getName() : null;
-
-        Set<Permission> perms = new HashSet<>();
-
-        Group worldGroup = Groups.getGroup(MultipassPlugin.getCfg().defaultGroup);
-
-        Set<Group> allGroups = new TreeSet<>(new HighBase());
-
-        if (worldGroup!=null) allGroups.add(worldGroup);
-        allGroups.addAll(this.getAllGroups());
-
-        Iterator<Group> iterator = groups.iterator();
-        while (iterator.hasNext()) {
-            Group group = iterator.next();
-            if (group == null || !Groups.exist(group.getName())) {
-                Message.REMOVED_GROUP_DETECTED.log(group == null ? "null" : group.getName(), player.getName());
-                iterator.remove();
-            } else {
-                perms.addAll(group.getPermissions());
-                if (world!=null) perms.addAll (group.getPermissions(world));
-            }
-        }
-        perms.addAll(getPermissions());
-        if (world!=null) perms.addAll (getPermissions(world));
-        perms.forEach(p -> {
-            attachment.setPermission(p.getName(), p.isPositive());
-            Message.debugMessage(p.isPositive() ? p.getName() : "-" + p.getName());
-        });
-    } */
-
 
     public PermissionAttachment getAttachment() {
         Player player = Server.getInstance().getPlayerExact(this.name);
@@ -155,21 +94,4 @@ public class User extends BaseNode {
                 this.getWorldPass().isEmpty() &&
                 this.prefix.isEmpty() && this.suffix.isEmpty() && (this.priority == 0);
     }
-/*
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User that = (User) o;
-        return name != null ? name.equalsIgnoreCase(that.name) : false;
-    }
-
-    @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
-    }
-    */
-
 }

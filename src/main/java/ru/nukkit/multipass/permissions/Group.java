@@ -30,23 +30,8 @@ public class Group extends BaseNode {
         super(name);
     }
 
-
     public boolean isDefault() {
         if (MultipassPlugin.getCfg().defaultGroup==null||MultipassPlugin.getCfg().defaultGroup.isEmpty()) return false;
         return this.getName().equalsIgnoreCase(MultipassPlugin.getCfg().defaultGroup);
     }
-
-    /*@Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Group that = (Group) o;
-        return name != null ? name.equalsIgnoreCase(that.name) : false;
-    }
-
-    @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
-    }
-    */
 }

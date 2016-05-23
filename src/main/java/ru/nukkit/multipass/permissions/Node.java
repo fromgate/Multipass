@@ -133,7 +133,7 @@ public class Node {
 
     public void setGroup(Group group2) {
         this.groups.clear();
-        this.groups.add(group2);
+        addGroup(group2);
     }
 
     public boolean isPermissionSet(String permStr) {

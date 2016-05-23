@@ -46,7 +46,6 @@ public class Users {
         users.put(playerName, user);
     }
 
-
     public static User getUser(String playerName) {
         if (!users.containsKey(playerName)) loadUser(playerName);
         return users.get(playerName);
@@ -68,20 +67,17 @@ public class Users {
     }
 
     public static void addGroup(String id, WorldParam wp) {
-        Message.debugMessage("addGroup, world:",wp.hasWorld(),wp.world);
         if (wp.hasWorld()) addGroup(id,wp.world,wp.param);
         else addGroup(id, wp.param);
     }
 
     public static void addGroup(String id, String world, String group) {
-        Message.debugMessage("addGroup("+id+", "+world+", "+group+")");
         User user = Users.getUser(id);
         user.addGroup(world, group);
         saveUser(user);
     }
 
     public static void addGroup(String id, String group) {
-        Message.debugMessage("addGroup("+id+", "+group+")");
         User user = Users.getUser(id);
         user.setGroup(group);
         saveUser(user);
@@ -149,7 +145,6 @@ public class Users {
         user.removePermission(permStr);
         saveUser(user);
     }
-
 
     public static void setGroup(String userName, WorldParam wp) {
         if (wp.hasWorld()) setGroup(wp.world, userName, wp.param);
@@ -221,16 +216,11 @@ public class Users {
         });
     }
 
-
     public static void saveUser(User user) {
         Message.debugMessage("Saving user: " + user.getName());
-        DataProvider.saveUser(user);
         user.recalculatePermissions();
+        DataProvider.saveUser(user);
         PermissionsUpdateEvent event = new PermissionsUpdateEvent(user.getName());
         Server.getInstance().getPluginManager().callEvent(event);
     }
-
-
-
-
 }
