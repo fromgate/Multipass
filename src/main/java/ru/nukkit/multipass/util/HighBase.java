@@ -18,14 +18,15 @@
 
 package ru.nukkit.multipass.util;
 
-import ru.nukkit.multipass.permissions.BasePass;
+import ru.nukkit.multipass.permissions.BaseNode;
 
 import java.util.Comparator;
 
-public class HighBase implements Comparator<BasePass> {
+public class HighBase implements Comparator<BaseNode> {
     @Override
-    public int compare(BasePass o1, BasePass o2) {
-        if (o1.getPriority()==o2.getPriority()) return 0;
+    public int compare(BaseNode o1, BaseNode o2) {
+        if (o1.equals(o2)) return 0;
+        //if (o1.getPriority()==o2.getPriority()) return 0;
         return o1.getPriority()<o2.getPriority() ? 1 : -1;
     }
 }

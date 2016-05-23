@@ -16,9 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ru.nukkit.multipass;
-
-import ru.nukkit.multipass.util.Message;
+package ru.nukkit.multipass.util;
 
 public class WorldParam {
     public String world;
@@ -26,7 +24,7 @@ public class WorldParam {
 
 
     public WorldParam (String param){
-        world = null;
+        world = "";
         this.param = param;
         if (param.contains(":")){
             String[] ln = param.split(":");
@@ -35,21 +33,24 @@ public class WorldParam {
         }
     }
 
+    // user fromgate addgroup test2
+    //      0        1        2
     public WorldParam (String[] args, int num){
-        this.world = null;
-        this.param = args[num];
-        if (args.length>num){
+        if (args.length<=num+1) {
+            this.world = "";
+            this.param = args[num];
+        } else {
             this.world = args[num];
             this.param = args[num+1];
         }
     }
 
     public boolean hasWorld(){
-        return this.world != null;
+        return !world.isEmpty();
     }
 
     public Message message (Message msg, Message worldMsg){
-        return this.world == null ? msg : worldMsg;
+        return world.isEmpty() ? msg : worldMsg;
     }
 
 }

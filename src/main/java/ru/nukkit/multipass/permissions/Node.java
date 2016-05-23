@@ -20,7 +20,7 @@ package ru.nukkit.multipass.permissions;
 
 import java.util.*;
 
-public class Pass {
+public class Node {
 
 
     Set<Group> groups;
@@ -30,7 +30,7 @@ public class Pass {
     String suffix;
 
 
-    public Pass() {
+    public Node() {
         this.permissions = new HashSet<>();
         this.groups = new HashSet<>();
         this.prefix = "";
@@ -38,12 +38,12 @@ public class Pass {
         this.priority = 0;
     }
 
-    public Pass(Pass pass) {
-        groups = pass.groups;
-        permissions = pass.permissions;
-        priority = pass.priority;
-        prefix = pass.prefix;
-        suffix = pass.suffix;
+    public Node(Node node) {
+        groups = node.groups;
+        permissions = node.permissions;
+        priority = node.priority;
+        prefix = node.prefix;
+        suffix = node.suffix;
     }
 
     public void removeGroup(String groupStr){

@@ -32,28 +32,6 @@ import ru.nukkit.multipass.util.Message;
 /*
 
 TODO
-  + /perm help - помощь
-  /perm reload - перезагрузить
-  + /perm user <name> - показать информацию по пермишенам игрока
-  + /perm group <name> - показать информацию по группе
-
-  настройка игрока
-  /user <name> setperm | removeperm | setgroup | addgroup | removegroup
-
-  настройка группы
-  + /group <id> create | remove
-
-  + /group <id> setperm
-  + removeperm
-  + setgroup
-  + addgroup
-  + removegroup
-
-  + /group <id> setprfix | setsuffix
-
-  /world <id> setgroup <group>
-  /world <id> 
-  /world setworld <world>
 
 
  */

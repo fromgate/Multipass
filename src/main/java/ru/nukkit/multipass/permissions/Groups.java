@@ -20,7 +20,7 @@ package ru.nukkit.multipass.permissions;
 
 import cn.nukkit.Server;
 import ru.nukkit.multipass.MultipassPlugin;
-import ru.nukkit.multipass.WorldParam;
+import ru.nukkit.multipass.util.WorldParam;
 import ru.nukkit.multipass.data.DataProvider;
 import ru.nukkit.multipass.event.PermissionsUpdateEvent;
 import ru.nukkit.multipass.util.Message;
@@ -66,7 +66,7 @@ public class Groups {
 
 
     public static boolean addGroup(String groupId, WorldParam wp) {
-        return (wp.world==null) ? addGroup(groupId,wp.param) : addGroup(groupId, wp.world, wp.param);
+        return wp.hasWorld() ? addGroup(groupId, wp.world, wp.param) : addGroup(groupId,wp.param);
     }
 
     public static boolean addGroup(String groupId1, String world, String groupId2) {
@@ -88,7 +88,7 @@ public class Groups {
     }
 
     public static boolean setPerm(String id, WorldParam wp) {
-        return wp.world == null ? setPerm(id,wp.param) : setPerm(id, wp.world, wp.param);
+        return wp.hasWorld() ? setPerm(id, wp.world, wp.param) : setPerm(id,wp.param);
     }
 
     private static boolean setPerm(String id, String world, String perm) {
@@ -108,7 +108,7 @@ public class Groups {
     }
 
     public static boolean setGroup(String id1, WorldParam wp) {
-        return wp.world==null ? setGroup(id1, wp.param) :  setGroup(id1, wp.world, wp.param);
+        return wp.hasWorld() ? setGroup(id1, wp.world, wp.param) : setGroup(id1, wp.param);
     }
 
     public static boolean setGroup(String id1, String world, String param) {
@@ -183,6 +183,6 @@ public class Groups {
     }
 
     public static boolean removePermission(String id, WorldParam wp) {
-        return wp.world == null ? removePermission(id, wp.param) : removePermission(id, wp.world, wp.param);
+        return wp.hasWorld() ? removePermission(id, wp.world, wp.param) : removePermission(id, wp.param);
     }
 }

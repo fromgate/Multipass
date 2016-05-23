@@ -22,7 +22,7 @@ import cn.nukkit.utils.Config;
 import cn.nukkit.utils.ConfigSection;
 import ru.nukkit.multipass.MultipassPlugin;
 import ru.nukkit.multipass.permissions.Group;
-import ru.nukkit.multipass.permissions.Pass;
+import ru.nukkit.multipass.permissions.Node;
 import ru.nukkit.multipass.permissions.User;
 import ru.nukkit.multipass.util.Message;
 
@@ -54,14 +54,14 @@ public class YamlSource implements DataSource {
         Config cfg = new Config(Config.YAML);
         if (file.exists()) {
             cfg.load(file.toString());
-            Pass pass = sectionToPass(cfg.getRootSection());
-            user = new User(playerName, pass);
+            Node node = sectionToPass(cfg.getRootSection());
+            user = new User(playerName, node);
 
             ConfigSection worlds = cfg.getSection("worlds");
             for (String world: worlds.getKeys(false)){
                 ConfigSection ws = worlds.getSection(world);
                 if (ws.isEmpty()) continue;
-                Pass wpass = sectionToPass(ws);
+                Node wpass = sectionToPass(ws);
                 user.setWorldPass(world,wpass);
             }
         }
@@ -79,10 +79,11 @@ public class YamlSource implements DataSource {
             Config cfg = new Config(file, Config.YAML);
             ConfigSection cfgSection = passToSection(user);
             cfg.setAll(cfgSection);
+            ConfigSection worlds = new ConfigSection();
             user.getWorldPass().entrySet().forEach(e -> {
-                cfg.set(e.getKey(),passToSection(e.getValue()));
-                cfg.set(e.getKey(),e.getValue().getPermissionList());
+                worlds.set(e.getKey(), passToSection(e.getValue()));
             });
+            cfg.set("worlds",worlds);
             Message.debugMessage(user.getName(), " saved.");
             cfg.save(file);
         }
@@ -92,13 +93,13 @@ public class YamlSource implements DataSource {
     public void saveGroups(Collection<Group> groups) {
         Config cfg = new Config();
         groups.forEach(g -> {
-            ConfigSection section = passToSection(g);
-            cfg.set(g.getName(), section);
+            ConfigSection group = passToSection(g);
+            ConfigSection worlds = new ConfigSection();
             g.getWorldPass().entrySet().forEach(e ->{
-                ConfigSection ws = passToSection(e.getValue());
-                section.set(e.getKey(),ws);
+                worlds.set(e.getKey(),passToSection(e.getValue()));
             });
-            cfg.set(g.getName(),section);
+            group.set("worlds",worlds);
+            cfg.set(g.getName(),group);
         });
         cfg.save(this.groupFile);
     }
@@ -109,13 +110,13 @@ public class YamlSource implements DataSource {
         if (!groupFile.exists()) return groups;
         Config cfg = new Config(groupFile, Config.YAML);
         cfg.getSections().entrySet().forEach(e -> {
-            Pass pass = sectionToPass((ConfigSection) e.getValue());
-            Group group = new Group(e.getKey(),pass);
+            Node node = sectionToPass((ConfigSection) e.getValue());
+            Group group = new Group(e.getKey(), node);
             ConfigSection worlds = cfg.getSection("worlds");
             for (String world: worlds.getKeys(false)){
                 ConfigSection ws = worlds.getSection(world);
                 if (ws.isEmpty()) continue;
-                Pass wpass = sectionToPass(ws);
+                Node wpass = sectionToPass(ws);
                 group.setWorldPass(world,wpass);
             }
             groups.put(e.getKey(), group);
@@ -129,23 +130,23 @@ public class YamlSource implements DataSource {
         return getUserFile(userName).exists();
     }
 
-    private ConfigSection passToSection(Pass pass){
+    private ConfigSection passToSection(Node node){
         ConfigSection section = new ConfigSection();
-        section.set("groups", pass.getGroupList());
-        section.set("permissions", pass.getPermissionList());
-        section.set("prefix",pass.getPrefix());
-        section.set("suffix",pass.getSuffix());
-        section.set("priority",pass.getPriority());
+        section.set("groups", node.getGroupList());
+        section.set("permissions", node.getPermissionList());
+        section.set("prefix", node.getPrefix());
+        section.set("suffix", node.getSuffix());
+        section.set("priority", node.getPriority());
         return section;
     }
 
-    private Pass sectionToPass(ConfigSection section){
-        Pass pass = new Pass();
-        pass.setGroupList(section.getStringList("groups"));
-        pass.setPermissionsList(section.getStringList("permissions"));
-        pass.setPrefix(section.getString("prefix",""));
-        pass.setSuffix(section.getString("suffix",""));
-        pass.setPriority(section.getInt("priority",0));
-        return pass;
+    private Node sectionToPass(ConfigSection section){
+        Node node = new Node();
+        node.setGroupList(section.getStringList("groups"));
+        node.setPermissionsList(section.getStringList("permissions"));
+        node.setPrefix(section.getString("prefix",""));
+        node.setSuffix(section.getString("suffix",""));
+        node.setPriority(section.getInt("priority",0));
+        return node;
     }
 }

@@ -19,27 +19,31 @@
 package ru.nukkit.multipass.permissions;
 
 import ru.nukkit.multipass.util.HighBase;
+import ru.nukkit.multipass.util.LowBase;
+import ru.nukkit.multipass.util.Message;
 
 import java.util.*;
 
 import static com.sun.javafx.fxml.expression.Expression.add;
 
-public abstract class BasePass extends Pass {
+public abstract class BaseNode extends Node {
 
     protected String name;
-    private Map<String,Pass> worldPass;
+    private Map<String,Node> worldPass;
 
-    public BasePass(String name) {
+    public BaseNode(String name) {
         super();
         this.name = name;
         this.worldPass = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     }
 
-    public BasePass(String playerName, Pass pass) {
-        super (pass);
+    public BaseNode(String playerName, Node node) {
+        super (node);
         this.name = playerName;
         this.worldPass = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     }
+
+
 
     public Set<Group> getAllGroups(){
         Set<Group> algroups = new TreeSet<>(new HighBase());
@@ -52,14 +56,40 @@ public abstract class BasePass extends Pass {
         return algroups;
     }
 
-    public Set<BasePass> getAllPasses(){
-        Set<BasePass> passes = new TreeSet<>(new HighBase());
-        groups.forEach(p -> {
-            if (!passes.contains(p)) {
-                passes.addAll(p.getAllPasses());
-            }
-        });
-        passes.add(this);
+
+
+    public Set<BaseNode> getAllNodes(){
+        return getAllNodes(true);
+    }
+
+    private Set<BaseNode> getNodes(){
+        Set<BaseNode> nodes = new HashSet<>();
+        nodes.add(this);
+        nodes.addAll(this.groups);
+        return nodes;
+    }
+
+    public Set<BaseNode> getAllNodes (boolean acsending){
+        return getAllNodes( new TreeSet<>(acsending ? new HighBase() : new LowBase()));
+    }
+
+    private String p2s(Set<BaseNode> passes){
+        StringBuilder sb= new StringBuilder();
+        for (BaseNode b: passes){
+            if (sb.length()>0) sb.append(" ");
+            sb.append(b.getName());
+        }
+        return sb.toString();
+    }
+    public Set<BaseNode> getAllNodes(Set<BaseNode> passes ){
+        Message.debugMessage("this:",this.getName());
+        for (BaseNode node : getNodes()){
+            Message.debugMessage("passes.contains("+node.getName()+"):",passes.contains(node), p2s(passes));
+            if (passes.contains(node)) continue;
+            passes.add(node);
+            Message.debugMessage("add:",node.getName());
+            passes = node.getAllNodes(passes);
+        }
         return passes;
     }
 
@@ -125,18 +155,13 @@ public abstract class BasePass extends Pass {
         getWorldPassOrCreate(world).addGroup(group);
     }
 
-    /*
-    public void set(String world, Group group2) {
-        getWorldPassOrCreate(world).addGroup(group2);
-    } */
-
     public void setGroup (String world, String groupStr){
         setGroup(world, Groups.getGroup(world));
     }
 
     public void setGroup(String world, Group group){
         if (group==null) return;
-       getWorldPassOrCreate(world).setGroup(group);
+        getWorldPassOrCreate(world).setGroup(group);
     }
 
 
@@ -153,48 +178,37 @@ public abstract class BasePass extends Pass {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BasePass that = (BasePass) o;
-        return name != null ? name.equalsIgnoreCase(that.name) : false;
-    }
 
-    @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
-    }
 
     public String getName() {
         return name;
     }
 
-    public Pass getWorldPassOrCreate (String world){
+    public Node getWorldPassOrCreate (String world){
         if (world == null||world.isEmpty()) return this;
-        Pass pass = getWorldPass(world);
-        if (pass == null) {
-            pass = new Pass();
-            this.worldPass.put(world,pass);
+        Node node = getWorldPass(world);
+        if (node == null) {
+            node = new Node();
+            this.worldPass.put(world, node);
         }
-        return pass;
+        return node;
     }
 
     public boolean hasWorldPass (String world){
         return getWorldPass(world)!=null;
     }
 
-    public Pass getWorldPass (String world){
+    public Node getWorldPass (String world){
         return world!=null&&!world.isEmpty()&&worldPass.containsKey(world) ?  worldPass.get(world) : null;
     }
 
-    public Map<String,Pass> getWorldPass(){
+    public Map<String,Node> getWorldPass(){
         return worldPass;
     }
 
 
-    public void setWorldPass(String world, Pass pass) {
-        this.worldPass.put(world,pass);
+    public void setWorldPass(String world, Node node) {
+        this.worldPass.put(world, node);
     }
 
     public void setPermission(String world, String perm) {
@@ -224,4 +238,26 @@ public abstract class BasePass extends Pass {
         if (hasWorldPass(world)) return;
         getWorldPass(world).removeGroup(group);
     }
+
+
+    /*
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+
+            Message.debugMessage("1: equals");
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) return false;
+        BaseNode that = (BaseNode) o;
+        boolean result = name != null ? name.equalsIgnoreCase(that.name) : false;
+        if (result) Message.debugMessage("1: equals");
+        return result;
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    } */
+
 }

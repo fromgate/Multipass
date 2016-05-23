@@ -21,7 +21,7 @@ package ru.nukkit.multipass.permissions;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import ru.nukkit.multipass.MultipassPlugin;
-import ru.nukkit.multipass.WorldParam;
+import ru.nukkit.multipass.util.WorldParam;
 import ru.nukkit.multipass.data.DataProvider;
 import ru.nukkit.multipass.event.PermissionsUpdateEvent;
 import ru.nukkit.multipass.util.Message;
@@ -68,24 +68,27 @@ public class Users {
     }
 
     public static void addGroup(String id, WorldParam wp) {
-        if (wp.world == null) addGroup(id, wp.param);
-        else addGroup(id,wp.world,wp.param);
+        Message.debugMessage("addGroup, world:",wp.hasWorld(),wp.world);
+        if (wp.hasWorld()) addGroup(id,wp.world,wp.param);
+        else addGroup(id, wp.param);
     }
 
     public static void addGroup(String id, String world, String group) {
+        Message.debugMessage("addGroup("+id+", "+world+", "+group+")");
         User user = Users.getUser(id);
-        user.setGroup(world, group);
+        user.addGroup(world, group);
         saveUser(user);
     }
 
     public static void addGroup(String id, String group) {
+        Message.debugMessage("addGroup("+id+", "+group+")");
         User user = Users.getUser(id);
         user.setGroup(group);
         saveUser(user);
     }
 
     public static boolean inGroup(String userName, WorldParam wp) {
-        return wp.world==null ? inGroup(userName,wp.param) : inGroup(wp.world, userName, wp.param);
+        return wp.hasWorld() ? inGroup(wp.world, userName, wp.param) :  inGroup(userName,wp.param);
     }
 
     public static boolean inGroup(String userName, String group) {
@@ -116,7 +119,7 @@ public class Users {
     }
 
     public static boolean isPermissionSet(String userName, WorldParam wp) {
-        return wp.world == null ? isPermissionSet(userName,wp.param) : isPermissionSet(wp.world, userName, wp.param);
+        return wp.hasWorld() ? isPermissionSet(wp.world, userName, wp.param) : isPermissionSet(userName,wp.param);
 
     }
 
@@ -131,8 +134,8 @@ public class Users {
     }
 
     public static void removePermission(String userName, WorldParam wp) {
-        if (wp.world == null) removePermission(userName,wp.param);
-        else removePermission(wp.world, userName, wp.param);
+        if (wp.hasWorld()) removePermission(wp.world, userName, wp.param);
+        else removePermission(userName,wp.param);
     }
 
     public static void removePermission(String userName, String permStr) {
@@ -149,8 +152,8 @@ public class Users {
 
 
     public static void setGroup(String userName, WorldParam wp) {
-        if (wp.world == null) setGroup(userName, wp.param);
-        else setGroup(wp.world, userName, wp.param);
+        if (wp.hasWorld()) setGroup(wp.world, userName, wp.param);
+        else setGroup(userName, wp.param);
     }
 
     public static void setGroup(String userName, String groupStr) {
@@ -226,4 +229,8 @@ public class Users {
         PermissionsUpdateEvent event = new PermissionsUpdateEvent(user.getName());
         Server.getInstance().getPluginManager().callEvent(event);
     }
+
+
+
+
 }

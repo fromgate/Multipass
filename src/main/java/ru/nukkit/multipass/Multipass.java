@@ -59,7 +59,7 @@ public class Multipass {
     public static List<String> getPrefixes (String player){
         List<String> list = new ArrayList<>();
         User user = Users.getUser(player);
-        Set<BasePass> passes = user.getAllPasses();
+        Set<BaseNode> passes = user.getAllNodes();
         passes.forEach(p -> {
             if (!p.getPrefix().isEmpty()) {
                 list.add(p.getPrefix());
@@ -87,7 +87,7 @@ public class Multipass {
     public static List<String> getSuffixes (String player){
         List<String> list = new ArrayList<>();
         User user = Users.getUser(player);
-        Set<BasePass> passes = user.getAllPasses();
+        Set<BaseNode> passes = user.getAllNodes();
         passes.forEach(p -> {
             if (!p.getSuffix().isEmpty()) {
                 list.add(p.getSuffix());

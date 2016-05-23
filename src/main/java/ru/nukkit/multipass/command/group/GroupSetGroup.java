@@ -20,7 +20,7 @@ package ru.nukkit.multipass.command.group;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
-import ru.nukkit.multipass.WorldParam;
+import ru.nukkit.multipass.util.WorldParam;
 import ru.nukkit.multipass.command.Cmd;
 import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.permissions.Groups;

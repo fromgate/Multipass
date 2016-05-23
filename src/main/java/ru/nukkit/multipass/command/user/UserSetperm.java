@@ -20,7 +20,7 @@ package ru.nukkit.multipass.command.user;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
-import ru.nukkit.multipass.WorldParam;
+import ru.nukkit.multipass.util.WorldParam;
 import ru.nukkit.multipass.command.Cmd;
 import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.permissions.Users;
@@ -39,6 +39,6 @@ public class UserSetPerm extends Cmd {
         WorldParam wp = new WorldParam(args,2);
         Users.setPermission(userName, wp);
         wp.message(Message.USER_SETPERM_OK_INFORM, Message.USER_SETPERMW_OK_INFORM).print(Util.getPlayer(userName),wp.param, wp.world);
-        return wp.message(Message.USER_SETPERM_OK, Message.USER_SETPERMW_OK).print(sender, args[0], args[2]);
+        return wp.message(Message.USER_SETPERM_OK, Message.USER_SETPERMW_OK).print(sender, userName, wp.param,wp.world);
     }
 }

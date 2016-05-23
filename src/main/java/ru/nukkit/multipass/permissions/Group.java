@@ -20,10 +20,10 @@ package ru.nukkit.multipass.permissions;
 
 import ru.nukkit.multipass.MultipassPlugin;
 
-public class Group extends BasePass {
+public class Group extends BaseNode {
 
-    public Group(String name, Pass pass) {
-        super(name,pass);
+    public Group(String name, Node node) {
+        super(name, node);
     }
 
     public Group(String name) {
@@ -35,4 +35,18 @@ public class Group extends BasePass {
         if (MultipassPlugin.getCfg().defaultGroup==null||MultipassPlugin.getCfg().defaultGroup.isEmpty()) return false;
         return this.getName().equalsIgnoreCase(MultipassPlugin.getCfg().defaultGroup);
     }
+
+    /*@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Group that = (Group) o;
+        return name != null ? name.equalsIgnoreCase(that.name) : false;
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
+    */
 }

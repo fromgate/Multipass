@@ -21,7 +21,7 @@ package ru.nukkit.multipass.command.user;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
-import ru.nukkit.multipass.WorldParam;
+import ru.nukkit.multipass.util.WorldParam;
 import ru.nukkit.multipass.command.Cmd;
 import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.permissions.Users;
@@ -38,6 +38,6 @@ public class UserAddGroup extends Cmd {
         WorldParam wp = new WorldParam(args,2);
         Users.addGroup(userName, wp);
         wp.message(Message.USER_ADDGROUP_OK_INFORM,Message.USER_ADDGROUPW_OK_INFORM).print(Server.getInstance().getPlayerExact(userName),wp.param,wp.world);
-        return wp.message(Message.USER_ADDGROUP_OK,Message.USER_ADDGROUPW_OK).print(sender, args[0], wp.param,wp.world);
+        return wp.message(Message.USER_ADDGROUP_OK,Message.USER_ADDGROUPW_OK).print(sender, userName, wp.param,wp.world);
     }
 }
