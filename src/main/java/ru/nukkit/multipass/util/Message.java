@@ -99,11 +99,10 @@ public enum Message {
     USER_SETGROUPW_OK("Player %1% moved to group %2% (world %3%)"),
 
     USER_SETGROUP_OK_INFORM("You moved to group %1%"),
-    USER_SETGROUPW_OK_INFORM("You moved to group %1% (world %3%)"),
-
+    USER_SETGROUPW_OK_INFORM("You moved to group %1% (world %2%)"),
     USER_ADDGROUP_OK("Player %1% added to group %2%"),
-    USER_ADDGROUP_OK_INFORM("You were added to group %1%"),
     USER_ADDGROUPW_OK("Player %1% added to group %2% (world %3%)"),
+    USER_ADDGROUP_OK_INFORM("You were added to group %1%"),
     USER_ADDGROUPW_OK_INFORM("You were added to group %1% (world %2%"),
 
     USER_REMOVEGROUP_NOTFOUND("User %1% not found. Cannot remove him from the group"),

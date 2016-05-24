@@ -20,11 +20,11 @@ package ru.nukkit.multipass.command.group;
 
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
-import ru.nukkit.multipass.util.WorldParam;
 import ru.nukkit.multipass.command.Cmd;
 import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.permissions.Groups;
 import ru.nukkit.multipass.util.Message;
+import ru.nukkit.multipass.util.WorldParam;
 
 @CmdDefine(command = "group", alias = "groupperm", allowConsole = true, subCommands = {"\\S+", "removeperm|rmvperm|rp", "\\S+"}, permission = "multipass.admin", description = Message.CMD_GROUP_REMOVEPERM)
 public class GroupRemovePerm extends Cmd {
@@ -32,9 +32,10 @@ public class GroupRemovePerm extends Cmd {
     public boolean execute(CommandSender sender, Player player, String[] args) {
         String id = args[0];
         if (!Groups.exist(id)) return Message.GROUP_REMOVEPERM_NOTEXIST.print(sender, id);
-        WorldParam wp = new WorldParam(args,2);
-        if (!Groups.isPermissionSet(id, wp.param)) return Message.GROUP_REMOVEPERM_PERMUNSET.print(sender, id, wp.param);
-        Groups.removePermission (id, wp);
-        return wp.message(Message.GROUP_REMOVEPERM_OK, Message.GROUP_REMOVEPERMW_OK).print(sender,id,wp.param,wp.world);
+        WorldParam wp = new WorldParam(args, 2);
+        if (!Groups.isPermissionSet(id, wp.param))
+            return Message.GROUP_REMOVEPERM_PERMUNSET.print(sender, id, wp.param);
+        Groups.removePermission(id, wp);
+        return wp.message(Message.GROUP_REMOVEPERM_OK, Message.GROUP_REMOVEPERMW_OK).print(sender, id, wp.param, wp.world);
     }
 }

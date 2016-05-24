@@ -7,5 +7,5 @@ import java.util.Map;
  */
 public class Worlds {
 
-    private static Map<String,String> mirrors;
+    private static Map<String, String> mirrors;
 }

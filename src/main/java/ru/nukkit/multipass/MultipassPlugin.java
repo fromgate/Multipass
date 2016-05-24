@@ -53,8 +53,8 @@ public class MultipassPlugin extends PluginBase {
         Groups.init();
     }
 
-    private void saveResources(){
-        this.saveResource("groups.yml",false);
+    private void saveResources() {
+        this.saveResource("groups.yml", false);
     }
 
 }

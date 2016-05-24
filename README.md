@@ -22,6 +22,7 @@ Multipass is a permissions plugin for Nukkit that provide a universal permission
 
 #### Check permissions
 * **/perm check \<user>**
+Simply check permissions
 
 This command check permissions of online player.
 
@@ -94,5 +95,20 @@ Set user prefix
 * **/user \<user> sx \<group>**
 
 Set user suffix
+
+### Configure groups
+#### Show group info
+* **/group \<group>**
+
+#### Create new group
+* **/group create \<group>**
+
+#### Configure group permissions
+##### Set permission
+* **/group \<group> addperm []**
+* **/group \<group> setperm []**
+* **/group \<group> sperm []**
+* **/group \<group> sp[]**
+
 
 

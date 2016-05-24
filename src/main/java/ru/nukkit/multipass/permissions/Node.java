@@ -21,9 +21,7 @@ package ru.nukkit.multipass.permissions;
 import java.util.*;
 
 public class Node {
-
-
-    Set<Group> groups;
+    Set<String> groups;
     Set<Permission> permissions;
     int priority;
     String prefix;
@@ -46,12 +44,11 @@ public class Node {
         suffix = node.suffix;
     }
 
-    public void removeGroup(String groupStr){
-        Group group = Groups.getGroup(groupStr);
-        if (group!=null) removeGroup(group);
+    public void removeGroup(Group group) {
+        if (group != null) removeGroup(group);
     }
 
-    public void removeGroup(Group group) {
+    public void removeGroup(String group) {
         if (this.groups.contains(group)) this.groups.remove(group);
     }
 
@@ -110,9 +107,7 @@ public class Node {
     }
 
     public List<String> getGroupList() {
-        List<String> groupList = new ArrayList<>();
-        groups.forEach(g -> groupList.add(g.getName()));
-        return groupList;
+        return new ArrayList<>(groups);
     }
 
     public List<String> getPermissionList() {
@@ -122,12 +117,12 @@ public class Node {
     }
 
     public void addGroup(Group group2) {
-        this.groups.add(group2);
+        this.groups.add(group2.getName());
     }
 
     public void setGroup(String groupStr) {
         Group group = Groups.getGroup(groupStr);
-        if (group==null) return;
+        if (group == null) return;
         setGroup(group);
     }
 
@@ -147,10 +142,15 @@ public class Node {
 
     public void setGroupList(List<String> groupList) {
         this.groups.clear();
-        groupList.forEach(g -> {
-            Group group = Groups.getGroup(g);
-            if (group != null) this.groups.add(group);
-        });
+        this.groups.addAll(groupList);
     }
 
+    public Set<Group> getGroups() {
+        Set<Group> groups = new HashSet<>();
+        this.groups.forEach(g -> {
+            Group group = Groups.getGroup(g);
+            if (g != null) groups.add(group);
+        });
+        return groups;
+    }
 }

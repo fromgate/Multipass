@@ -31,9 +31,9 @@ public class UserSetPrefix extends Cmd {
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {
         String userName = args[0];
-        String prefix = Util.join(args,2);
+        String prefix = Util.join(args, 2);
         Users.setPrefix(userName, prefix);
-        Util.informMessage(userName, Message.USER_PREFIX_OK_INFORM,prefix);
-        return Message.USER_PREFIX_OK.print(sender,userName,prefix);
+        Util.informMessage(userName, Message.USER_PREFIX_OK_INFORM, prefix);
+        return Message.USER_PREFIX_OK.print(sender, userName, prefix);
     }
 }

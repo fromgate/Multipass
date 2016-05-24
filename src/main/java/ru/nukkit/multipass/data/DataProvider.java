@@ -27,20 +27,21 @@ import java.util.Map;
 
 public enum DataProvider {
 
-    YAML (YamlSource.class);
+    YAML(YamlSource.class);
     // TODO - DbLib support
 
     private DataSource source;
+
     DataProvider(Class<? extends DataSource> clazz) {
         try {
             source = clazz.newInstance();
-        } catch (Exception e){
+        } catch (Exception e) {
             source = null;
             Message.PROVIDER_FAILED.log(clazz.getName());
         }
     }
 
-    public DataSource getSource(){
+    public DataSource getSource() {
         return this.source;
     }
 

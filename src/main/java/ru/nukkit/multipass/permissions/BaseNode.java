@@ -28,7 +28,7 @@ import static com.sun.javafx.fxml.expression.Expression.add;
 public abstract class BaseNode extends Node {
 
     protected String name;
-    private Map<String,Node> worldPass;
+    private Map<String, Node> worldPass;
 
     public BaseNode(String name) {
         super();
@@ -37,14 +37,15 @@ public abstract class BaseNode extends Node {
     }
 
     public BaseNode(String playerName, Node node) {
-        super (node);
+        super(node);
         this.name = playerName;
         this.worldPass = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     }
 
-    public Set<Group> getAllGroups(){
+
+    public Set<Group> getAllGroups() {
         Set<Group> algroups = new TreeSet<>(new HighBase());
-        groups.forEach(g -> {
+        this.getGroups().forEach(g -> {
             if (!algroups.contains(g)) {
                 algroups.add(g);
                 algroups.addAll(g.getAllGroups());
@@ -53,16 +54,16 @@ public abstract class BaseNode extends Node {
         return algroups;
     }
 
-    public Set<BaseNode> getAllNodes(){
+    public Set<BaseNode> getAllNodes() {
         return getAllNodes(true);
     }
 
     public Set<BaseNode> getAllNodes(boolean acsending) {
         Set<BaseNode> passes = new TreeSet<>(acsending ? new HighBase() : new LowBase());//new TreeSet<>(new HighBase());
         passes.add(this);
-        groups.forEach(p -> {
-            if (!passes.contains(p)) {
-                passes.addAll(p.getAllNodes());
+        getGroups().forEach(group -> {
+            if (!passes.contains(group)) {
+                passes.addAll(group.getAllNodes());
             }
         });
         return passes;
@@ -92,7 +93,7 @@ public abstract class BaseNode extends Node {
         getWorldPassOrCreate(world).setPrefix(prefix);
     }
 
-    public String getSuffix(String world){
+    public String getSuffix(String world) {
         return hasWorldPass(world) ? getWorldPass(world).getSuffix() : "";
     }
 
@@ -122,26 +123,26 @@ public abstract class BaseNode extends Node {
     }
 
     public void addGroup(String world, String group) {
-        addGroup (world, Groups.getGroup(group));
+        addGroup(world, Groups.getGroup(group));
     }
 
     public void addGroup(String world, Group group) {
-        if (group==null) return;
+        if (group == null) return;
         getWorldPassOrCreate(world).addGroup(group);
     }
 
-    public void setGroup (String world, String groupStr){
+    public void setGroup(String world, String groupStr) {
         setGroup(world, Groups.getGroup(world));
     }
 
-    public void setGroup(String world, Group group){
-        if (group==null) return;
+    public void setGroup(String world, Group group) {
+        if (group == null) return;
         getWorldPassOrCreate(world).setGroup(group);
     }
 
 
     public boolean isPermissionSet(String world, String permStr) {
-        return hasWorldPass(world) ? getWorldPass(world).isPermissionSet(permStr) : false;
+        return hasWorldPass(world) && getWorldPass(world).isPermissionSet(permStr);
     }
 
     public void setPermissionsList(String world, List<String> permissions) {
@@ -156,8 +157,8 @@ public abstract class BaseNode extends Node {
         return name;
     }
 
-    public Node getWorldPassOrCreate (String world){
-        if (world == null||world.isEmpty()) return this;
+    public Node getWorldPassOrCreate(String world) {
+        if (world == null || world.isEmpty()) return this;
         Node node = getWorldPass(world);
         if (node == null) {
             node = new Node();
@@ -166,15 +167,15 @@ public abstract class BaseNode extends Node {
         return node;
     }
 
-    public boolean hasWorldPass (String world){
-        return getWorldPass(world)!=null;
+    public boolean hasWorldPass(String world) {
+        return getWorldPass(world) != null;
     }
 
-    public Node getWorldPass (String world){
-        return world!=null&&!world.isEmpty()&&worldPass.containsKey(world) ?  worldPass.get(world) : null;
+    public Node getWorldPass(String world) {
+        return world != null && !world.isEmpty() && worldPass.containsKey(world) ? worldPass.get(world) : null;
     }
 
-    public Map<String,Node> getWorldPass(){
+    public Map<String, Node> getWorldPass() {
         return worldPass;
     }
 
@@ -191,11 +192,11 @@ public abstract class BaseNode extends Node {
         getWorldPassOrCreate(world).setPermission(permission);
     }
 
-    public void removePermission (String world, String perm){
+    public void removePermission(String world, String perm) {
         removePermission(world, new Permission(perm));
     }
 
-    public void removePermission (String world, Permission permission){
+    public void removePermission(String world, Permission permission) {
         if (hasWorldPass(world)) return;
         getWorldPass(world).removePermission(permission);
     }
@@ -218,8 +219,7 @@ public abstract class BaseNode extends Node {
         }
         if (o == null || getClass() != o.getClass()) return false;
         BaseNode that = (BaseNode) o;
-        boolean result = name != null ? name.equalsIgnoreCase(that.name) : false;
-        return result;
+        return name != null && name.equalsIgnoreCase(that.name);
     }
 
     @Override

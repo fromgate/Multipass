@@ -32,9 +32,9 @@ public class Util {
     public static String join(String[] ln, int num) {
         if (ln.length == 0) return "";
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i<ln.length; i++){
-            if (i<num) continue;
-            if (sb.length()>0) sb.append(" ");
+        for (int i = 0; i < ln.length; i++) {
+            if (i < num) continue;
+            if (sb.length() > 0) sb.append(" ");
             sb.append(ln[i]);
         }
         return sb.toString();
@@ -49,13 +49,14 @@ public class Util {
         }
         return sb.toString();
     }
-    public static Player getPlayer(String userName){
+
+    public static Player getPlayer(String userName) {
         return Server.getInstance().getPlayerExact(userName);
     }
 
-    public static void informMessage (String userName, Message message, Object... o){
+    public static void informMessage(String userName, Message message, Object... o) {
         Player player = getPlayer(userName);
-        if (player == null||!player.hasPermission("multipass.informed-user")) return;
-        message.print(player,o);
+        if (player == null || !player.hasPermission("multipass.informed-user")) return;
+        message.print(player, o);
     }
 }

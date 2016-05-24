@@ -20,10 +20,10 @@ package ru.nukkit.multipass.permissions;
 
 import cn.nukkit.Server;
 import ru.nukkit.multipass.MultipassPlugin;
-import ru.nukkit.multipass.util.WorldParam;
 import ru.nukkit.multipass.data.DataProvider;
 import ru.nukkit.multipass.event.PermissionsUpdateEvent;
 import ru.nukkit.multipass.util.Message;
+import ru.nukkit.multipass.util.WorldParam;
 
 import java.util.Collection;
 import java.util.Map;
@@ -41,13 +41,12 @@ public class Groups {
         return groups.containsKey(name) ? groups.get(name) : null;
     }
 
-
     public static boolean exist(String id) {
         return groups.containsKey(id);
     }
 
     public static void create(String id) {
-        if (id==null||id.isEmpty()||groups.containsKey(id)) return;
+        if (id == null || id.isEmpty() || groups.containsKey(id)) return;
         Group group = new Group(id);
         groups.put(id, group);
         saveGroups();
@@ -64,9 +63,8 @@ public class Groups {
     }
 
 
-
     public static boolean addGroup(String groupId, WorldParam wp) {
-        return wp.hasWorld() ? addGroup(groupId, wp.world, wp.param) : addGroup(groupId,wp.param);
+        return wp.hasWorld() ? addGroup(groupId, wp.world, wp.param) : addGroup(groupId, wp.param);
     }
 
     public static boolean addGroup(String groupId1, String world, String groupId2) {
@@ -88,7 +86,7 @@ public class Groups {
     }
 
     public static boolean setPerm(String id, WorldParam wp) {
-        return wp.hasWorld() ? setPerm(id, wp.world, wp.param) : setPerm(id,wp.param);
+        return wp.hasWorld() ? setPerm(id, wp.world, wp.param) : setPerm(id, wp.param);
     }
 
     private static boolean setPerm(String id, String world, String perm) {
@@ -185,4 +183,10 @@ public class Groups {
     public static boolean removePermission(String id, WorldParam wp) {
         return wp.hasWorld() ? removePermission(id, wp.world, wp.param) : removePermission(id, wp.param);
     }
+
+    public static boolean isDefault(String groupStr) {
+        if (!groups.containsKey(groupStr)) return false;
+        return groups.get(groupStr).isDefault();
+    }
+
 }

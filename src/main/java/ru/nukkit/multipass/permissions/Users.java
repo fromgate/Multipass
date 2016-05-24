@@ -21,10 +21,10 @@ package ru.nukkit.multipass.permissions;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import ru.nukkit.multipass.MultipassPlugin;
-import ru.nukkit.multipass.util.WorldParam;
 import ru.nukkit.multipass.data.DataProvider;
 import ru.nukkit.multipass.event.PermissionsUpdateEvent;
 import ru.nukkit.multipass.util.Message;
+import ru.nukkit.multipass.util.WorldParam;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -33,7 +33,7 @@ import java.util.TreeMap;
 
 public class Users {
 
-    private static Map<String, User> users = new TreeMap<String, User>();
+    private static Map<String, User> users = new TreeMap<String, User>(String.CASE_INSENSITIVE_ORDER);
 
     public static void loadUser(Player player) {
         loadUser(player.getName());
@@ -67,7 +67,7 @@ public class Users {
     }
 
     public static void addGroup(String id, WorldParam wp) {
-        if (wp.hasWorld()) addGroup(id,wp.world,wp.param);
+        if (wp.hasWorld()) addGroup(id, wp.world, wp.param);
         else addGroup(id, wp.param);
     }
 
@@ -84,7 +84,7 @@ public class Users {
     }
 
     public static boolean inGroup(String userName, WorldParam wp) {
-        return wp.hasWorld() ? inGroup(wp.world, userName, wp.param) :  inGroup(userName,wp.param);
+        return wp.hasWorld() ? inGroup(wp.world, userName, wp.param) : inGroup(userName, wp.param);
     }
 
     public static boolean inGroup(String userName, String group) {
@@ -115,13 +115,13 @@ public class Users {
     }
 
     public static boolean isPermissionSet(String userName, WorldParam wp) {
-        return wp.hasWorld() ? isPermissionSet(wp.world, userName, wp.param) : isPermissionSet(userName,wp.param);
+        return wp.hasWorld() ? isPermissionSet(wp.world, userName, wp.param) : isPermissionSet(userName, wp.param);
 
     }
 
     public static boolean isPermissionSet(String world, String userName, String permStr) {
         User user = Users.getUser(userName);
-        return user.isPermissionSet(world,permStr);
+        return user.isPermissionSet(world, permStr);
     }
 
     public static boolean isPermissionSet(String userName, String permStr) {
@@ -131,7 +131,7 @@ public class Users {
 
     public static void removePermission(String userName, WorldParam wp) {
         if (wp.hasWorld()) removePermission(wp.world, userName, wp.param);
-        else removePermission(userName,wp.param);
+        else removePermission(userName, wp.param);
     }
 
     public static void removePermission(String userName, String permStr) {
@@ -163,19 +163,19 @@ public class Users {
         saveUser(user);
     }
 
-    public static void setPrefix(String userName, String prefix){
+    public static void setPrefix(String userName, String prefix) {
         User user = Users.getUser(userName);
         user.setPrefix(prefix);
         saveUser(user);
     }
 
-    public static void setSuffix(String userName, String suffix){
+    public static void setSuffix(String userName, String suffix) {
         User user = Users.getUser(userName);
         user.setSuffix(suffix);
         saveUser(user);
     }
 
-    public static void setPriority (String userName, int priority){
+    public static void setPriority(String userName, int priority) {
         User user = Users.getUser(userName);
         user.setPriority(priority);
         saveUser(user);
@@ -199,7 +199,7 @@ public class Users {
 
     public static void setPermission(String world, String userName, String permission) {
         User user = Users.getUser(userName);
-        user.setPermission(world,permission);
+        user.setPermission(world, permission);
         saveUser(user);
     }
 

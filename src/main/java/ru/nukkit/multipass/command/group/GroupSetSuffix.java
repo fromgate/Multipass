@@ -33,7 +33,7 @@ public class GroupSetSuffix extends Cmd {
     public boolean execute(CommandSender sender, Player player, String[] args) {
         String id = args[0];
         if (!Groups.exist(id)) return Message.GROUP_SETSUFFIX_NOTEXIST.print(sender, id);
-        String prefix = Util.join(args,2);
+        String prefix = Util.join(args, 2);
         Groups.setPrefix(id, prefix);
         return Message.GROUP_SETSUFFIX_OK.print(sender, id, prefix);
     }

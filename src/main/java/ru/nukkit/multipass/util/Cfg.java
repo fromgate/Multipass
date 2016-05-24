@@ -33,8 +33,14 @@ public class Cfg extends SimpleConfig {
     public boolean debugMode = true;
 
     // Default group, will be added automatically for all new users
-    @Path("permissions.default-group")
+    @Path("permissions.group․default-group")
     public String defaultGroup = "default";
+
+    @Path("permissions.group․default-priority")
+    public int userPriority = 100;
+
+    @Path("permissions.user.default-priority")
+    public int groupPriority = 10;
 
     // Global or per-world permissions
     @Path("permissions.multiworld")

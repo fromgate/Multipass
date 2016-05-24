@@ -24,7 +24,8 @@ import cn.nukkit.permission.PermissionAttachment;
 import ru.nukkit.multipass.MultipassPlugin;
 import ru.nukkit.multipass.util.Message;
 
-import java.util.LinkedHashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -36,6 +37,7 @@ public class User extends BaseNode {
 
     public User(String playerName) {
         super(playerName);
+        this.priority = MultipassPlugin.getCfg().userPriority;
     }
 
     public User(String playerName, Node node) {
@@ -46,20 +48,25 @@ public class User extends BaseNode {
     public void recalculatePermissions() {
         Message.debugMessage("Recalculate permissions:", this.getName());
         if (getAttachment() == null) return;
-        attachment.clearPermissions();
+
         Player player = Server.getInstance().getPlayerExact(this.name);
         String world = useWorlds() ? player.getLevel().getName() : null;
 
-        Set<Permission> perms = new LinkedHashSet<>();
+        Map<String, Boolean> perms = new LinkedHashMap<>();
         Set<BaseNode> nodes = this.getAllNodes(false);
         nodes.forEach(node -> {
-            perms.addAll(node.getPermissions());
-            if (world!=null) node.getPermissions(world);
+            node.getPermissions().forEach(perm -> perms.put(perm.getName(), perm.isPositive()));
+            if (world != null) node.getPermissions(world).forEach(perm -> perms.put(perm.getName(), perm.isPositive()));
         });
 
-        perms.forEach(p -> {
-            attachment.setPermission(p.getName(), p.isPositive());
-            Message.debugMessage(p.isPositive() ? p.getName() : "-" + p.getName());
+        Message.debugMessage("attachment size:", attachment.getPermissions().size(), "perms:", perms.size());
+        attachment.clearPermissions();
+        Message.debugMessage("attachment size:", attachment.getPermissions().size(), "perms:", perms.size());
+        if (!perms.isEmpty()) attachment.setPermissions(perms);
+        Message.debugMessage("attachment size:", attachment.getPermissions().size(), "perms:", perms.size());
+        player.recalculatePermissions();
+        if (Message.isDebug()) perms.entrySet().forEach(e -> {
+            Message.debugMessage(e.getValue() ? "+" : "-", e.getKey());
         });
     }
 
@@ -75,7 +82,7 @@ public class User extends BaseNode {
         return groups.contains(group);
     }
 
-    public boolean inGroup(String world, String groupStr){
+    public boolean inGroup(String world, String groupStr) {
         if (world == null) return false;
         Group group = Groups.getGroup(groupStr);
         if (group == null) return false;
@@ -84,13 +91,13 @@ public class User extends BaseNode {
         return node.groups.contains(group);
     }
 
-    private boolean useWorlds(){
+    private boolean useWorlds() {
         return MultipassPlugin.getCfg().enableWorldSupport;
     }
 
     public boolean isEmpty() {
         return this.permissions.isEmpty() &&
-                (groups.isEmpty()||(groups.size()==1&&(groups.stream().toArray(Group[]::new)[0].isDefault()))) &&
+                (groups.isEmpty() || (groups.size() == 1 && (Groups.isDefault(groups.stream().toArray(String[]::new)[0])))) &&
                 this.getWorldPass().isEmpty() &&
                 this.prefix.isEmpty() && this.suffix.isEmpty() && (this.priority == 0);
     }

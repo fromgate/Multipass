@@ -32,20 +32,22 @@ public class PermissionsUpdateEvent extends Event {
     }
 
 
-    public PermissionsUpdateEvent(){
+    public PermissionsUpdateEvent() {
         this.user = null;
     }
 
-    public PermissionsUpdateEvent(String userName){
+    public PermissionsUpdateEvent(String userName) {
         this.user = userName;
     }
 
 
     /**
-     * Get user, which permissions was changed
+     * Get user, which permissions was changed.
+     * Returns null permissions updated for all users.
+     *
      * @return
      */
-    public String getUser(){
+    public String getUser() {
         return this.user;
     }
 
@@ -53,15 +55,10 @@ public class PermissionsUpdateEvent extends Event {
     /**
      * Check is Permission update related to single player or it was a mass update
      * (for example changing groups)
+     *
      * @return
      */
-    public boolean isMassUpdate(){
+    public boolean isMassUpdate() {
         return user != null;
     }
-
-
-
-
-
-
 }

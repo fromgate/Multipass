@@ -48,7 +48,7 @@ public class YamlSource implements DataSource {
 
     @Override
     public User loadUser(String playerName) {
-        Message.debugMessage("Loading permissions",playerName);
+        Message.debugMessage("Loading permissions", playerName);
         File file = getUserFile(playerName);
         User user = new User(playerName);
         Config cfg = new Config(Config.YAML);
@@ -58,11 +58,11 @@ public class YamlSource implements DataSource {
             user = new User(playerName, node);
 
             ConfigSection worlds = cfg.getSection("worlds");
-            for (String world: worlds.getKeys(false)){
+            for (String world : worlds.getKeys(false)) {
                 ConfigSection ws = worlds.getSection(world);
                 if (ws.isEmpty()) continue;
                 Node wpass = sectionToPass(ws);
-                user.setWorldPass(world,wpass);
+                user.setWorldPass(world, wpass);
             }
         }
         return user;
@@ -83,7 +83,7 @@ public class YamlSource implements DataSource {
             user.getWorldPass().entrySet().forEach(e -> {
                 worlds.set(e.getKey(), passToSection(e.getValue()));
             });
-            cfg.set("worlds",worlds);
+            cfg.set("worlds", worlds);
             Message.debugMessage(user.getName(), " saved.");
             cfg.save(file);
         }
@@ -95,11 +95,11 @@ public class YamlSource implements DataSource {
         groups.forEach(g -> {
             ConfigSection group = passToSection(g);
             ConfigSection worlds = new ConfigSection();
-            g.getWorldPass().entrySet().forEach(e ->{
-                worlds.set(e.getKey(),passToSection(e.getValue()));
+            g.getWorldPass().entrySet().forEach(e -> {
+                worlds.set(e.getKey(), passToSection(e.getValue()));
             });
-            group.set("worlds",worlds);
-            cfg.set(g.getName(),group);
+            group.set("worlds", worlds);
+            cfg.set(g.getName(), group);
         });
         cfg.save(this.groupFile);
     }
@@ -113,11 +113,11 @@ public class YamlSource implements DataSource {
             Node node = sectionToPass((ConfigSection) e.getValue());
             Group group = new Group(e.getKey(), node);
             ConfigSection worlds = cfg.getSection("worlds");
-            for (String world: worlds.getKeys(false)){
+            for (String world : worlds.getKeys(false)) {
                 ConfigSection ws = worlds.getSection(world);
                 if (ws.isEmpty()) continue;
                 Node wpass = sectionToPass(ws);
-                group.setWorldPass(world,wpass);
+                group.setWorldPass(world, wpass);
             }
             groups.put(e.getKey(), group);
         });
@@ -130,7 +130,7 @@ public class YamlSource implements DataSource {
         return getUserFile(userName).exists();
     }
 
-    private ConfigSection passToSection(Node node){
+    private ConfigSection passToSection(Node node) {
         ConfigSection section = new ConfigSection();
         section.set("groups", node.getGroupList());
         section.set("permissions", node.getPermissionList());
@@ -140,13 +140,13 @@ public class YamlSource implements DataSource {
         return section;
     }
 
-    private Node sectionToPass(ConfigSection section){
+    private Node sectionToPass(ConfigSection section) {
         Node node = new Node();
         node.setGroupList(section.getStringList("groups"));
         node.setPermissionsList(section.getStringList("permissions"));
-        node.setPrefix(section.getString("prefix",""));
-        node.setSuffix(section.getString("suffix",""));
-        node.setPriority(section.getInt("priority",0));
+        node.setPrefix(section.getString("prefix", ""));
+        node.setSuffix(section.getString("suffix", ""));
+        node.setPriority(section.getInt("priority", 0));
         return node;
     }
 }

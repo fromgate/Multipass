@@ -25,10 +25,6 @@ import ru.nukkit.multipass.command.Cmd;
 import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.util.Message;
 
-/**
- * Created by Igor on 12.05.2016.
- */
-
 @CmdDefine(command = "perm", allowConsole = true, subCommands = {"check|chk|test|tst", "\\S+", "\\S+"}, permission = "multipass.admin", description = Message.CMD_PERM_CHECK)
 public class PermCheck extends Cmd {
     @Override
