@@ -21,11 +21,11 @@ package ru.nukkit.multipass.command.user;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
-import ru.nukkit.multipass.util.WorldParam;
 import ru.nukkit.multipass.command.Cmd;
 import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.permissions.Users;
 import ru.nukkit.multipass.util.Message;
+import ru.nukkit.multipass.util.WorldParam;
 
 @CmdDefine(command = "user", alias = "userperm", allowConsole = true, subCommands = {"\\S+", "removeperm|rmvperm|rperm|rp", "\\S+"}, permission = "multipass.admin", description = Message.CMD_USER_REMOVEPERM)
 public class UserRemovePerm extends Cmd {
@@ -37,7 +37,7 @@ public class UserRemovePerm extends Cmd {
         if (!Users.isPermissionSet(userName, wp))
             return wp.message(Message.USER_REMOVEPERM_NOTSET, Message.USER_REMOVEPERMW_NOTSET).print(sender, wp.param, userName, wp.world);
         Users.removePermission(userName, wp);
-        wp.message(Message.USER_REMOVEPERM_OK_INFORM, Message.USER_REMOVEPERMW_OK_INFORM).print(Server.getInstance().getPlayerExact(userName),wp.param,wp.world);
-        return wp.message (Message.USER_REMOVEPERM_OK,Message.USER_REMOVEPERMW_OK).print(sender, wp.param, userName, wp.world);
+        wp.message(Message.USER_REMOVEPERM_OK_INFORM, Message.USER_REMOVEPERMW_OK_INFORM).print(Server.getInstance().getPlayerExact(userName), wp.param, wp.world);
+        return wp.message(Message.USER_REMOVEPERM_OK, Message.USER_REMOVEPERMW_OK).print(sender, wp.param, userName, wp.world);
     }
 }

@@ -167,7 +167,10 @@ public enum Message {
     USER_PREFIX_OK("Prefix of user %1% is set to %2%"),
     USER_PREFIX_OK_INFORM("Your prefix was changed to %1%"),
     USER_SUFFIX_OK("Suffix of user %1% is set to %2%"),
-    USER_SUFFIX_OK_INFORM("Your suffix was changed to %1%");
+    USER_SUFFIX_OK_INFORM("Your suffix was changed to %1%"),
+
+    USER_ADDGROUP_NOTEXIST("Failed to add user %1% to group %2%. Group is not exist"),
+    USER_SETGROUP_NOTEXIST("Failed to mover user %1% to group %2%. Group is not exist");
 
 
     private static boolean debugMode = false;

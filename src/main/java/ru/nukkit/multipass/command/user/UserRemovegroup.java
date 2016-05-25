@@ -21,11 +21,11 @@ package ru.nukkit.multipass.command.user;
 import cn.nukkit.Player;
 import cn.nukkit.Server;
 import cn.nukkit.command.CommandSender;
-import ru.nukkit.multipass.util.WorldParam;
 import ru.nukkit.multipass.command.Cmd;
 import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.permissions.Users;
 import ru.nukkit.multipass.util.Message;
+import ru.nukkit.multipass.util.WorldParam;
 
 @CmdDefine(command = "user", alias = "userperm", allowConsole = true, subCommands = {"\\S+", "removegroup|rmvgrp|rgrp|rg", "\\S+"}, permission = "multipass.admin", description = Message.CMD_USER_REMOVEGROUP)
 public class UserRemoveGroup extends Cmd {
@@ -38,10 +38,10 @@ public class UserRemoveGroup extends Cmd {
 
         if (!Users.inGroup(userName, wp)) return
                 wp.message(Message.USER_REMOVEGROUP_NOTSET, Message.USER_REMOVEGROUPW_NOTSET)
-                        .print(sender, wp.param, userName,wp.world);
+                        .print(sender, wp.param, userName, wp.world);
         Users.removeGroup(userName, wp);
-        wp.message(Message.USER_REMOVEGROUP_OK_INFORM,Message.USER_REMOVEGROUPW_OK_INFORM)
-                .print(Server.getInstance().getPlayerExact(userName),wp.param,wp.world);
-        return wp.message(Message.USER_REMOVEGROUP_OK,Message.USER_REMOVEGROUPW_OK).print(sender, wp.param, userName, wp.world);
+        wp.message(Message.USER_REMOVEGROUP_OK_INFORM, Message.USER_REMOVEGROUPW_OK_INFORM)
+                .print(Server.getInstance().getPlayerExact(userName), wp.param, wp.world);
+        return wp.message(Message.USER_REMOVEGROUP_OK, Message.USER_REMOVEGROUPW_OK).print(sender, wp.param, userName, wp.world);
     }
 }

@@ -59,11 +59,10 @@ public class User extends BaseNode {
             if (world != null) node.getPermissions(world).forEach(perm -> perms.put(perm.getName(), perm.isPositive()));
         });
 
-        Message.debugMessage("attachment size:", attachment.getPermissions().size(), "perms:", perms.size());
         attachment.clearPermissions();
-        Message.debugMessage("attachment size:", attachment.getPermissions().size(), "perms:", perms.size());
+        attachment.remmove();
+        player.recalculatePermissions();
         if (!perms.isEmpty()) attachment.setPermissions(perms);
-        Message.debugMessage("attachment size:", attachment.getPermissions().size(), "perms:", perms.size());
         player.recalculatePermissions();
         if (Message.isDebug()) perms.entrySet().forEach(e -> {
             Message.debugMessage(e.getValue() ? "+" : "-", e.getKey());
