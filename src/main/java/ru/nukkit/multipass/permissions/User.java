@@ -69,7 +69,7 @@ public class User extends BaseNode {
 
     public PermissionAttachment getAttachment() {
         Player player = Server.getInstance().getPlayerExact(this.name);
-        attachment = player == null ? null : (attachment==null ? player.addAttachment(MultipassPlugin.getPlugin()) : attachment);
+        attachment = player == null ? null : (attachment == null ? player.addAttachment(MultipassPlugin.getPlugin()) : attachment);
         return attachment;
     }
 
@@ -96,6 +96,6 @@ public class User extends BaseNode {
         return this.permissions.isEmpty() &&
                 (groups.isEmpty() || (groups.size() == 1 && (Groups.isDefault(groups.stream().toArray(String[]::new)[0])))) &&
                 this.getWorldPass().isEmpty() &&
-                this.prefix.isEmpty() && this.suffix.isEmpty() && (this.priority == 0);
+                this.prefix.isEmpty() && this.suffix.isEmpty() && (this.priority == MultipassPlugin.getCfg().userPriority);
     }
 }

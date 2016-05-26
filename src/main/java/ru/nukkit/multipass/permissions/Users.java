@@ -41,7 +41,10 @@ public class Users {
 
     public static void loadUser(String playerName) {
         User user = users.containsKey(playerName) ? users.get(playerName) : DataProvider.loadUser(playerName);
-        if (user.isEmpty()) user.setGroup(MultipassPlugin.getCfg().defaultGroup);
+
+        if (user.isEmpty())
+            user.setGroup(MultipassPlugin.getCfg().defaultGroup);
+
         user.recalculatePermissions();
         users.put(playerName, user);
     }

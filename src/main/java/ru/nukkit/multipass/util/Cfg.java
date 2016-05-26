@@ -18,6 +18,7 @@
 
 package ru.nukkit.multipass.util;
 
+import cn.nukkit.utils.ConfigSection;
 import cn.nukkit.utils.SimpleConfig;
 import ru.nukkit.multipass.MultipassPlugin;
 
@@ -33,18 +34,25 @@ public class Cfg extends SimpleConfig {
     public boolean debugMode = true;
 
     // Default group, will be added automatically for all new users
-    @Path("permissions.group․default-group")
+    @Path("permissions.group.default-group")
     public String defaultGroup = "default";
 
-    @Path("permissions.group․default-priority")
-    public int userPriority = 100;
-
-    @Path("permissions.user.default-priority")
+    @Path("permissions.group.default-priority")
     public int groupPriority = 10;
 
+    @Path("permissions.user.default-priority")
+    public int userPriority = 100;
+
     // Global or per-world permissions
-    @Path("permissions.multiworld")
+    @Path("permissions.multiworld.enable")
     public boolean enableWorldSupport = false;
+
+    /*
+      mirrors:
+        world_mirrored_to:world_mirrored_from
+     */
+    @Path("permissions.multiworld.mirrors")
+    public ConfigSection mirros = new ConfigSection();
 
     public Cfg() {
         super(MultipassPlugin.getPlugin());

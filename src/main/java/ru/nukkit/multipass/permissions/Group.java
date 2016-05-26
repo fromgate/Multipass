@@ -24,11 +24,15 @@ public class Group extends BaseNode {
 
     public Group(String name, Node node) {
         super(name, node);
-        this.priority = MultipassPlugin.getCfg().groupPriority;
     }
 
     public Group(String name) {
+        this(name, MultipassPlugin.getCfg().groupPriority);
+    }
+
+    public Group(String name, int priority) {
         super(name);
+        this.priority = priority;
     }
 
     public boolean isDefault() {

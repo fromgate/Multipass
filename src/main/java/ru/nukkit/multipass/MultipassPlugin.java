@@ -54,6 +54,8 @@ public class MultipassPlugin extends PluginBase {
     }
 
     private void saveResources() {
+        this.getDataFolder().mkdirs();
+        this.saveDefaultConfig();
         this.saveResource("groups.yml", false);
     }
 

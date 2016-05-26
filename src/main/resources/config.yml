@@ -1,0 +1,24 @@
+# Multipass, Nukkit permission system
+#
+general:
+# Messages language
+  language: default
+# Save translation file
+  language-save: false
+# Show debug info (it will spam a lot in a server console :))
+  debug: false
+permissions:
+  group:
+# Default group. All players will automagically join this group
+    default-group: default
+# Default priority of group permissions
+    default-priority: 10
+  user:
+# Default priority of user permissions
+    default-priority: 100
+  multiworld:
+# Enable (true) multiworld permisions support
+    enable: false
+# Configure world permission mirrors
+    mirrors:
+      world: nether_world, end_world

@@ -18,6 +18,8 @@
 
 package ru.nukkit.multipass.permissions;
 
+import cn.nukkit.utils.ConfigSection;
+import ru.nukkit.multipass.MultipassPlugin;
 import ru.nukkit.multipass.util.HighBase;
 import ru.nukkit.multipass.util.LowBase;
 
@@ -177,8 +179,23 @@ public abstract class BaseNode extends Node {
         return getWorldPass(world) != null;
     }
 
+
+    private String getMirrorWorld(String currentWorld) {
+        ConfigSection mirros = MultipassPlugin.getCfg().mirros;
+        if (mirros != null & !mirros.isEmpty())
+            for (Map.Entry<String, Object> e : mirros.entrySet())
+                if (e.getValue() instanceof String) {
+                    String[] worlds = ((String) e.getValue()).split(",\\s+");
+                    for (String w : worlds)
+                        if (w.equalsIgnoreCase(currentWorld)) return e.getKey();
+                }
+        return currentWorld;
+    }
+
     public Node getWorldPass(String world) {
-        return world != null && !world.isEmpty() && worldPass.containsKey(world) ? worldPass.get(world) : null;
+        if (world == null || world.isEmpty()) return null;
+        String targetWorld = getMirrorWorld(world);
+        return worldPass.containsKey(targetWorld) ? worldPass.get(targetWorld) : null;
     }
 
     public Map<String, Node> getWorldPass() {

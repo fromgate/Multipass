@@ -46,8 +46,12 @@ public class Groups {
     }
 
     public static boolean create(String id) {
+        return create(id, -1);
+    }
+
+    public static boolean create(String id, int priority) {
         if (id == null || id.isEmpty() || groups.containsKey(id)) return false;
-        Group group = new Group(id);
+        Group group = priority < 0 ? new Group(id) : new Group(id, priority);
         groups.put(id, group);
         saveGroups();
         return true;
@@ -191,5 +195,4 @@ public class Groups {
         if (!groups.containsKey(groupStr)) return false;
         return groups.get(groupStr).isDefault();
     }
-
 }
