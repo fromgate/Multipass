@@ -45,17 +45,20 @@ public class Groups {
         return groups.containsKey(id);
     }
 
-    public static void create(String id) {
-        if (id == null || id.isEmpty() || groups.containsKey(id)) return;
+    public static boolean create(String id) {
+        if (id == null || id.isEmpty() || groups.containsKey(id)) return false;
         Group group = new Group(id);
         groups.put(id, group);
         saveGroups();
+        return true;
     }
 
-    public static void remove(String id) {
-        if (groups.containsKey(id)) groups.remove(id);
+    public static boolean remove(String id) {
+        if (!groups.containsKey(id)) return false;
+        groups.remove(id);
         saveGroups();
         Users.recalculatePermissions();
+        return true;
     }
 
     public static Collection<Group> getAll() {

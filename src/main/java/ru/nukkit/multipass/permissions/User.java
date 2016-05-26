@@ -28,9 +28,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-/**
- * Created by Igor on 16.04.2016.
- */
+
 public class User extends BaseNode {
 
     PermissionAttachment attachment;
@@ -60,7 +58,7 @@ public class User extends BaseNode {
         });
 
         attachment.clearPermissions();
-        attachment.remmove();
+
         player.recalculatePermissions();
         if (!perms.isEmpty()) attachment.setPermissions(perms);
         player.recalculatePermissions();
@@ -71,14 +69,14 @@ public class User extends BaseNode {
 
     public PermissionAttachment getAttachment() {
         Player player = Server.getInstance().getPlayerExact(this.name);
-        attachment = player == null ? null : player.addAttachment(MultipassPlugin.getPlugin());
+        attachment = player == null ? null : (attachment==null ? player.addAttachment(MultipassPlugin.getPlugin()) : attachment);
         return attachment;
     }
 
     public boolean inGroup(String groupStr) {
         Group group = Groups.getGroup(groupStr);
         if (group == null) return false;
-        return groups.contains(group);
+        return groups.contains(group.getName());
     }
 
     public boolean inGroup(String world, String groupStr) {
@@ -87,7 +85,7 @@ public class User extends BaseNode {
         if (group == null) return false;
         Node node = getWorldPass(world);
         if (node == null) return false;
-        return node.groups.contains(group);
+        return node.groups.contains(group.getName());
     }
 
     private boolean useWorlds() {

@@ -60,8 +60,8 @@ public class Multipass {
     public static List<String> getPrefixes(String player) {
         List<String> list = new ArrayList<>();
         User user = Users.getUser(player);
-        Set<BaseNode> passes = user.getAllNodes();
-        passes.forEach(p -> {
+        Set<BaseNode> nodes = user.getAllNodes();
+        nodes.forEach(p -> {
             if (!p.getPrefix().isEmpty()) {
                 list.add(p.getPrefix());
             }

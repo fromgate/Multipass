@@ -45,6 +45,12 @@ public abstract class BaseNode extends Node {
 
     public Set<Group> getAllGroups() {
         Set<Group> algroups = new TreeSet<>(new HighBase());
+        /*
+        Set<BaseNode> nodes = getAllNodes();
+        nodes.forEach(n->{
+            if (n instanceof Group) algroups.add((Group)n;
+        });
+        */
         this.getGroups().forEach(g -> {
             if (!algroups.contains(g)) {
                 algroups.add(g);
@@ -59,14 +65,14 @@ public abstract class BaseNode extends Node {
     }
 
     public Set<BaseNode> getAllNodes(boolean acsending) {
-        Set<BaseNode> passes = new TreeSet<>(acsending ? new HighBase() : new LowBase());//new TreeSet<>(new HighBase());
-        passes.add(this);
+        Set<BaseNode> nodes = new TreeSet<>(acsending ? new HighBase() : new LowBase());//new TreeSet<>(new HighBase());
+        nodes.add(this);
         getGroups().forEach(group -> {
-            if (!passes.contains(group)) {
-                passes.addAll(group.getAllNodes());
+            if (!nodes.contains(group)) {
+                nodes.addAll(group.getAllNodes());
             }
         });
-        return passes;
+        return nodes;
     }
 
     public Collection<Permission> getPermissions(String world) {

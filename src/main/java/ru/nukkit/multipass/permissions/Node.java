@@ -30,7 +30,7 @@ public class Node {
 
     public Node() {
         this.permissions = new HashSet<>();
-        this.groups = new HashSet<>();
+        this.groups = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
         this.prefix = "";
         this.suffix = "";
         this.priority = 0;
@@ -45,7 +45,7 @@ public class Node {
     }
 
     public void removeGroup(Group group) {
-        if (group != null) removeGroup(group);
+        if (group != null) removeGroup(group.getName());
     }
 
     public void removeGroup(String group) {
