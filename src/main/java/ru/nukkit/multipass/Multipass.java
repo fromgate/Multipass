@@ -178,6 +178,17 @@ public class Multipass {
         Users.setGroup(world, player, group);
     }
 
+    public static void addGroup(Player player, String group){
+        addGroup(player.getName(), group);
+    }
+
+    public static void addGroup(String player, String group){
+        Users.addGroup(player, group);
+    }
+
+    public static void addGroup(String world, String player, String group){
+        Users.addGroup(world, player, group);
+    }
 
     public static void removePermission(Player player, String permission) {
         removePermission(player.getName(), permission);

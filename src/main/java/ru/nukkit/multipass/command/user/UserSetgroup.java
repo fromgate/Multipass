@@ -35,7 +35,7 @@ public class UserSetGroup extends Cmd {
     public boolean execute(CommandSender sender, Player player, String[] args) {
         String userName = args[0];
         WorldParam wp = new WorldParam(args, 2);
-        if (!Groups.exist(wp.param)) return Message.USER_SETGROUP_NOTEXIST.print(sender, userName,wp.param);
+        if (!Groups.exist(wp.param)) return Message.USER_SETGROUP_NOTEXIST.print(sender, userName, wp.param);
         Users.setGroup(userName, wp);
         wp.message(Message.USER_SETGROUP_OK_INFORM, Message.USER_SETGROUPW_OK_INFORM).print(Server.getInstance().getPlayerExact(userName), wp.param, wp.world);
         return wp.message(Message.USER_SETGROUP_OK, Message.USER_SETGROUPW_OK).print(sender, userName, wp.param, wp.world);

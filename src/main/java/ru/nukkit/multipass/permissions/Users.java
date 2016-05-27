@@ -70,11 +70,11 @@ public class Users {
     }
 
     public static void addGroup(String id, WorldParam wp) {
-        if (wp.hasWorld()) addGroup(id, wp.world, wp.param);
+        if (wp.hasWorld()) addGroup(wp.world, id, wp.param);
         else addGroup(id, wp.param);
     }
 
-    public static void addGroup(String id, String world, String group) {
+    public static void addGroup(String world, String id, String group) {
         User user = Users.getUser(id);
         user.addGroup(world, group);
         saveUser(user);
