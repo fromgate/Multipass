@@ -38,7 +38,6 @@ public class MultipassPlugin extends PluginBase {
         return instance.cfg;
     }
 
-
     @Override
     public void onEnable() {
         instance = this;

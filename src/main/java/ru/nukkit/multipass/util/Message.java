@@ -50,6 +50,7 @@ public enum Message {
 
     CMD_PERM_DESC("Main Permiter command, type /perm help for more  info"),
     CMD_PERM_HELP("/perm help [page] - show help"),
+    CMD_PERM_UPDATE("/perm refresh - recalculate permissions for all players"),
     CMD_PERM_RELOAD("/perm reload - reload Permiter configuration"),
     CMD_PERM_USER("/perm user <player> [page] - show player permissions (and group)"),
     CMD_PERM_GROUP("/perm group <groupId> [page] - show info about defined group"),
@@ -60,8 +61,9 @@ public enum Message {
     CMD_USER_ADDGROUP("/user <player> addgroup <group> - add player in group"),
     CMD_USER_REMOVEGROUP("/user <player> removegroup <group> - remove player from group"),
     CMD_GROUP_CREATE("/group create <group> - create new group"),
-    CMD_GROUP_ADDGROUP("/group <group1> addgroup <group2> - add group2 to group1"),
-    CMD_GROUP_SETPERM("/group <group> setperm <permission> - add permission to group"),
+    CMD_GROUP_ADDGROUP("/group <group1> addgroup [world] <group2> - add group2 to group1"),
+    CMD_GROUP_REMOVEGROUP("/group <group1> remove [world] <group2> - remove group1 from group2"),
+    CMD_GROUP_SETPERM("/group <group> setperm [world] <permission> - add permission to group"),
     CMD_GROUP_SETPREFIX("/group <group> setprefix <prefix> - set prefix for group"),
     CMD_GROUP_SETSUFFIX("/group <group> setsuffix <suffix> - set suffix for group"),
     CMD_GROUP_REMOVEPERM("/group <group> removeperm <permission> - remove permission from group"),
@@ -72,6 +74,9 @@ public enum Message {
     CMD_PERM_CHECK("/perm check <player> <permission> - check player permission line"),
     CMD_USER_SETPREFIX("/user <player> setprefix <user prefix> - set prefix"),
     CMD_USER_SETSUFFIX("/user <player> setsuffix <user suffix> - set suffix"),
+
+
+
 
     PERM_USER_NOTREGISTER("User %1% is not registered on this server!"),
 
@@ -121,6 +126,10 @@ public enum Message {
     GROUP_ADDGROUP_OK("Group %2% was added to group %1%"),
     GROUP_ADDGROUPW_OK("Group %2% was added to group %1% (world %3%)"),
 
+    GROUP_REMOVEGROUP_NOTEXIST("Group %1% is not exist. Please check group name or create new group"),
+    GROUP_REMOVEGROUP_OK("Group %2% was removed from group %1%"),
+    GROUP_REMOVEGROUPW_OK("Group %2% was removed from group %1% (world %3%)"),
+
     GROUP_SETGROUP_NOTEXIST("Group %1% is not exist. Please check group name or create new group"),
     GROUP_SETGROUP_OK("Group %2% was added to group %1%. All other groups were removed"),
     GROUP_SETGROUPW_OK("Group %2% was added to group %1% (world %3%). All other groups were removed"),
@@ -160,6 +169,7 @@ public enum Message {
     PERM_CHECK_HAS("Player %1% has permission %2%"),
     PERM_CHECK_HASNT("Player %1% has not permission %2%"),
     PERM_RELOADED("Configuration reloaded!"),
+    PERM_UPDATED("Player permissions updated"),
     REMOVED_GROUP_DETECTED("User %1% is trying to use unknown group %2%. Please check user permissions/groups"),
     PERM_USER_PREFIX("Prefixes: %1%"),
     PERM_USER_SUFFIX("Suffixes: %1%"),

@@ -134,6 +134,22 @@ public class Groups {
         return true;
     }
 
+    public static boolean removeGroup(String id1, WorldParam wp) {
+        return wp.hasWorld() ? removeGroup(id1, wp.world, wp.param) : removeGroup(id1, wp.param);
+    }
+
+    public static boolean removeGroup(String id1, String world, String id2) {
+        Group group = getGroup(id1);
+        if (group == null) return false;
+        return group.removeGroup(world, id2);
+    }
+
+    public static boolean removeGroup(String id1, String id2) {
+        Group group = getGroup(id1);
+        if (group == null) return false;
+        return group.removeGroup(id2);
+    }
+
     public static boolean isPermissionSet(String id, String permStr) {
         Group group = getGroup(id);
         if (group == null) return false;

@@ -28,7 +28,6 @@ import ru.nukkit.multipass.util.Util;
 
 @CmdDefine(command = "group", alias = "groupperm", allowConsole = true, subCommands = {"\\S+", "setprefix|prefix|px", "\\S+"}, permission = "multipass.admin", description = Message.CMD_GROUP_SETPREFIX)
 public class GroupSetPrefix extends Cmd {
-
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {
         String id = args[0];

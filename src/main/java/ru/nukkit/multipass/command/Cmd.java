@@ -18,7 +18,6 @@
 
 package ru.nukkit.multipass.command;
 
-
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.plugin.PluginBase;

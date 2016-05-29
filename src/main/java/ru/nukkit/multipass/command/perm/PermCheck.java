@@ -25,7 +25,7 @@ import ru.nukkit.multipass.command.Cmd;
 import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.util.Message;
 
-@CmdDefine(command = "perm", allowConsole = true, subCommands = {"check|chk|test|tst", "\\S+", "\\S+"}, permission = "multipass.admin", description = Message.CMD_PERM_CHECK)
+@CmdDefine(command = "perm", alias = "permission", allowConsole = true, subCommands = {"check|chk|test|tst", "\\S+", "\\S+"}, permission = "multipass.admin", description = Message.CMD_PERM_CHECK)
 public class PermCheck extends Cmd {
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {

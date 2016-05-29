@@ -225,9 +225,9 @@ public abstract class BaseNode extends Node {
     }
 
 
-    public void removeGroup(String world, String group) {
-        if (hasWorldPass(world)) return;
-        getWorldPass(world).removeGroup(group);
+    public boolean removeGroup(String world, String group) {
+        if (hasWorldPass(world)) return false;
+        return getWorldPass(world).removeGroup(group);
     }
 
     public void removeGroup(String world, Group group) {

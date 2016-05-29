@@ -27,11 +27,7 @@ import ru.nukkit.multipass.permissions.Groups;
 import ru.nukkit.multipass.permissions.Users;
 import ru.nukkit.multipass.util.Message;
 
-/**
- * Created by Igor on 06.05.2016.
- */
-
-@CmdDefine(command = "perm", allowConsole = true, subCommands = "reload", permission = "multipass.admin", description = Message.CMD_PERM_RELOAD)
+@CmdDefine(command = "perm", alias = "permission", allowConsole = true, subCommands = "reload", permission = "multipass.admin", description = Message.CMD_PERM_RELOAD)
 public class PermReload extends Cmd {
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {

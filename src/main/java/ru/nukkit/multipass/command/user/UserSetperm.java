@@ -27,10 +27,6 @@ import ru.nukkit.multipass.util.Message;
 import ru.nukkit.multipass.util.Util;
 import ru.nukkit.multipass.util.WorldParam;
 
-/**
- * Created by Igor on 06.05.2016.
- */
-
 @CmdDefine(command = "user", alias = "userperm", allowConsole = true, subCommands = {"\\S+", "setperm|sperm|sp|addperm|aperm|ap", "\\S+"}, permission = "multipass.admin", description = Message.CMD_USER_SETPERM)
 public class UserSetPerm extends Cmd {
     @Override

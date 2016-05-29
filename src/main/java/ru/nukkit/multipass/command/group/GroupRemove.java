@@ -27,8 +27,6 @@ import ru.nukkit.multipass.util.Message;
 
 @CmdDefine(command = "group", alias = "groupperm", allowConsole = true, subCommands = {"remove|rmv|delete|del", "\\S+"}, permission = "multipass.admin", description = Message.CMD_GROUP_REMOVE)
 public class GroupRemove extends Cmd {
-
-
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {
         String id = args[1];

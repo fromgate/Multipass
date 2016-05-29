@@ -22,7 +22,6 @@ public class WorldParam {
     public String world;
     public String param;
 
-
     public WorldParam(String param) {
         world = "";
         this.param = param;
@@ -33,8 +32,6 @@ public class WorldParam {
         }
     }
 
-    // user fromgate addgroup test2
-    //      0        1        2
     public WorldParam(String[] args, int num) {
         if (args.length <= num + 1) {
             this.world = "";

@@ -26,7 +26,7 @@ import ru.nukkit.multipass.permissions.Groups;
 import ru.nukkit.multipass.util.Message;
 import ru.nukkit.multipass.util.WorldParam;
 
-@CmdDefine(command = "group", alias = "groupperm", allowConsole = true, subCommands = {"\\S+", "addperm|setperm|sperm|sp", "\\S+"}, permission = "multipass.admin", description = Message.CMD_GROUP_SETPERM)
+@CmdDefine(command = "group", alias = "groupperm", allowConsole = true, subCommands = {"\\S+", "addperm|setperm|aperm|sp", "\\S+"}, permission = "multipass.admin", description = Message.CMD_GROUP_SETPERM)
 public class GroupSetPerm extends Cmd {
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {

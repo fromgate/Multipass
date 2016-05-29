@@ -44,12 +44,15 @@ public class Node {
         suffix = node.suffix;
     }
 
-    public void removeGroup(Group group) {
-        if (group != null) removeGroup(group.getName());
+    public boolean removeGroup(Group group) {
+        if (group == null) return false;
+        return removeGroup(group.getName());
     }
 
-    public void removeGroup(String group) {
-        if (this.groups.contains(group)) this.groups.remove(group);
+    public boolean removeGroup(String group) {
+        if (!this.groups.contains(group)) return false;
+        this.groups.remove(group);
+        return true;
     }
 
     public void removePermission(String perm) {

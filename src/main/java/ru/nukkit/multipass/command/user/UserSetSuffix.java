@@ -26,7 +26,6 @@ import ru.nukkit.multipass.permissions.Users;
 import ru.nukkit.multipass.util.Message;
 import ru.nukkit.multipass.util.Util;
 
-
 @CmdDefine(command = "user", alias = "userperm", allowConsole = true, subCommands = {"\\S+", "setsuffix|suffix|sx", "\\S+"}, permission = "multipass.admin", description = Message.CMD_USER_SETSUFFIX)
 public class UserSetSuffix extends Cmd {
     @Override

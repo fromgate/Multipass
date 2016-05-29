@@ -35,8 +35,6 @@ public class GroupSetGroup extends Cmd {
         if (!Groups.exist(id1)) Message.GROUP_SETGROUP_NOTEXIST.print(sender, id1);
         if (!Groups.exist(wp.param)) Message.GROUP_SETGROUP_NOTEXIST.print(sender, wp.param);
         Groups.setGroup(id1, wp);
-
-
         return wp.message(Message.GROUP_SETGROUP_OK, Message.GROUP_SETGROUPW_OK).print(sender, id1, wp.param, wp.world);
     }
 }

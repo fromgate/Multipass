@@ -25,18 +25,7 @@ import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.command.Commander;
 import ru.nukkit.multipass.util.Message;
 
-/**
- * Created by Igor on 03.05.2016.
- */
-
-/*
-
-TODO
-
-
- */
-
-@CmdDefine(command = "perm", allowConsole = true, subCommands = "help", permission = "multipass.admin", description = Message.CMD_PERM_HELP)
+@CmdDefine(command = "perm", alias = "permission", allowConsole = true, subCommands = "help", permission = "multipass.admin", description = Message.CMD_PERM_HELP)
 public class PermHelp extends Cmd {
 
     @Override

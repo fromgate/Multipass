@@ -25,6 +25,7 @@ import cn.nukkit.utils.TextFormat;
 import ru.nukkit.multipass.command.group.*;
 import ru.nukkit.multipass.command.perm.PermCheck;
 import ru.nukkit.multipass.command.perm.PermHelp;
+import ru.nukkit.multipass.command.perm.PermRefresh;
 import ru.nukkit.multipass.command.perm.PermReload;
 import ru.nukkit.multipass.command.user.*;
 import ru.nukkit.multipass.util.Message;
@@ -41,32 +42,33 @@ public class Commander {
     public static void init(PluginBase plg) {
         plugin = plg;
 
+        //Perm command
+        addNewCommand(PermHelp.class);
+        addNewCommand(PermReload.class);
+        addNewCommand(PermRefresh.class);
+        addNewCommand(PermCheck.class);
+
         // Group command
         addNewCommand(GroupInfo.class);
-        addNewCommand(GroupAddGroup.class);
         addNewCommand(GroupCreate.class);
         addNewCommand(GroupRemove.class);
         addNewCommand(GroupRemovePerm.class);
         addNewCommand(GroupSetPerm.class);
         addNewCommand(GroupSetGroup.class);
+        addNewCommand(GroupAddGroup.class);
+        addNewCommand(GroupRemoveGroup.class);
         addNewCommand(GroupSetPrefix.class);
         addNewCommand(GroupSetSuffix.class);
 
-        //Perm command
-        addNewCommand(PermHelp.class);
-        addNewCommand(PermReload.class);
-        addNewCommand(PermCheck.class);
-
         //User command
-        addNewCommand(UserAddGroup.class);
         addNewCommand(UserInfo.class);
+        addNewCommand(UserAddGroup.class);
         addNewCommand(UserRemoveGroup.class);
         addNewCommand(UserRemovePerm.class);
         addNewCommand(UserSetGroup.class);
         addNewCommand(UserSetPerm.class);
         addNewCommand(UserSetPrefix.class);
         addNewCommand(UserSetSuffix.class);
-
     }
 
 
@@ -153,10 +155,10 @@ public class Commander {
         for (Cmd cmd : commands) {
             if (!cmd.isCommand(cmdLabel)) continue;
             if (cmd.executeCommand(sender, args))
-                return Message.debugMessage("Executed command:", sender.getName(), cmdLabel, cmd.toString(), new ArrayList<String>(Arrays.asList(args)).toString());
+                return Message.debugMessage("Executed command:", sender.getName(), cmdLabel, cmd.toString(), new ArrayList<>(Arrays.asList(args)).toString());
         }
-        Message.debugMessage("Command not executed:", sender.getName(), cmdLabel, new ArrayList<String>(Arrays.asList(args)).toString());
-        return Message.CMD_FAILED.print(sender, "/" + cmdLabel + " help");
+        Message.debugMessage("Command not executed:", sender.getName(), cmdLabel, new ArrayList<>(Arrays.asList(args)).toString());
+        return Message.CMD_FAILED.print(sender, "/perm help");
     }
 
     public static String getCommandByAlias(String cmdLabel) {

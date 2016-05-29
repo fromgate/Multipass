@@ -33,8 +33,6 @@ import java.util.List;
 
 @CmdDefine(command = "group", alias = "groupperm", allowConsole = true, subCommands = {}, permission = "multipass.admin", description = Message.CMD_GROUP_REMOVE)
 public class GroupInfo extends Cmd {
-
-
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {
         if (args.length > 1) return false;
