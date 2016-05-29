@@ -3,11 +3,15 @@ _Permissions plugin approved by Leeloo Dallas_
 
 Multipass is a permissions plugin for Nukkit that provide a universal permission system for Nukkit.
 
+
 ## Features
 * Individual permissions and group
 * Group inheritance
 * World related permissions and group
 * API for another plugins
+
+## Please help us to translate Multipass
+We use Crowdin to translate Multipass. Join our translation project [here](https://crowdin.com/project/multipass/invite)
 
 ## Permissions
 * multipass.admin - use multipass commands
