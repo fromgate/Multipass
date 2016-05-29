@@ -88,18 +88,19 @@ Example:
 Remove user from group.
 
 #### Set user prefix/suffix
-* **/user \<user> setprefix \<group>**
-* **/user \<user> prefix \<group>**
-* **/user \<user> prefix \<group>**
+##### Set user prefix
 
-Set user prefix
+* **/user \<user> setprefix \<prefix>**
+* **/user \<user> prefix \<prefix>**
+* **/user \<user> px \<prefix>**
+
+##### Set user suffix
+
+* **/user \<user> setsuffix \<suffix>**
+* **/user \<user> suffix \<suffix>**
+* **/user \<user> sx \<suffix>**
 
 
-* **/user \<user> setsuffix \<group>**
-* **/user \<user> suffix \<group>**
-* **/user \<user> sx \<group>**
-
-Set user suffix
 
 ### Configure groups
 #### Show group info
@@ -167,9 +168,110 @@ Add additional parent group to target group.
 Players - members of target group will have permissions defined by all groups.
 
 #### Remove linked group
-* **/group \<user> removegroup \[world] \<group>**
-* **/group \<user> rmvgrp \[world] \<group>**
-* **/group \<user> rgrp \[world] \<group>**
-* **/group \<user> rg \[world] \<group>**
+* **/group \<group> removegroup \[world] \<group2>**
+* **/group \<group> rmvgrp \[world] \<group2>**
+* **/group \<group> rgrp \[world] \<group2>**
+* **/group \<group> rg \[world] \<group2>**
 
-Remove user from group.
+Remove group from group group2.
+
+#### Set group prefix/suffix
+##### Set group prefix
+
+* **/group \<group> setprefix \<prefix>**
+* **/group \<group> prefix \<prefix>**
+* **/group \<group> px \<prefix>**
+
+##### Set user suffix
+
+* **/group \<group> setsuffix \<suffix>**
+* **/group \<group> suffix \<suffix>**
+* **/group \<group> sx \<suffix>**
+
+## Configuration files
+### Mulitpass configuration
+
+File: **config.yml**
+
+```
+general:
+# Language. Supproted values:
+# default - Default language, configured in nukkit.yml
+# eng - English
+# rus - Russian
+  language: default
+# Save language file. Use it if you going to edit messages
+# or if you going to translate language files
+  language-save: false
+# Debug mode. Usually you don't need to use it
+  debug: false
+
+permissions:
+  group:
+# Default group. If player have no any group or permissions defined 
+# he will be member of this group
+    default-group: default
+# Default value of group permissions priority
+    default-priority: 10
+  user:
+# Default value of user permissions priority  
+    default-priority: 100
+  multiworld:
+# Enable multiworld support
+    enable: false
+# Configure mirroring of worlds
+    mirrors:
+      world: nether_world, end_world
+```
+
+### Group configuration
+
+File : **groups.yml**
+
+```
+# Group configuration example:
+#
+#default:
+#  groups:                # List of group (all group defined in this file)
+#  - vip
+#  permissions:           # List of permissions.
+#  - plugin.vip
+#  - plugin.test
+#  prefix: '&6[VIP]'      # Group prefix, used by third-party plugins
+#  suffix: ''             # Group suffix, used by third-party plugins
+#  priority: 10           # Group priority
+#  worlds:                # List of per-world permissions and groups
+#    end:
+#      groups:
+#      - vip_end
+#      permissions:
+#      - -plugin.vip      # Negative permission starts with "-"
+#      - -plugin.test
+default:
+  groups: []
+  permissions:
+  - default.permission
+  prefix: '[guest]'
+  suffix: ''
+  priority: 0
+  worlds: {}
+```
+
+### User configuration
+
+User configuration files stored in `/plugins/users/` folder.
+For example: `/plugins/users/fromgate.yml`
+
+Here is example of user configuration file:
+```
+groups:
+- default
+- testgroup
+permissions: 
+- test.permission
+- -default.permission
+prefix: '[vip]'
+suffix: ''
+priority: 100
+worlds: {}
+```
