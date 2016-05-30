@@ -1,7 +1,7 @@
 # Multipass
 _Permissions plugin approved by Leeloo Dallas_
 
-Multipass is a permissions plugin for Nukkit that provide a universal permission system for Nukkit.
+Multipass is a permissions plugin that provides a universal permission system for Nukkit.
 
 
 ## Features

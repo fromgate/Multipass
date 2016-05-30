@@ -48,18 +48,16 @@ public enum Message {
     HLP_TITLE("%1% | Help"),
 
 
-    CMD_PERM_DESC("Main Permiter command, type /perm help for more  info"),
+    CMD_PERM_DESC("Main Multipass command, type /perm help for more  info"),
     CMD_PERM_HELP("/perm help [page] - show help"),
     CMD_PERM_UPDATE("/perm refresh - recalculate permissions for all players"),
-    CMD_PERM_RELOAD("/perm reload - reload Permiter configuration"),
-    CMD_PERM_USER("/perm user <player> [page] - show player permissions (and group)"),
-    CMD_PERM_GROUP("/perm group <groupId> [page] - show info about defined group"),
+    CMD_PERM_RELOAD("/perm reload - reload Multipass configuration"),
     CMD_USER("/user <player> - show info about player permissions"),
-    CMD_USER_SETPERM("/user <player> setperm <permission> - add permission to player"),
-    CMD_USER_REMOVEPERM("/user <player> rmvperm <permission> - remove player permission"),
-    CMD_USER_SETGROUP("/user <player> setgroup <group> - move player in group"),
-    CMD_USER_ADDGROUP("/user <player> addgroup <group> - add player in group"),
-    CMD_USER_REMOVEGROUP("/user <player> removegroup <group> - remove player from group"),
+    CMD_USER_SETPERM("/user <player> setperm [world] <permission> - add permission to player"),
+    CMD_USER_REMOVEPERM("/user <player> rmvperm [world] <permission> - remove player permission"),
+    CMD_USER_SETGROUP("/user <player> setgroup [world] <group> - move player in group"),
+    CMD_USER_ADDGROUP("/user <player> addgroup [world] <group> - add player in group"),
+    CMD_USER_REMOVEGROUP("/user <player> removegroup [world] <group> - remove player from group"),
     CMD_GROUP_CREATE("/group create <group> - create new group"),
     CMD_GROUP_ADDGROUP("/group <group1> addgroup [world] <group2> - add group2 to group1"),
     CMD_GROUP_REMOVEGROUP("/group <group1> remove [world] <group2> - remove group1 from group2"),
@@ -74,9 +72,6 @@ public enum Message {
     CMD_PERM_CHECK("/perm check <player> <permission> - check player permission line"),
     CMD_USER_SETPREFIX("/user <player> setprefix <user prefix> - set prefix"),
     CMD_USER_SETSUFFIX("/user <player> setsuffix <user suffix> - set suffix"),
-
-
-
 
     PERM_USER_NOTREGISTER("User %1% is not registered on this server!"),
 
@@ -147,17 +142,6 @@ public enum Message {
     GROUP_SETSUFFIX_NOTEXIST("Failed to set suffix. Group %1% is not exist"),
     GROUP_SETPREFIX_OK("Prefix of group %1% is changed to %2%"),
     GROUP_SETSUFFIX_OK("Suffix of group %1% is changed to %2%"),
-
-    WORLD_GLOBALNOTEXIST("Failed to configure global group. Group %1% is not exist"),
-
-    WORLD_GLOBALOK("Global group was set to %1%"),
-
-    WORLD_GROUPOK("World %1% was bounded to group %2%"),
-    WORLD_GROUPNOTEXIST("Failed to configure world group. Group %1% is not exist"),
-    WORLD_WORLDUNKNOWN("Failed to configure world group. World %1% not found on the server"),
-    WORLD_GLOBALTITLE("World groups configuration", '6'),
-    WORLD_GLOBAL("Default (global) group: %1%"),
-    WORLD_WORLD("%1% : %2%"),
 
     GROUP_LIST("Available groups: %1%"),
     GROUP_LISTNOTFOUND("Failed to find any group!"),
