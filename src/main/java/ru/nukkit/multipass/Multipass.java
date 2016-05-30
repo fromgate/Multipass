@@ -146,22 +146,41 @@ public class Multipass {
     /**
      * Check is player is related to group or not
      *
-     * @param player - Player name
-     * @param group  - Group name
-     * @return - true - player in group
+     * @param player        Player name
+     * @param group         Group name
+     * @return              true - player in group
      */
     public static boolean isInGroup(String player, String group) {
         return isInGroup(Server.getInstance().getPlayerExact(player), group);
     }
 
+    /**
+     * Set player permission. Use prefix "-" to define negative permission
+     *
+     * @param player        Player object
+     * @param permission    Permission
+     */
     public static void setPermission(Player player, String permission) {
         setPermission(player.getName(), permission);
     }
 
+    /**
+     * Set player permission. Use prefix "-" to define negative permission
+     *
+     * @param player        Player name
+     * @param permission    Permissions
+     */
     public static void setPermission(String player, String permission) {
         Users.setPermission(player, permission);
     }
 
+    /**
+     * Set player permission related to defined world
+     *
+     * @param world         World name
+     * @param player        Player name
+     * @param permission    Permission
+     */
     public static void setPermission(String world, String player, String permission) {
         Users.setPermission(world, player, permission);
     }

@@ -66,9 +66,6 @@ public enum Message {
     CMD_GROUP_SETSUFFIX("/group <group> setsuffix <suffix> - set suffix for group"),
     CMD_GROUP_REMOVEPERM("/group <group> removeperm <permission> - remove permission from group"),
     CMD_GROUP_REMOVE("/group remove <group> - remove group"),
-    CMD_WORLD_GLOBAL("/world global <group> - set global world group"),
-    CMD_WORLD_SET("/world <world> set <group> - set global world group"),
-    CMD_WORLD("/world - show world group configuration"),
     CMD_PERM_CHECK("/perm check <player> <permission> - check player permission line"),
     CMD_USER_SETPREFIX("/user <player> setprefix <user prefix> - set prefix"),
     CMD_USER_SETSUFFIX("/user <player> setsuffix <user suffix> - set suffix"),
@@ -103,7 +100,7 @@ public enum Message {
     USER_ADDGROUP_OK("Player %1% added to group %2%"),
     USER_ADDGROUPW_OK("Player %1% added to group %2% (world %3%)"),
     USER_ADDGROUP_OK_INFORM("You were added to group %1%"),
-    USER_ADDGROUPW_OK_INFORM("You were added to group %1% (world %2%"),
+    USER_ADDGROUPW_OK_INFORM("You were added to group %1% (world %2%)"),
 
     USER_REMOVEGROUP_NOTFOUND("User %1% not found. Cannot remove him from the group"),
     USER_REMOVEGROUP_NOTSET("Failed to remove player %2% from group %1%. It was not configured"),
@@ -111,7 +108,7 @@ public enum Message {
     USER_REMOVEGROUP_OK("Player %2% removed from group %1%"),
     USER_REMOVEGROUPW_OK("Player %2% removed from group %1% (world %3%)"),
     USER_REMOVEGROUP_OK_INFORM("You was removed from the group %1%"),
-    USER_REMOVEGROUPW_OK_INFORM("You was removed from the group %1% (world %2%"),
+    USER_REMOVEGROUPW_OK_INFORM("You was removed from the group %1% (world %2%)"),
     GROUP_EXIST("Failed to create new group. Group %1% already exists"),
     GROUP_NOTEXIST("Failed to remove group. Group %1% is not exist"),
     GROUP_CREATE_OK("Group %1% created"),
@@ -164,7 +161,7 @@ public enum Message {
     USER_SUFFIX_OK_INFORM("Your suffix was changed to %1%"),
 
     USER_ADDGROUP_NOTEXIST("Failed to add user %1% to group %2%. Group is not exist"),
-    USER_SETGROUP_NOTEXIST("Failed to mover user %1% to group %2%. Group is not exist");
+    USER_SETGROUP_NOTEXIST("Failed to move user %1% to group %2%. Group is not exist");
 
 
     private static boolean debugMode = false;
