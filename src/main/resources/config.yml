@@ -8,10 +8,10 @@ general:
 # Show debug info (it will spam a lot in a server console :))
   debug: false
 permissions:
-  group:
-# Default group. All players will automagically join this group
-    default-group: default
-# Default priority of group permissions
+  subgroup:
+# Default subgroup. All players will automagically join this subgroup
+    default-subgroup: default
+# Default priority of subgroup permissions
     default-priority: 10
   user:
 # Default priority of user permissions

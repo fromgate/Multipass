@@ -161,7 +161,12 @@ public enum Message {
     USER_SUFFIX_OK_INFORM("Your suffix was changed to %1%"),
 
     USER_ADDGROUP_NOTEXIST("Failed to add user %1% to group %2%. Group is not exist"),
-    USER_SETGROUP_NOTEXIST("Failed to move user %1% to group %2%. Group is not exist");
+    USER_SETGROUP_NOTEXIST("Failed to move user %1% to group %2%. Group is not exist"),
+    LOG_UNKNOWN_GROUP_DETECTED("Detected unknown sub-group %1%. Check your user or group configuration"),
+
+    DB_DBLIB_NOTFOUND("DbLib required for MySQL/SQLite support"),
+    LOG_UNKNOWN_DATAPROVIDER("Unknown data provider: %1%. Will user YAML provider"),
+    LOG_DATAPROVIDER("Data provider: %1%");
 
 
     private static boolean debugMode = false;

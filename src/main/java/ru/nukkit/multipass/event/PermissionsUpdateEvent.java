@@ -59,6 +59,6 @@ public class PermissionsUpdateEvent extends Event {
      * @return
      */
     public boolean isMassUpdate() {
-        return user != null;
+        return user == null;
     }
 }

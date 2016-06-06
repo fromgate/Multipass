@@ -18,30 +18,35 @@
 
 package ru.nukkit.multipass.data;
 
+import ru.nukkit.multipass.MultipassPlugin;
+import ru.nukkit.multipass.data.dblib.DbLibSource;
 import ru.nukkit.multipass.permissions.Group;
 import ru.nukkit.multipass.permissions.Groups;
 import ru.nukkit.multipass.permissions.User;
 import ru.nukkit.multipass.util.Message;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 public enum DataProvider {
 
-    YAML(YamlSource.class);
-    // TODO - DbLib support
+    YAML(YamlSource.class),
+    DATABASE(DbLibSource.class);
 
+    private Class<? extends DataSource> clazz;
     private DataSource source;
 
     DataProvider(Class<? extends DataSource> clazz) {
+        this.clazz = clazz;
+    }
+
+    public DataSource getSource() {
         try {
             source = clazz.newInstance();
         } catch (Exception e) {
             source = null;
-            Message.PROVIDER_FAILED.log(clazz.getName());
+            Message.PROVIDER_FAILED.log(this.name());
         }
-    }
-
-    public DataSource getSource() {
         return this.source;
     }
 
@@ -49,7 +54,12 @@ public enum DataProvider {
 
 
     public static void init() {
-        currentProvider = YAML.getSource();
+        DataProvider dp = getByName(MultipassPlugin.getCfg().dataSource);
+        if (dp == null) {
+            Message.LOG_UNKNOWN_DATAPROVIDER.log(MultipassPlugin.getCfg().dataSource);
+            dp = YAML;
+        } else Message.LOG_DATAPROVIDER.log(dp.name());
+        currentProvider = dp.getSource();
     }
 
     public static User loadUser(String playerName) {
@@ -69,6 +79,14 @@ public enum DataProvider {
     }
 
     public static Map<String, Group> loadGroups() {
-        return currentProvider.loadGroups();
+        Map<String, Group> groups = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        currentProvider.loadGroups().forEach(group -> groups.put(group.getName(), group));
+        return groups;
+    }
+
+    public static DataProvider getByName(String name) {
+        for (DataProvider dp : values())
+            if (name.equalsIgnoreCase(dp.name())) return dp;
+        return null;
     }
 }

@@ -27,11 +27,11 @@ import ru.nukkit.multipass.permissions.User;
 import ru.nukkit.multipass.util.Message;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.List;
 
-public class YamlSource implements DataSource {
+public class YamlSource extends DataSource {
 
     private File userDir;
     private File groupFile;
@@ -105,8 +105,8 @@ public class YamlSource implements DataSource {
     }
 
     @Override
-    public Map<String, Group> loadGroups() {
-        Map<String, Group> groups = new TreeMap<>();
+    public Collection<Group> loadGroups() {
+        List<Group> groups = new ArrayList<>();
         if (!groupFile.exists()) return groups;
         Config cfg = new Config(groupFile, Config.YAML);
         cfg.getSections().entrySet().forEach(e -> {
@@ -119,7 +119,7 @@ public class YamlSource implements DataSource {
                 Node wpass = sectionToPass(ws);
                 group.setWorldPass(world, wpass);
             }
-            groups.put(e.getKey(), group);
+            groups.add(group);
         });
         Message.debugMessage(groups.size(), "groups loaded");
         return groups;
@@ -128,6 +128,16 @@ public class YamlSource implements DataSource {
     @Override
     public boolean isStored(String userName) {
         return getUserFile(userName).exists();
+    }
+
+    @Override
+    public Collection<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        for (String fileName : userDir.list()) {
+            if (!fileName.matches(".+\\.yml$")) continue;
+            users.add(loadUser(fileName.substring(0, fileName.length() - 4)));
+        }
+        return users;
     }
 
     private ConfigSection passToSection(Node node) {

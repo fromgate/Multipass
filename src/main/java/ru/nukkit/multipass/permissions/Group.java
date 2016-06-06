@@ -27,7 +27,7 @@ public class Group extends BaseNode {
     }
 
     public Group(String name) {
-        this(name, MultipassPlugin.getCfg().groupPriority);
+        this(name, MultipassPlugin.getCfg().defaultGroup.equalsIgnoreCase(name) ? 0 : MultipassPlugin.getCfg().groupPriority);
     }
 
     public Group(String name, int priority) {

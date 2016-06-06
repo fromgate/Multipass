@@ -18,6 +18,8 @@
 
 package ru.nukkit.multipass.permissions;
 
+import ru.nukkit.multipass.util.Message;
+
 import java.util.*;
 
 public class Node {
@@ -123,6 +125,10 @@ public class Node {
         this.groups.add(group2.getName());
     }
 
+    public void addGroup(String groupStr) {
+        this.groups.add(groupStr);
+    }
+
     public void setGroup(String groupStr) {
         Group group = Groups.getGroup(groupStr);
         if (group == null) return;
@@ -152,8 +158,15 @@ public class Node {
         Set<Group> groups = new HashSet<>();
         this.groups.forEach(g -> {
             Group group = Groups.getGroup(g);
-            if (g != null) groups.add(group);
+            if (group != null) groups.add(group);
+            else Message.LOG_UNKNOWN_GROUP_DETECTED.log(g);
         });
         return groups;
+    }
+
+    public boolean inGroup(String groupStr) {
+        Group group = Groups.getGroup(groupStr);
+        if (group == null) return false;
+        return groups.contains(group.getName());
     }
 }

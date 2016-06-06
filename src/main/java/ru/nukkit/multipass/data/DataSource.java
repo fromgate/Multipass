@@ -19,20 +19,31 @@
 package ru.nukkit.multipass.data;
 
 import ru.nukkit.multipass.permissions.Group;
+import ru.nukkit.multipass.permissions.Groups;
 import ru.nukkit.multipass.permissions.User;
+import ru.nukkit.multipass.permissions.Users;
 
 import java.util.Collection;
-import java.util.Map;
 
-public interface DataSource {
+public abstract class DataSource {
 
-    void saveUser(User user);
+    public abstract void saveUser(User user);
 
-    User loadUser(String playerName);
+    public abstract User loadUser(String playerName);
 
-    void saveGroups(Collection<Group> all);
+    public abstract void saveGroups(Collection<Group> all);
 
-    Map<String, Group> loadGroups();
+    public abstract Collection<Group> loadGroups();
 
-    boolean isStored(String userName);
+    public abstract boolean isStored(String userName);
+
+    public abstract Collection<User> getAllUsers();
+
+    public void updateUser(User user) {
+        Users.setUser(user);
+    }
+
+    public void updateAllGroups(Collection<Group> groups) {
+        Groups.updateGroups(groups);
+    }
 }

@@ -211,4 +211,13 @@ public class Groups {
         if (!groups.containsKey(groupStr)) return false;
         return groups.get(groupStr).isDefault();
     }
+
+    public static void updateGroups(Collection<Group> newGroups) {
+        if (newGroups == null) return;
+        groups.clear();
+        newGroups.forEach(g -> {
+            if (g != null) groups.put(g.getName(), g);
+        });
+        Users.recalculatePermissions();
+    }
 }

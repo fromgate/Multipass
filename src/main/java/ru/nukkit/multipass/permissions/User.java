@@ -42,7 +42,6 @@ public class User extends BaseNode {
         super(playerName, node);
     }
 
-
     public void recalculatePermissions() {
         Message.debugMessage("Recalculate permissions:", this.getName());
         if (getAttachment() == null) return;
@@ -51,8 +50,14 @@ public class User extends BaseNode {
         String world = useWorlds() ? player.getLevel().getName() : null;
 
         Map<String, Boolean> perms = new LinkedHashMap<>();
+
         Set<BaseNode> nodes = this.getAllNodes(false);
+
         nodes.forEach(node -> {
+
+            if (MultipassPlugin.getCfg().groupPermission && !node.equals(this))
+                perms.put("permission.group." + node.getName(), true);
+
             node.getPermissions().forEach(perm -> perms.put(perm.getName(), perm.isPositive()));
             if (world != null) node.getPermissions(world).forEach(perm -> perms.put(perm.getName(), perm.isPositive()));
         });
@@ -71,21 +76,6 @@ public class User extends BaseNode {
         Player player = Server.getInstance().getPlayerExact(this.name);
         attachment = player == null ? null : (attachment == null ? player.addAttachment(MultipassPlugin.getPlugin()) : attachment);
         return attachment;
-    }
-
-    public boolean inGroup(String groupStr) {
-        Group group = Groups.getGroup(groupStr);
-        if (group == null) return false;
-        return groups.contains(group.getName());
-    }
-
-    public boolean inGroup(String world, String groupStr) {
-        if (world == null) return false;
-        Group group = Groups.getGroup(groupStr);
-        if (group == null) return false;
-        Node node = getWorldPass(world);
-        if (node == null) return false;
-        return node.groups.contains(group.getName());
     }
 
     private boolean useWorlds() {

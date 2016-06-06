@@ -47,16 +47,10 @@ public abstract class BaseNode extends Node {
 
     public Set<Group> getAllGroups() {
         Set<Group> algroups = new TreeSet<>(new HighBase());
-        /*
-        Set<BaseNode> nodes = getAllNodes();
-        nodes.forEach(n->{
-            if (n instanceof Group) algroups.add((Group)n;
-        });
-        */
-        this.getGroups().forEach(g -> {
-            if (!algroups.contains(g)) {
-                algroups.add(g);
-                algroups.addAll(g.getAllGroups());
+        getGroups().forEach(group -> {
+            if (group != null && !algroups.contains(group)) {
+                algroups.add(group);
+                algroups.addAll(group.getAllGroups());
             }
         });
         return algroups;
@@ -70,11 +64,24 @@ public abstract class BaseNode extends Node {
         Set<BaseNode> nodes = new TreeSet<>(acsending ? new HighBase() : new LowBase());//new TreeSet<>(new HighBase());
         nodes.add(this);
         getGroups().forEach(group -> {
-            if (!nodes.contains(group)) {
+            if (group != null && !nodes.contains(group)) {
                 nodes.addAll(group.getAllNodes());
             }
         });
         return nodes;
+    }
+
+    public Map<String, List<Permission>> getPermissionsMap() {
+        Map<String, List<Permission>> permMap = new LinkedHashMap<>();
+        permissions.forEach(p -> {
+            if (!permMap.containsKey("")) permMap.put("", new ArrayList<>());
+            permMap.get("").add(p);
+        });
+        this.worldPass.entrySet().forEach(e -> {
+            if (!permMap.containsKey(e.getKey())) permMap.put(e.getKey(), new ArrayList<>());
+            e.getValue().getPermissions().forEach(p -> permMap.get(e.getKey()).add(p));
+        });
+        return permMap;
     }
 
     public Collection<Permission> getPermissions(String world) {
@@ -121,6 +128,21 @@ public abstract class BaseNode extends Node {
         getWorldPassOrCreate(world).setPermission(permission);
     }
 
+    public Map<String, List<String>> getGroupMap() {
+        Map<String, List<String>> groupMap = new HashMap<>();
+
+        groups.forEach(g -> {
+            if (!groupMap.containsKey("")) groupMap.put("", new ArrayList<>());
+            groupMap.get("").add(g);
+        });
+        this.worldPass.entrySet().forEach(e -> {
+            e.getValue().getGroupList().forEach(g -> {
+                if (!groupMap.containsKey(e.getKey())) groupMap.put(e.getKey(), new ArrayList<>());
+                groupMap.get(e.getKey()).add(g);
+            });
+        });
+        return groupMap;
+    }
 
     public List<String> getGroupList(String world) {
         return hasWorldPass(world) ? getWorldPass(world).getGroupList() : Collections.EMPTY_LIST;
@@ -207,6 +229,11 @@ public abstract class BaseNode extends Node {
         this.worldPass.put(world, node);
     }
 
+
+    public void setPermission(String world, String perm, boolean positive) {
+        setPermission(world, new Permission(perm, positive));
+    }
+
     public void setPermission(String world, String perm) {
         setPermission(world, new Permission(perm));
     }
@@ -235,6 +262,16 @@ public abstract class BaseNode extends Node {
         getWorldPass(world).removeGroup(group);
     }
 
+    public boolean inGroup(String world, String groupStr) {
+        if (world == null) return false;
+        Group group = Groups.getGroup(groupStr);
+        if (group == null) return false;
+        Node node = getWorldPass(world);
+        if (node == null) return false;
+        return node.inGroup(group.getName());
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -249,4 +286,15 @@ public abstract class BaseNode extends Node {
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
     }
+
+    public String baseToString(BaseNode baseNode) {
+        StringBuilder sb = new StringBuilder();
+        for (Group g : baseNode.getGroups()) {
+            if (sb.length() == 0) sb.append(baseNode.getName()).append(" [").append(g.getName());
+            else sb.append(", ").append(g.getName());
+        }
+        return sb.append("]").toString();
+    }
+
+
 }

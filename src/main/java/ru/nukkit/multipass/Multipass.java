@@ -26,6 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static ru.nukkit.multipass.permissions.Users.getUser;
+
 public class Multipass {
 
     /**
@@ -46,7 +48,7 @@ public class Multipass {
      */
     public static List<String> getGroups(String player) {
         List<String> list = new ArrayList<>();
-        User user = Users.getUser(player);
+        User user = getUser(player);
         user.getAllGroups().forEach(g -> list.add(g.getName()));
         return list;
     }
@@ -59,7 +61,7 @@ public class Multipass {
      */
     public static List<String> getPrefixes(String player) {
         List<String> list = new ArrayList<>();
-        User user = Users.getUser(player);
+        User user = getUser(player);
         Set<BaseNode> nodes = user.getAllNodes();
         nodes.forEach(p -> {
             if (!p.getPrefix().isEmpty()) {
@@ -87,7 +89,7 @@ public class Multipass {
      */
     public static List<String> getSuffixes(String player) {
         List<String> list = new ArrayList<>();
-        User user = Users.getUser(player);
+        User user = getUser(player);
         Set<BaseNode> passes = user.getAllNodes();
         passes.forEach(p -> {
             if (!p.getSuffix().isEmpty()) {
@@ -137,7 +139,7 @@ public class Multipass {
      */
     public static boolean isInGroup(Player player, String group) {
         if (player == null) return false;
-        User user = Users.getUser(player.getName());
+        User user = getUser(player.getName());
         if (user == null) return false;
         if (user.inGroup(group)) return true;
         return MultipassPlugin.getCfg().enableWorldSupport ? user.inGroup(player.getLevel().getName(), group) : false;
@@ -146,19 +148,43 @@ public class Multipass {
     /**
      * Check is player is related to group or not
      *
-     * @param player        Player name
-     * @param group         Group name
-     * @return              true - player in group
+     * @param player Player name
+     * @param group  Group name
+     * @return true - player in group
      */
     public static boolean isInGroup(String player, String group) {
         return isInGroup(Server.getInstance().getPlayerExact(player), group);
     }
 
     /**
+     * Check is player is a member of the default group
+     *
+     * @param player Player object
+     * @return true - player is in default group
+     */
+    public boolean isInDefaultGroup(Player player) {
+        if (player == null) return false;
+        return isInDefaultGroup(player.getName());
+    }
+
+    /**
+     * Check is player is a member of the default group
+     *
+     * @param player Player name
+     * @return true - player is in default group
+     */
+    public boolean isInDefaultGroup(String player) {
+        User user = Users.getUser(player);
+        if (user == null) return false;
+        for (String group : user.getGroupList()) if (Groups.isDefault(group)) return true;
+        return false;
+    }
+
+    /**
      * Set player permission. Use prefix "-" to define negative permission
      *
-     * @param player        Player object
-     * @param permission    Permission
+     * @param player     Player object
+     * @param permission Permission
      */
     public static void setPermission(Player player, String permission) {
         setPermission(player.getName(), permission);
@@ -167,8 +193,8 @@ public class Multipass {
     /**
      * Set player permission. Use prefix "-" to define negative permission
      *
-     * @param player        Player name
-     * @param permission    Permissions
+     * @param player     Player name
+     * @param permission Permissions
      */
     public static void setPermission(String player, String permission) {
         Users.setPermission(player, permission);
@@ -177,35 +203,54 @@ public class Multipass {
     /**
      * Set player permission related to defined world
      *
-     * @param world         World name
-     * @param player        Player name
-     * @param permission    Permission
+     * @param world      World name
+     * @param player     Player name
+     * @param permission Permission
      */
     public static void setPermission(String world, String player, String permission) {
         Users.setPermission(world, player, permission);
     }
 
+    /**
+     * Move player into a group. Player will be removed from any other group.
+     *
+     * @param player Player object
+     * @param group  Group name
+     */
     public static void setGroup(Player player, String group) {
         setGroup(player.getName(), group);
     }
 
+    /**
+     * Move player into a group. Player will be removed from any other group.
+     *
+     * @param player Player name
+     * @param group  Group name
+     */
     public static void setGroup(String player, String group) {
         Users.setGroup(player, group);
     }
 
+    /**
+     * Move player into a group (related to provided world). Player will be removed from any other group.
+     *
+     * @param world  World name
+     * @param player Player name
+     * @param group  Group name
+     */
     public static void setGroup(String world, String player, String group) {
         Users.setGroup(world, player, group);
     }
 
-    public static void addGroup(Player player, String group){
+    public static void addGroup(Player player, String group) {
         addGroup(player.getName(), group);
     }
 
-    public static void addGroup(String player, String group){
+    public static void addGroup(String player, String group) {
         Users.addGroup(player, group);
     }
 
-    public static void addGroup(String world, String player, String group){
+    public static void addGroup(String world, String player, String group) {
         Users.addGroup(world, player, group);
     }
 
@@ -242,7 +287,7 @@ public class Multipass {
      * @param priority - negative values will be ignored
      */
     public static void setPlayerPrefix(String player, String prefix, String suffix, int priority) {
-        User user = Users.getUser(player);
+        User user = getUser(player);
         if (prefix != null) user.setPrefix(prefix);
         if (suffix != null) user.setSuffix(suffix);
         if (priority >= 0) user.setPriority(priority);

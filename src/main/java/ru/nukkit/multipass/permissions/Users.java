@@ -41,10 +41,8 @@ public class Users {
 
     public static void loadUser(String playerName) {
         User user = users.containsKey(playerName) ? users.get(playerName) : DataProvider.loadUser(playerName);
-
         if (user.isEmpty())
             user.setGroup(MultipassPlugin.getCfg().defaultGroup);
-
         user.recalculatePermissions();
         users.put(playerName, user);
     }
@@ -82,7 +80,7 @@ public class Users {
 
     public static void addGroup(String id, String group) {
         User user = Users.getUser(id);
-        user.setGroup(group);
+        user.addGroup(group);
         saveUser(user);
     }
 
@@ -225,5 +223,11 @@ public class Users {
         DataProvider.saveUser(user);
         PermissionsUpdateEvent event = new PermissionsUpdateEvent(user.getName());
         Server.getInstance().getPluginManager().callEvent(event);
+    }
+
+    public static void setUser(User user) {
+        if (user == null) return;
+        users.put(user.getName(), user);
+        user.recalculatePermissions();
     }
 }

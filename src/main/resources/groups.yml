@@ -1,7 +1,7 @@
 # Group configuration example:
 #
 #default:
-#  groups:                # List of group (all group defined in this file)
+#  groups:                # List of subgroup (all subgroup defined in this file)
 #  - vip
 #  permissions:           # List of permissions.
 #  - plugin.vip

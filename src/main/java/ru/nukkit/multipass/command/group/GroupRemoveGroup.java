@@ -34,7 +34,7 @@ public class GroupRemoveGroup extends Cmd {
         WorldParam wp = new WorldParam(args, 2);
         if (!Groups.exist(id1)) Message.GROUP_REMOVEGROUP_NOTEXIST.print(sender, id1);
         if (!Groups.exist(wp.param)) Message.GROUP_REMOVEGROUP_NOTEXIST.print(sender, wp.param);
-        Groups.removeGroup (id1, wp);
+        Groups.removeGroup(id1, wp);
         Message m = wp.world == null ? Message.GROUP_REMOVEGROUP_OK : Message.GROUP_REMOVEGROUPW_OK;
         return m.print(sender, id1, wp.param, wp.world);
     }
