@@ -44,7 +44,6 @@ public class MultipassPlugin extends PluginBase {
         saveResources();
         cfg = new Cfg();
         cfg.load();
-        cfg.save();
         getServer().getPluginManager().registerEvents(new LeelooListener(), this);
         Message.init(this);
         Commander.init(this);

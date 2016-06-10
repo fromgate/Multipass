@@ -1,35 +1,37 @@
-lng_load_fail: 'Не удалось загрузить файл перевода. Будут использованы сообщения по умолчанию'
-lng_save_fail: 'Не удалось сохранить файл языка'
+lng_load_fail: Не удалось загрузить файл перевода. Будут использованы сообщения по умолчанию
+lng_save_fail: Не удалось сохранить файл языка
 lng_print_fail: 'Не удалось отобразить сообщение %1%. Получатель не определён.'
 lng_config: '[MESSAGES] Сообщения: %1% Язык: %2% Сохранять перевод: %1% Режим отладки: %3%'
-word_unknown: 'Неизвестное'
-wrong_permission: 'Недостаточный уровень полномочий, для выполнения этой команды'
-permission_fail: 'Недостаточный уровень полномочий, для выполнения этой команды'
-player_commad_only: 'Эту команду можно запускать только из игры!'
+word_unknown: Неизвестное
+wrong_permission: Недостаточный уровень полномочий, для выполнения этой команды
+permission_fail: Недостаточный уровень полномочий, для выполнения этой команды
+player_commad_only: Эту команду можно запускать только из игры!
 cmd_registered: 'Команда зарегистрирована: %1%'
 cmd_failed: 'Не удалось выполнить команду. Напишите %1% для вывода справки!'
 hlp_title: '%1% | Справка'
-cmd_perm_desc: 'Главная команда Multipass, наберите /perm help для получения справки по командам'
+cmd_perm_desc: Главная команда Multipass, наберите /perm help для получения справки по командам
 cmd_perm_help: '/perm help [страница] — отобразить справку'
-cmd_perm_update: '/perm refresh — перерасчёт полномочий для всех игроков'
-cmd_perm_reload: '/perm reload — перезагрузка настроек'
+cmd_perm_update: /perm refresh — перерасчёт полномочий для всех игроков
+cmd_perm_reload: /perm reload — перезагрузка настроек
 cmd_user: '/user <игрок> — отобразить информацию об игроке'
 cmd_user_setperm: '/user <игрок> setperm [world] <полномочие> — выдать игроку полномочие'
 cmd_user_removeperm: '/user <игрок> rmvperm [world] <полномочие> — снять полномочие с игрока'
 cmd_user_setgroup: '/user <игрок> setgroup [world] <группа> — переместить игрока в заданную группу'
 cmd_user_addgroup: '/user <игрок> addgroup [world] <группа> — добавить игрока в заданную группу'
-cmd_user_removegroup: '/user <игрок> removegroup [world] <subgroup> — исключить игрока из группы'
-cmd_group_create: '/subgroup create <группа> — создать новую группу'
-cmd_group_addgroup: '/subgroup <группа1> addgroup [мир] <группа2> — добавить группу 2 в группу 1'
-cmd_group_removegroup: '/subgroup <группа1> remove [мир] <группа2> — удалить группу1 из группы2'
-cmd_group_setperm: '/subgroup <группа> setperm [мир] <полномочие> — назначить полномочие группе'
-cmd_group_setprefix: '/subgroup <группа> setprefix <префикс> — задать префикс для группы'
-cmd_group_setsuffix: '/subgroup <группа> setsuffix <суффикс> — задать суффикс для группы'
-cmd_group_removeperm: '/subgroup <группа> removeperm <полномочие> — удалить полномочие группы'
-cmd_group_remove: '/subgroup remove <группа> — удалить группу'
+cmd_user_removegroup: '/user <игрок> removegroup [world] <group> — исключить игрока из группы'
+cmd_group_create: '/group create <группа> — создать новую группу'
+cmd_group_addgroup: '/group <группа1> addgroup [мир] <группа2> — добавить группу 2 в группу 1'
+cmd_group_removegroup: '/group <группа1> remove [мир] <группа2> — удалить группу1 из группы2'
+cmd_group_setperm: '/group <группа> setperm [мир] <полномочие> — назначить полномочие группе'
+cmd_group_setprefix: '/group <группа> setprefix <префикс> — задать префикс для группы'
+cmd_group_setsuffix: '/group <группа> setsuffix <суффикс> — задать суффикс для группы'
+cmd_group_removeperm: '/group <группа> removeperm <полномочие> — удалить полномочие группы'
+cmd_group_remove: '/group remove <группа> — удалить группу'
 cmd_perm_check: '/perm check <игрок> <полномочие> — проверить наличие полномочия у игрока'
 cmd_user_setprefix: '/user <игрок> setprefix <префикс> — задать префикс игрока'
 cmd_user_setsuffix: '/user <игрок> setsuffix <суффикс> — задать суффикс игрока'
+cmd_perm_export: '/perm export [fileName] — экспортировать параметры полномочий в файл'
+cmd_perm_import: '/perm import [overwrite] [filename] — импортировать параметры полномочий из файла'
 perm_user_notregister: 'Игрок %1% не зарегистрирован на этом сервере!'
 perm_user_info: 'Информация о полномочиях игрока %1%'
 perm_user_groups: 'Группы: %1%'
@@ -89,7 +91,7 @@ group_setsuffix_notexist: 'Не удалось задать суффикс. Гр
 group_setprefix_ok: 'Префикс группы %1% изменён на %2%'
 group_setsuffix_ok: 'Суффикс группы %1% изменён на %2%'
 group_list: 'Группы: %1%'
-group_listnotfound: 'Группы не обнаружены!'
+group_listnotfound: Группы не обнаружены!
 group_infounknown: 'Не удалось добавить информацю о группе. Группа %1% не обнаружена'
 group_info_groups: 'Группы: %1%'
 group_info_title: 'Информация о группе %1%'
@@ -97,8 +99,8 @@ group_info_permtitle: 'Полномочия:'
 perm_check_nullplayer: 'Не удалось проверить полномочие. Игрок %1% отключён от сервера'
 perm_check_has: 'Игрок %1% обладает полномочием %2%'
 perm_check_hasnt: 'Игрок %1% не обладает полномочием %2%'
-perm_reloaded: 'Настройки перезагружены!'
-perm_updated: 'Полномочия игрока обновлены'
+perm_reloaded: Настройки перезагружены!
+perm_updated: Полномочия игрока обновлены
 removed_group_detected: 'Игрок %1% пытается обратиться к неизвестной группе %2%. Пожалуйста проверьте настройки игрока'
 perm_user_prefix: 'Префиксы: %1%'
 perm_user_suffix: 'Суффиксы: %1%'
@@ -109,3 +111,11 @@ user_suffix_ok: 'Игроку %1% задан суффикс: %2%'
 user_suffix_ok_inform: 'Ваш установлен суффикс: %1%'
 user_addgroup_notexist: 'Не удалось добавить игрока %1% в группу %2%. Группа не существует'
 user_setgroup_notexist: 'Не удалось переместить игрока %1% в группу %2%. Группа не существует'
+log_unknown_group_detected: 'Онаружена ссылка на неизвестную групп: %1%. Проверьте настройки пользователей или группы'
+db_dblib_notfound: Для поддержки MySQL/SQLite необходим плагин DbLib
+log_unknown_dataprovider: 'Неизвестное хранилище данных: %1%. Будет использован YAML'
+log_dataprovider: 'Хранилище данных: %1%'
+perm_export_ok: 'Полномочия экспоритрованы в файл: %1%'
+perm_export_failed: Не удалось экспортировать полномочия
+perm_import_ok: 'Полномочия импортированы из файла: %1%'
+perm_import_failed: Не удалось импортировать полномочия
