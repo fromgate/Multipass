@@ -37,13 +37,15 @@ this permissions.
 
 Simply check permissions
 
-This command check permissions of online player.
+This command checks permissions of online player.
 
 #### Export permissions to file
 >**/perm export \[\<filename\>\]**
 
 Export permissions (all group and users) into single file. 
+
 Example:
+
 ``/perm export data`` - save all permissions in file _data.yml_
 
 #### Import permissions from file
@@ -52,7 +54,9 @@ Example:
 
 Import permissions from file. User "overwrite" parameter to delete all 
 groups and users before import. 
+
 Examples:
+
 ``/perm import data`` - load permissions from file _data.yml_
 ``/perm import overwrite`` - delete all permissions than load from file _import.yml_
 
@@ -71,7 +75,9 @@ Shows full user info (Groups, permissions, prefixes, suffixes)
 Set permission node for user. If you need to define permission node 
 that related to world you need to define (additionally) world name.
 For neagative permissions you need to use symbol "-" before permission.
+
 Example:
+
 ``/user fromgate sp -fantastic.permission``
 
 #### Remove user permission
@@ -81,7 +87,9 @@ Example:
 >**/user \<user\> rp \[\<world\>\] \<permission.node\>**
 
 Remove user permission.
+
 Example:
+
 ``/user fromgate rp fantastic.permission``
 
 #### Set user group
@@ -91,7 +99,9 @@ Example:
 >**/user \<user\> sg \[\<world\>\] \<group\>**
 
 Set user group. All other groups will be removed.
+
 Example:
+
 ``/user fromgate sg vip``
 
 #### Add user group
@@ -101,7 +111,9 @@ Example:
 >**/user \<user\> ag \[\<world\>\] \<group\>**
 
 Set user group. This will not affect other groups
+
 Example:
+
 ``/user fromgate ag admin``
 
 #### Remove user from group
@@ -160,6 +172,7 @@ For negative permissions you need to use symbol "-" before permission.
 These permissions will affect all group members.
 
 Examples:
+
 ``/group vip sp -fantastic.permission``
 ``/group vip sp nether_world magic.permission``
 
