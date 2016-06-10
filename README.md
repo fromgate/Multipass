@@ -25,7 +25,7 @@ We use Crowdin to translate Multipass. Join our translation project [here](https
 >**/perm reload**
 
 #### Refresh permissions
->**/perm refresh**
+>**/perm refresh**<br>
 >**/perm update**
 >**/perm recalculate**
 
