@@ -25,7 +25,7 @@ import ru.nukkit.multipass.command.CmdDefine;
 import ru.nukkit.multipass.util.Exporter;
 import ru.nukkit.multipass.util.Message;
 
-@CmdDefine(command = "perm", alias = "permission", allowConsole = true, subCommands = "export", permission = "multipass.admin", description = Message.CMD_PERM_IMPORT)
+@CmdDefine(command = "perm", alias = "permission", allowConsole = true, subCommands = "import", permission = "multipass.admin", description = Message.CMD_PERM_IMPORT)
 public class PermImport extends Cmd {
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {
