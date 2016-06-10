@@ -219,34 +219,62 @@ Remove group from group group2.
 File: **config.yml**
 
 ```
+# Multipass, Nukkit permission system
+#
 general:
-# Language. Supproted values:
-# default - Default language, configured in nukkit.yml
-# eng - English
-# rus - Russian
+# Messages language. Supported languages:
+# eng - English,
+# rus - Russian,
+# tur - Turkish.
+# You can help translate plugin: https://crowdin.com/project/multipass/invite
   language: default
-# Save language file. Use it if you going to edit messages
-# or if you going to translate language files
+# Save translation file
   language-save: false
-# Debug mode. Usually you don't need to use it
+# Debug mode. Usually you don't need to turn it on
   debug: false
-
 permissions:
   group:
-# Default group. If player have no any group or permissions defined 
-# he will be member of this group
+# Default group. All new players will automagically join this group
     default-group: default
-# Default value of group permissions priority
+# Default priority value for groups
     default-priority: 10
+# Use group name to add additional permission. If this option is enabled all
+# group members will have additional permission: permission.group.<groupId>
+    group-as-permission: true
   user:
-# Default value of user permissions priority  
+# Default priority value for users
     default-priority: 100
   multiworld:
 # Enable multiworld support
     enable: false
-# Configure mirroring of worlds
+# Enable world mirroring
     mirrors:
       world: nether_world, end_world
+storage:
+# Database type:
+# - YAML - yaml files
+# - DATABASE - MySQL or SQLite. DbLib plugins is required: http://nukkit.ru/resources/dblib.14/
+  type: YAML
+# Auto-update interval (for multi-server system). If this values is not equal to '0'
+# groups and permissions will be automatically updated.
+# Time format: 1s  - 1 second, 1m - 1 minute, 1h - one hour
+  auto-update-interval: '0'
+  database:
+# Database configuration:
+# - DEFAULT - default database, configured in plugin DbLib
+# - SQLITE  - custom SQLite file (filename provided below)
+# - MYSQL   - custom MySQL database (configuration provided below)
+    source: DEFAULT
+    sqlite:
+# Custom SQLite file name
+      file: permissions.db
+# Custom MySQL configuration
+    mysql:
+      host: localhost
+      port: 3306
+      database: database
+      username: nukkit
+      password: tikkun
 ```
 
 ### Group configuration
@@ -279,7 +307,12 @@ default:
   prefix: '[guest]'
   suffix: ''
   priority: 0
-  worlds: {}
+  worlds:
+    world1:
+      groups:
+      - worldgroup
+      permissions: 
+      - world.permission
 ```
 
 ### User configuration
@@ -298,5 +331,10 @@ permissions:
 prefix: '[vip]'
 suffix: ''
 priority: 100
-worlds: {}
+worlds: 
+  world1:
+    groups:
+    - worldgroup
+    permissions: 
+    - world.permission
 ```

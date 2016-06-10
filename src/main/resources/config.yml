@@ -1,7 +1,10 @@
 # Multipass, Nukkit permission system
 #
 general:
-# Messages language. Supported: eng - English, rus - Russian
+# Messages language. Supported languages:
+# eng - English,
+# rus - Russian,
+# tur - Turkish.
 # You can help translate plugin: https://crowdin.com/project/multipass/invite
   language: default
 # Save translation file
