@@ -213,8 +213,15 @@ public class Groups {
     }
 
     public static void updateGroups(Collection<Group> newGroups) {
+        updateGroups (newGroups, true);
+    }
+
+    public static void updateGroups(Collection<Group> newGroups, boolean removeExist) {
         if (newGroups == null) return;
-        groups.clear();
+        if (removeExist) {
+            groups.clear();
+            DataProvider.clearGroups();
+        }
         newGroups.forEach(g -> {
             if (g != null) groups.put(g.getName(), g);
         });

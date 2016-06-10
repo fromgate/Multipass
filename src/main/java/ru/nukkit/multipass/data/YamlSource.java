@@ -77,11 +77,11 @@ public class YamlSource extends DataSource {
             Message.debugMessage(user.getName(), "data is empty. File removed");
         } else {
             Config cfg = new Config(file, Config.YAML);
-            ConfigSection cfgSection = passToSection(user);
+            ConfigSection cfgSection = passToSection(user, true);
             cfg.setAll(cfgSection);
             ConfigSection worlds = new ConfigSection();
             user.getWorldPass().entrySet().forEach(e -> {
-                worlds.set(e.getKey(), passToSection(e.getValue()));
+                worlds.set(e.getKey(), passToSection(e.getValue(), false));
             });
             cfg.set("worlds", worlds);
             Message.debugMessage(user.getName(), " saved.");
@@ -93,10 +93,10 @@ public class YamlSource extends DataSource {
     public void saveGroups(Collection<Group> groups) {
         Config cfg = new Config();
         groups.forEach(g -> {
-            ConfigSection group = passToSection(g);
+            ConfigSection group = passToSection(g, true);
             ConfigSection worlds = new ConfigSection();
             g.getWorldPass().entrySet().forEach(e -> {
-                worlds.set(e.getKey(), passToSection(e.getValue()));
+                worlds.set(e.getKey(), passToSection(e.getValue(), false));
             });
             group.set("worlds", worlds);
             cfg.set(g.getName(), group);
@@ -140,13 +140,32 @@ public class YamlSource extends DataSource {
         return users;
     }
 
-    private ConfigSection passToSection(Node node) {
+    @Override
+    public void clearUsers() {
+        for (File file: userDir.listFiles()) {
+            if (!file.isDirectory()) file.delete();
+        }
+    }
+
+    @Override
+    public void clearGroups() {
+        if (groupFile.exists()) groupFile.delete();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+    private ConfigSection passToSection(Node node, boolean saveAdditions) {
         ConfigSection section = new ConfigSection();
         section.set("groups", node.getGroupList());
         section.set("permissions", node.getPermissionList());
-        section.set("prefix", node.getPrefix());
-        section.set("suffix", node.getSuffix());
-        section.set("priority", node.getPriority());
+        if (saveAdditions) {
+            section.set("prefix", node.getPrefix());
+            section.set("suffix", node.getSuffix());
+            section.set("priority", node.getPriority());
+        }
         return section;
     }
 

@@ -19,19 +19,19 @@
 package ru.nukkit.multipass.data;
 
 import ru.nukkit.multipass.MultipassPlugin;
-import ru.nukkit.multipass.data.dblib.DbLibSource;
 import ru.nukkit.multipass.permissions.Group;
 import ru.nukkit.multipass.permissions.Groups;
 import ru.nukkit.multipass.permissions.User;
 import ru.nukkit.multipass.util.Message;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 
 public enum DataProvider {
 
     YAML(YamlSource.class),
-    DATABASE(DbLibSource.class);
+    DATABASE(DatabaseSource.class);
 
     private Class<? extends DataSource> clazz;
     private DataSource source;
@@ -74,6 +74,10 @@ public enum DataProvider {
         currentProvider.saveUser(user);
     }
 
+    public static void saveUsers(Collection<User> users){
+
+    }
+
     public static void saveGroups() {
         currentProvider.saveGroups(Groups.getAll());
     }
@@ -88,5 +92,17 @@ public enum DataProvider {
         for (DataProvider dp : values())
             if (name.equalsIgnoreCase(dp.name())) return dp;
         return null;
+    }
+
+    public static void clearUsers() {
+        currentProvider.clearUsers();
+    }
+
+    public static void clearGroups(){
+        currentProvider.clearGroups();
+    }
+
+    public static Collection<User> getAllUsers() {
+        return currentProvider.getAllUsers();
     }
 }

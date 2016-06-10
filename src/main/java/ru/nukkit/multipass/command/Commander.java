@@ -23,10 +23,7 @@ import cn.nukkit.command.CommandSender;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.TextFormat;
 import ru.nukkit.multipass.command.group.*;
-import ru.nukkit.multipass.command.perm.PermCheck;
-import ru.nukkit.multipass.command.perm.PermHelp;
-import ru.nukkit.multipass.command.perm.PermRefresh;
-import ru.nukkit.multipass.command.perm.PermReload;
+import ru.nukkit.multipass.command.perm.*;
 import ru.nukkit.multipass.command.user.*;
 import ru.nukkit.multipass.util.Message;
 import ru.nukkit.multipass.util.Paginator;
@@ -47,6 +44,8 @@ public class Commander {
         addNewCommand(PermReload.class);
         addNewCommand(PermRefresh.class);
         addNewCommand(PermCheck.class);
+        addNewCommand(PermExport.class);
+        addNewCommand(PermImport.class);
 
         // Group command
         addNewCommand(GroupInfo.class);

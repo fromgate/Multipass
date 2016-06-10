@@ -18,10 +18,7 @@
 
 package ru.nukkit.multipass.data;
 
-import ru.nukkit.multipass.permissions.Group;
-import ru.nukkit.multipass.permissions.Groups;
-import ru.nukkit.multipass.permissions.User;
-import ru.nukkit.multipass.permissions.Users;
+import ru.nukkit.multipass.permissions.*;
 
 import java.util.Collection;
 
@@ -39,11 +36,17 @@ public abstract class DataSource {
 
     public abstract Collection<User> getAllUsers();
 
-    public void updateUser(User user) {
-        Users.setUser(user);
+    public void updateUser(final User user) {
+        Users.setUser(new User(user.getName(), user));
     }
 
-    public void updateAllGroups(Collection<Group> groups) {
+    public void updateAllGroups(final Collection<Group> groups) {
         Groups.updateGroups(groups);
     }
+
+    public abstract boolean isEnabled();
+
+    public abstract void clearUsers();
+
+    public abstract void clearGroups();
 }

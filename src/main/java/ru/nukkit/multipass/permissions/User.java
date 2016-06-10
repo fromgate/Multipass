@@ -42,6 +42,11 @@ public class User extends BaseNode {
         super(playerName, node);
     }
 
+    public User (String playerName, BaseNode node){
+        super(playerName, node);
+
+    }
+
     public void recalculatePermissions() {
         Message.debugMessage("Recalculate permissions:", this.getName());
         if (getAttachment() == null) return;

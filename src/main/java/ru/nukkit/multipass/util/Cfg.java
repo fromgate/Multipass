@@ -61,6 +61,9 @@ public class Cfg extends SimpleConfig {
     @Path("storage.type")
     public String dataSource = "YAML"; // yaml, database;
 
+    @Path("storage.rescan-interval")
+    public String multiServerRecheck = "0";
+
     // Disabled: possible ORMLite bug
     //@Path("storage.database.table-prefix")
     @Skip

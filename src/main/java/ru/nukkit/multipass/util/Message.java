@@ -69,6 +69,8 @@ public enum Message {
     CMD_PERM_CHECK("/perm check <player> <permission> - check player permission line"),
     CMD_USER_SETPREFIX("/user <player> setprefix <user prefix> - set prefix"),
     CMD_USER_SETSUFFIX("/user <player> setsuffix <user suffix> - set suffix"),
+    CMD_PERM_EXPORT("/perm export [fileName] - export all permissions to file"),
+    CMD_PERM_IMPORT("/perm import [overwrite] [filename] - import permissions from file"),
 
     PERM_USER_NOTREGISTER("User %1% is not registered on this server!"),
 
@@ -165,8 +167,14 @@ public enum Message {
     LOG_UNKNOWN_GROUP_DETECTED("Detected unknown sub-group %1%. Check your user or group configuration"),
 
     DB_DBLIB_NOTFOUND("DbLib required for MySQL/SQLite support"),
-    LOG_UNKNOWN_DATAPROVIDER("Unknown data provider: %1%. Will user YAML provider"),
-    LOG_DATAPROVIDER("Data provider: %1%");
+    LOG_UNKNOWN_DATAPROVIDER("Unknown data provider: %1%. Will use YAML provider"),
+    LOG_DATAPROVIDER("Data provider: %1%"),
+
+    PERM_EXPORT_OK("Permissions exported to file: %1%"),
+    PERM_EXPORT_FAILED("Permissions export failed"),
+    PERM_IMPORT_OK("Permissions imported from file: %1%"),
+    PERM_IMPORT_FAILED("Permissions import failed");
+
 
 
     private static boolean debugMode = false;
@@ -234,6 +242,7 @@ public enum Message {
         if (player == null) sender.sendMessage(message);
         else for (int i = 0; i < seconds; i++)
             Server.getInstance().getScheduler().scheduleDelayedTask(new Runnable() {
+                @SuppressWarnings("deprecation")
                 public void run() {
                     if (player.isOnline()) player.sendTip(message);
                 }
@@ -248,6 +257,7 @@ public enum Message {
      * @param s
      * @return — always returns true.
      */
+    @SuppressWarnings("deprecation")
     public boolean tip(CommandSender sender, Object... s) {
         if (sender == null) return Message.LNG_PRINT_FAIL.log(this.name());
         Player player = sender instanceof Player ? (Player) sender : null;

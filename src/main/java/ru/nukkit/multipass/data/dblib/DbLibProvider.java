@@ -19,6 +19,7 @@
 package ru.nukkit.multipass.data.dblib;
 
 import cn.nukkit.Server;
+import cn.nukkit.scheduler.Task;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.support.ConnectionSource;
@@ -39,9 +40,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import static ru.nukkit.dblib.DbLib.getConnectionSource;
+
 public class DbLibProvider {
 
     private boolean enabled;
+
+    private Task rescan;
+
     private ConnectionSource connection;
 
     Dao<UsersTable, String> usersDao;
@@ -65,43 +71,35 @@ public class DbLibProvider {
         initConnection();
         if (connection == null) return;
         try {
-
             // USERS_PERM
             DatabaseTableConfig<UsersPermTable> usersPermCfg = new DatabaseTableConfig(UsersPermTable.class, cfg.tablePrefix + "users_perm", null);
             usersPerm = DaoManager.createDao(connection, usersPermCfg);
             TableUtils.createTableIfNotExists(connection, usersPermCfg);
-            Message.debugMessage(usersPermCfg.getTableName());
 
             // GROUPS_PERM
             DatabaseTableConfig<GroupsPermTable> groupsPermCfg = new DatabaseTableConfig(GroupsPermTable.class, cfg.tablePrefix + "groups_perm", null);
             groupsPerm = DaoManager.createDao(connection, groupsPermCfg);
             TableUtils.createTableIfNotExists(connection, groupsPermCfg);
-            Message.debugMessage(groupsPermCfg.getTableName());
-
 
             // USERS_GROUP
             DatabaseTableConfig<UsersGroupTable> usersGroupCfg = new DatabaseTableConfig(UsersGroupTable.class, cfg.tablePrefix + "users_group", null);
             usersGroup = DaoManager.createDao(connection, usersGroupCfg);
             TableUtils.createTableIfNotExists(connection, usersGroupCfg);
-            Message.debugMessage(usersGroupCfg.getTableName());
 
             // GROUPS_GROUP
             DatabaseTableConfig<GroupsGroupTable> groupsGroupCfg = new DatabaseTableConfig(GroupsGroupTable.class, cfg.tablePrefix + "groups_group", null);
             groupsGroup = DaoManager.createDao(connection, groupsGroupCfg);
             TableUtils.createTableIfNotExists(connection, groupsGroupCfg);
-            Message.debugMessage(groupsGroupCfg.getTableName());
 
             // USERS
             DatabaseTableConfig<UsersTable> usersTableCfg = new DatabaseTableConfig(UsersTable.class, cfg.tablePrefix + "users", null);
             usersDao = DaoManager.createDao(connection, usersTableCfg);
             TableUtils.createTableIfNotExists(connection, usersTableCfg);
-            Message.debugMessage(usersTableCfg.getTableName());
 
             // GROUPS
             DatabaseTableConfig<GroupsTable> groupsTableCfg = new DatabaseTableConfig(GroupsTable.class, cfg.tablePrefix + "groups", null);
             groupsDao = DaoManager.createDao(connection, groupsTableCfg);
             TableUtils.createTableIfNotExists(connection, groupsTableCfg);
-            Message.debugMessage(groupsTableCfg.getTableName());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,7 +122,7 @@ public class DbLibProvider {
                 return;
 
         }
-        connection = DbLib.getConnectionSource();
+        connection = getConnectionSource();
     }
 
     public boolean isEnabled() {
@@ -137,8 +135,6 @@ public class DbLibProvider {
         if (userRecord == null) userRecord = new UsersTable(user);
         List<UsersPermTable> perms = userRecord.getPermissions();
         usersPerm.delete(perms);
-
-
         for (Map.Entry<String, List<Permission>> e : user.getPermissionsMap().entrySet()) {
             for (Permission p : e.getValue())
                 usersPerm.create(new UsersPermTable(userRecord, e.getKey(), p.getName(), p.isPositive()));
@@ -245,5 +241,17 @@ public class DbLibProvider {
             else user.addGroup(ug.getWorld(), ug.getSubgroup());
         }
         return user;
+    }
+
+    public void clearUsers() throws SQLException {
+        TableUtils.clearTable(connection, UsersPermTable.class);
+        TableUtils.clearTable(connection, UsersGroupTable.class);
+        TableUtils.clearTable(connection, UsersTable.class);
+    }
+
+    public void clearGroups() throws SQLException {
+        TableUtils.clearTable(connection, GroupsPermTable.class);
+        TableUtils.clearTable(connection, GroupsGroupTable.class);
+        TableUtils.clearTable(connection, GroupsTable.class);
     }
 }

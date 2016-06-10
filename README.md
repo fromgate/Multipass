@@ -39,6 +39,23 @@ Simply check permissions
 
 This command check permissions of online player.
 
+#### Export permissions to file
+>**/perm export \[\<filename\>\]**
+
+Export permissions (all group and users) into single file. 
+Example:
+``/perm export data`` - save all permissions in file _data.yml_
+
+#### Import permissions from file
+>**/perm import \[overwrite\] \[\<filename\>\]**
+>**/perm import \[over\] \[\<filename\>\]**
+
+Import permissions from file. User "overwrite" parameter to delete all 
+groups and users before import. 
+Examples:
+``/perm import data`` - load permissions from file _data.yml_
+``/perm import overwrite`` - delete all permissions than load from file _import.yml_
+
 ### Configure user permissions
 #### Show user info
 >**/user \<user\>**
@@ -46,10 +63,10 @@ This command check permissions of online player.
 Shows full user info (Groups, permissions, prefixes, suffixes)
 
 #### Set user permission
->**/user \<user\> setperm \[world\] \<permission.node\>**
->**/user \<user\> sp \[world\] \<permission.node\>**
->**/user \<user\> addperm \[world\] \<permission.node\>**
->**/user \<user\> ap \[world\] \<permission.node\>**
+>**/user \<user\> setperm \[\<world\>\] \<permission.node\>**
+>**/user \<user\> sp \[\<world\>\] \<permission.node\>**
+>**/user \<user\> addperm \[\<world\>\] \<permission.node\>**
+>**/user \<user\> ap \[\<world\>\] \<permission.node\>**
 
 Set permission node for user. If you need to define permission node 
 that related to world you need to define (additionally) world name.
@@ -58,40 +75,40 @@ Example:
 ``/user fromgate sp -fantastic.permission``
 
 #### Remove user permission
->**/user \<user\> removeperm \[world\] \<permission.node\>**
->**/user \<user\> rmvperm \[world\] \<permission.node\>**
->**/user \<user\> rperm \[world\] \<permission.node\>**
->**/user \<user\> rp \[world\] \<permission.node\>**
+>**/user \<user\> removeperm \[\<world\>\] \<permission.node\>**
+>**/user \<user\> rmvperm \[\<world\>\] \<permission.node\>**
+>**/user \<user\> rperm \[\<world\>\] \<permission.node\>**
+>**/user \<user\> rp \[\<world\>\] \<permission.node\>**
 
 Remove user permission.
 Example:
 ``/user fromgate rp fantastic.permission``
 
 #### Set user group
->**/user \<user\> setgroup \[world\] \<group\>**
->**/user \<user\> setgrp \[world\] \<group\>**
->**/user \<user\> sgrp \[world\] \<group\>**
->**/user \<user\> sg \[world\] \<group\>**
+>**/user \<user\> setgroup \[\<world\>\] \<group\>**
+>**/user \<user\> setgrp \[\<world\>\] \<group\>**
+>**/user \<user\> sgrp \[\<world\>\] \<group\>**
+>**/user \<user\> sg \[\<world\>\] \<group\>**
 
 Set user group. All other groups will be removed.
 Example:
 ``/user fromgate sg vip``
 
 #### Add user group
->**/user \<user\> addgroup \[world\] \<group\>**
->**/user \<user\> addgrp \[world\] \<group\>**
->**/user \<user\> agrp \[world\] \<group\>**
->**/user \<user\> ag \[world\] \<group\>**
+>**/user \<user\> addgroup \[\<world\>\] \<group\>**
+>**/user \<user\> addgrp \[\<world\>\] \<group\>**
+>**/user \<user\> agrp \[\<world\>\] \<group\>**
+>**/user \<user\> ag \[\<world\>\] \<group\>**
 
 Set user group. This will not affect other groups
 Example:
 ``/user fromgate ag admin``
 
 #### Remove user from group
->**/user \<user\> removegroup \[world\] \<group\>**
->**/user \<user\> rmvgrp \[world\] \<group\>**
->**/user \<user\> rgrp \[world\] \<group\>**
->**/user \<user\> rg \[world\] \<group\>**
+>**/user \<user\> removegroup \[\<world\>\] \<group\>**
+>**/user \<user\> rmvgrp \[\<world\>\] \<group\>**
+>**/user \<user\> rgrp \[\<world\>\] \<group\>**
+>**/user \<user\> rg \[\<world\>\] \<group\>**
 
 Remove user from group.
 
@@ -132,10 +149,10 @@ Delete group. This will not affect users' files so if you will create
 a new group with same name all previous members will join new group too.
 
 #### Set permission
->**/group \<group\> addperm \[world\] \<permission\>**
->**/group \<group\> setperm \[world\] \<permission\>**
->**/group \<group\> aperm \[world\] \<permission\>**
->**/group \<group\> sp \[world\] \<permission\>**
+>**/group \<group\> addperm \[\<world\>\] \<permission\>**
+>**/group \<group\> setperm \[\<world\>\] \<permission\>**
+>**/group \<group\> aperm \[\<world\>\] \<permission\>**
+>**/group \<group\> sp \[\<world\>\] \<permission\>**
 
 Set permission node for group. If you need to define permission node 
 that related to world you need to define (additionally) world name.
@@ -147,39 +164,39 @@ Examples:
 ``/group vip sp nether_world magic.permission``
 
 #### Remove permission
->**/group \<group\> removeperm \[world\] \<permission\>**
->**/group \<group\> rmvperm \[world\] \<permission\>**
->**/group \<group\> rperm \[world\] \<permission\>**
->**/group \<group\> rp \[world\] \<permission\>**
+>**/group \<group\> removeperm \[\<world\>\] \<permission\>**
+>**/group \<group\> rmvperm \[\<world\>\] \<permission\>**
+>**/group \<group\> rperm \[\<world\>\] \<permission\>**
+>**/group \<group\> rp \[\<world\>\] \<permission\>**
 
 Remove group permission.
 Example:
 ``/group vip rp fantastic.permission``
 
 #### Set group
->**/group \<group\> setgroup \[world\] \<group2\>**
->**/group \<group\> setgrp \[world\] \<group2\>**
->**/group \<group\> sgrp \[world\] \<group2\>**
->**/group \<group\> sg \[world\] \<group2\>**
+>**/group \<group\> setgroup \[\<world\>\] \<group2\>**
+>**/group \<group\> setgrp \[\<world\>\] \<group2\>**
+>**/group \<group\> sgrp \[\<world\>\] \<group2\>**
+>**/group \<group\> sg \[\<world\>\] \<group2\>**
 
 Move group into "parent group". This group will inherit all permissions provided by parent group.
 Another group (defined previously) will be removed.
 Players - members of target group will have permissions defined by target and parent group.
  
 #### Add group
->**/group \<group\> addgroup \[world\] \<group2\>**
->**/group \<group\> addgrp \[world\] \<group2\>**
->**/group \<group\> agrp \[world\] \<group2\>**
->**/group \<group\> ag \[world\] \<group2\>**
+>**/group \<group\> addgroup \[\<world\>\] \<group2\>**
+>**/group \<group\> addgrp \[\<world\>\] \<group2\>**
+>**/group \<group\> agrp \[\<world\>\] \<group2\>**
+>**/group \<group\> ag \[\<world\>\] \<group2\>**
 
 Add additional parent group to target group.
 Players - members of target group will have permissions defined by all groups.
 
 #### Remove linked group
->**/group \<group\> removegroup \[world\] \<group2\>**
->**/group \<group\> rmvgrp \[world\] \<group2\>**
->**/group \<group\> rgrp \[world\] \<group2\>**
->**/group \<group\> rg \[world\] \<group2\>**
+>**/group \<group\> removegroup \[\<world\>\] \<group2\>**
+>**/group \<group\> rmvgrp \[\<world\>\] \<group2\>**
+>**/group \<group\> rgrp \[\<world\>\] \<group2\>**
+>**/group \<group\> rg \[\<world\>\] \<group2\>**
 
 Remove group from group group2.
 

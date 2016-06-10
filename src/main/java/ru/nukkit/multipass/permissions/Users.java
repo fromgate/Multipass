@@ -27,6 +27,7 @@ import ru.nukkit.multipass.util.Message;
 import ru.nukkit.multipass.util.WorldParam;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -61,6 +62,7 @@ public class Users {
             if (Server.getInstance().getPlayerExact(iterator.next().getKey()) == null) iterator.remove();
         }
     }
+
 
     public static boolean isRegistered(String userName) {
         if (users.containsKey(userName)) return true;
@@ -230,4 +232,22 @@ public class Users {
         users.put(user.getName(), user);
         user.recalculatePermissions();
     }
+
+    public static void updateUsers(List<User> newUsers, boolean overwrite) {
+        if (overwrite) {
+            DataProvider.clearUsers();
+            users.clear();
+        }
+        for (User user : newUsers ) {
+            users.put(user.getName(),user);
+            DataProvider.saveUser(user);
+        }
+        Iterator<Map.Entry<String,User>> iterator = users.entrySet().iterator();
+        while (iterator.hasNext()){
+            Map.Entry<String, User> e = iterator.next();
+            Player player = Server.getInstance().getPlayerExact(e.getKey());
+            if (player == null) iterator.remove();
+            else e.getValue().recalculatePermissions();
+        }
+   }
 }
