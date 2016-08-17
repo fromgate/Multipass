@@ -11,7 +11,10 @@ Multipass is a permissions plugin that provides a universal permission system fo
 * API for another plugins
 
 ## Please help us to translate Multipass
-We use Crowdin to translate Multipass. Join our translation project [here](https://crowdin.com/project/multipass/invite)
+Currently Multipass mostly translated to Russian, Turkish, French, Korean.
+If you miss your language, you can help with translation. We use Crowdin to translate Multipass. Join our translation project [here](https://crowdin.com/project/multipass/invite)
+
+[![Crowdin](https://d322cqt584bo4o.cloudfront.net/multipass/localized.svg)](https://crowdin.com/project/multipass)
 
 ## Permissions
 >**multipass.admin** - use multipass commands
