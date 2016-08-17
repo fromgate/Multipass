@@ -24,9 +24,6 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import ru.nukkit.multipass.permissions.User;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @DatabaseTable(tableName = "mp_users")
 public class UsersTable {
 
@@ -81,20 +78,31 @@ public class UsersTable {
         this.priority = priority;
     }
 
+    public ForeignCollection<UsersPermTable> getPermissions() {
+        return this.permissions;
+    }
+
+    /*
     public List<UsersPermTable> getPermissions() {
         List<UsersPermTable> perms = new ArrayList<>();
 
         if (permissions == null) return perms;
         permissions.forEach(p -> perms.add(p));
         return perms;
+    } */
+
+
+    public ForeignCollection<UsersGroupTable> getGroups() {
+        return this.groups;
     }
 
+    /*
     public List<UsersGroupTable> getGroups() {
         List<UsersGroupTable> grps = new ArrayList<>();
         if (groups == null) return grps;
         groups.forEach(g -> grps.add(g));
         return grps;
-    }
+    } */
 
     UsersTable() {
     }

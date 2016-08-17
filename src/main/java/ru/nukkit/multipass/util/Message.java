@@ -88,8 +88,8 @@ public enum Message {
     USER_SETPERMW_OK_INFORM("Your permissions was set: %1% (world: %3%)"),
 
     USER_REMOVEPERM_NOTFOUND("User %1% not found. Cannot remove permission"),
-    USER_REMOVEPERM_NOTSET("Failed to remove permission %1% from user %2%. It was not configured"),
-    USER_REMOVEPERMW_NOTSET("Failed to remove permission %1% (world %3) from user %2%. It was not configured"),
+    USER_REMOVEPERM_NOTSET("Failed to remove permission %1% from user %2%. It was not configured", 'c', '4'),
+    USER_REMOVEPERMW_NOTSET("Failed to remove permission %1% (world %3) from user %2%. It was not configured", 'c', '4'),
     USER_REMOVEPERM_OK("Permission %1% removed from user %2%"),
     USER_REMOVEPERMW_OK("Permission %1% (world %3%) removed from user %2%"),
     USER_REMOVEPERM_OK_INFORM("Permission %1% was removed from you"),
@@ -104,41 +104,41 @@ public enum Message {
     USER_ADDGROUP_OK_INFORM("You were added to group %1%"),
     USER_ADDGROUPW_OK_INFORM("You were added to group %1% (world %2%)"),
 
-    USER_REMOVEGROUP_NOTFOUND("User %1% not found. Cannot remove him from the group"),
-    USER_REMOVEGROUP_NOTSET("Failed to remove player %2% from group %1%. It was not configured"),
-    USER_REMOVEGROUPW_NOTSET("Failed to remove player %2% from group %1% (world %3%). It was not configured"),
+    USER_REMOVEGROUP_NOTFOUND("User %1% not found. Cannot remove him from the group", 'c', '4'),
+    USER_REMOVEGROUP_NOTSET("Failed to remove player %2% from group %1%. It was not configured", 'c', '4'),
+    USER_REMOVEGROUPW_NOTSET("Failed to remove player %2% from group %1% (world %3%). It was not configured", 'c', '4'),
     USER_REMOVEGROUP_OK("Player %2% removed from group %1%"),
     USER_REMOVEGROUPW_OK("Player %2% removed from group %1% (world %3%)"),
     USER_REMOVEGROUP_OK_INFORM("You was removed from the group %1%"),
     USER_REMOVEGROUPW_OK_INFORM("You was removed from the group %1% (world %2%)"),
-    GROUP_EXIST("Failed to create new group. Group %1% already exists"),
-    GROUP_NOTEXIST("Failed to remove group. Group %1% is not exist"),
+    GROUP_EXIST("Failed to create new group. Group %1% already exists", 'c', '4'),
+    GROUP_NOTEXIST("Failed to remove group. Group %1% is not exist", 'c', '4'),
     GROUP_CREATE_OK("Group %1% created"),
     GROUP_REMOVE_OK("Group %1% removed"),
 
-    GROUP_ADDGROUP_NOTEXIST("Group %1% is not exist. Please check group name or create new group"),
+    GROUP_ADDGROUP_NOTEXIST("Group %1% is not exist. Please check group name or create new group", 'c', '4'),
     GROUP_ADDGROUP_OK("Group %2% was added to group %1%"),
     GROUP_ADDGROUPW_OK("Group %2% was added to group %1% (world %3%)"),
 
-    GROUP_REMOVEGROUP_NOTEXIST("Group %1% is not exist. Please check group name or create new group"),
+    GROUP_REMOVEGROUP_NOTEXIST("Group %1% is not exist. Please check group name or create new group", 'c', '4'),
     GROUP_REMOVEGROUP_OK("Group %2% was removed from group %1%"),
     GROUP_REMOVEGROUPW_OK("Group %2% was removed from group %1% (world %3%)"),
 
-    GROUP_SETGROUP_NOTEXIST("Group %1% is not exist. Please check group name or create new group"),
+    GROUP_SETGROUP_NOTEXIST("Group %1% is not exist. Please check group name or create new group", 'c', '4'),
     GROUP_SETGROUP_OK("Group %2% was added to group %1%. All other groups were removed"),
     GROUP_SETGROUPW_OK("Group %2% was added to group %1% (world %3%). All other groups were removed"),
 
-    GROUP_SETPERM_NOTEXIST("Failed to set permission. Group %1% is not exist"),
+    GROUP_SETPERM_NOTEXIST("Failed to set permission. Group %1% is not exist", 'c', '4'),
     GROUP_SETPERM_OK("Group %1% permission configured: %2%"),
     GROUP_SETPERMW_OK("Group %1% permission configured: %2% (world: %3%)"),
 
-    GROUP_REMOVEPERM_NOTEXIST("Failed to remove permission. Group %1% is not exist"),
-    GROUP_REMOVEPERM_PERMUNSET("Failed to remove permission. Permission %2% is not configured for group %1%"),
+    GROUP_REMOVEPERM_NOTEXIST("Failed to remove permission. Group %1% is not exist", 'c', '4'),
+    GROUP_REMOVEPERM_PERMUNSET("Failed to remove permission. Permission %2% is not configured for group %1%", 'c', '4'),
     GROUP_REMOVEPERM_OK("Permission %2% removed from group %1%"),
     GROUP_REMOVEPERMW_OK("Permission %2% removed from group %1% (world: %3%)"),
 
-    GROUP_SETPREFIX_NOTEXIST("Failed to set prefix. Group %1% is not exist"),
-    GROUP_SETSUFFIX_NOTEXIST("Failed to set suffix. Group %1% is not exist"),
+    GROUP_SETPREFIX_NOTEXIST("Failed to set prefix. Group %1% is not exist", 'c', '4'),
+    GROUP_SETSUFFIX_NOTEXIST("Failed to set suffix. Group %1% is not exist", 'c', '4'),
     GROUP_SETPREFIX_OK("Prefix of group %1% is changed to %2%"),
     GROUP_SETSUFFIX_OK("Suffix of group %1% is changed to %2%"),
 
@@ -156,25 +156,25 @@ public enum Message {
     REMOVED_GROUP_DETECTED("User %1% is trying to use unknown group %2%. Please check user permissions/groups"),
     PERM_USER_PREFIX("Prefixes: %1%"),
     PERM_USER_SUFFIX("Suffixes: %1%"),
-    PROVIDER_FAILED("Failed to init data provider: %1%"),
+    PROVIDER_FAILED("Failed to init data provider: %1%", 'c'),
     USER_PREFIX_OK("Prefix of user %1% is set to %2%"),
     USER_PREFIX_OK_INFORM("Your prefix was changed to %1%"),
     USER_SUFFIX_OK("Suffix of user %1% is set to %2%"),
-    USER_SUFFIX_OK_INFORM("Your suffix was changed to %1%"),
+    USER_SUFFIX_OK_INFORM("Your suffix was changed to %1%", 'c'),
 
-    USER_ADDGROUP_NOTEXIST("Failed to add user %1% to group %2%. Group is not exist"),
-    USER_SETGROUP_NOTEXIST("Failed to move user %1% to group %2%. Group is not exist"),
-    LOG_UNKNOWN_GROUP_DETECTED("Detected unknown sub-group %1%. Check your user or group configuration"),
+    USER_ADDGROUP_NOTEXIST("Failed to add user %1% to group %2%. Group is not exist", 'c'),
+    USER_SETGROUP_NOTEXIST("Failed to move user %1% to group %2%. Group is not exist", 'c'),
+    LOG_UNKNOWN_GROUP_DETECTED("Detected unknown sub-group %1%. Check your user or group configuration", 'c'),
 
-    DB_DBLIB_NOTFOUND("DbLib required for MySQL/SQLite support"),
-    LOG_UNKNOWN_DATAPROVIDER("Unknown data provider: %1%. Will use YAML provider"),
+    DB_DBLIB_NOTFOUND("DbLib required for MySQL/SQLite support", 'c'),
+    LOG_UNKNOWN_DATAPROVIDER("Unknown data provider: %1%. Will use YAML provider", 'c', '4'),
     LOG_DATAPROVIDER("Data provider: %1%"),
 
     PERM_EXPORT_OK("Permissions exported to file: %1%"),
-    PERM_EXPORT_FAILED("Permissions export failed"),
+    PERM_EXPORT_FAILED("Permissions export failed", 'c'),
     PERM_IMPORT_OK("Permissions imported from file: %1%"),
-    PERM_IMPORT_FAILED("Permissions import failed");
-
+    PERM_IMPORT_FAILED("Permissions import failed", 'c'),
+    LOG_DATAPROVIDER_FAIL("Failed to enable Data Provider. Please check your configuration", 'c');
 
 
     private static boolean debugMode = false;

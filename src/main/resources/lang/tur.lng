@@ -1,5 +1,4 @@
-# Translated by MustaphaTR, Minecraft translator and proofreader
-# https://crowdin.com/profile/MustaphaTR
+---
 lng_load_fail: Dosyadan diller yüklenemedi. Varsayılan mesaj kullanıldı
 lng_save_fail: Dil dosyası kaydedilemedi
 lng_print_fail: 'Mesaj %1% yazdırılamadı. Gönerici nesne boş.'
@@ -117,3 +116,8 @@ log_unknown_group_detected: 'Bilinmeyen alt-gruo %1% tespit edildi. Grup yapıla
 db_dblib_notfound: MySQL/SQLite desteği için DbLib gerekli
 log_unknown_dataprovider: 'Bilinmeyen veri sağlayıcı: %1%. YAML sağlayıcı kullanılacak'
 log_dataprovider: 'Veri sağlayıcısı: %1%'
+perm_export_ok: 'Permissions exported to file: %1%'
+perm_export_failed: Permissions export failed
+perm_import_ok: 'Permissions imported from file: %1%'
+perm_import_failed: Permissions import failed
+log_dataprovider_fail: Failed to enable Data Provider. Please check your configuration

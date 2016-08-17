@@ -44,7 +44,7 @@ public abstract class BaseNode extends Node {
         this.worldPass = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
     }
 
-    public BaseNode(BaseNode node){
+    public BaseNode(BaseNode node) {
         this(node.getName(), node);
         this.worldPass.putAll(node.worldPass);
     }

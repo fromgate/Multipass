@@ -22,6 +22,7 @@ import cn.nukkit.Server;
 import cn.nukkit.scheduler.Task;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.DatabaseTableConfig;
 import com.j256.ormlite.table.TableUtils;
@@ -106,6 +107,7 @@ public class DbLibProvider {
             return;
         }
         enabled = true;
+        Message.debugMessage("[" + cfg.dataSource + "] [" + cfg.dblibSource + "] init: OK ");
     }
 
     private void initConnection() {
@@ -133,15 +135,13 @@ public class DbLibProvider {
     public void saveUser(User user) throws SQLException {
         UsersTable userRecord = usersDao.queryForId(user.getName());
         if (userRecord == null) userRecord = new UsersTable(user);
-        List<UsersPermTable> perms = userRecord.getPermissions();
+        ForeignCollection<UsersPermTable> perms = userRecord.getPermissions();
         usersPerm.delete(perms);
         for (Map.Entry<String, List<Permission>> e : user.getPermissionsMap().entrySet()) {
             for (Permission p : e.getValue())
                 usersPerm.create(new UsersPermTable(userRecord, e.getKey(), p.getName(), p.isPositive()));
         }
-
-        List<UsersGroupTable> groups = userRecord.getGroups();
-
+        ForeignCollection<UsersGroupTable> groups = userRecord.getGroups();
         usersGroup.delete(groups);
 
         for (Map.Entry<String, List<String>> e : user.getGroupMap().entrySet()) {
@@ -149,8 +149,12 @@ public class DbLibProvider {
                 usersGroup.create(new UsersGroupTable(userRecord, e.getKey(), g));
         }
         usersDao.createOrUpdate(userRecord);
+    }
 
-
+    public void saveUsers(Collection<User> users) throws SQLException {
+        for (User u : users) {
+            saveUser(u);
+        }
     }
 
     public User loadUser(String name) throws SQLException {
@@ -171,10 +175,8 @@ public class DbLibProvider {
         for (Group group : all) {
             GroupsTable groupTable = groupsDao.queryForId(group.getName());
             if (groupTable == null) groupTable = new GroupsTable(group.getName());
-
             groupsPerm.delete(groupTable.getPermissions());
             groupsGroup.delete(groupTable.getGroups());
-
             groupTable.setPrefix(group.getPrefix());
             groupTable.setSuffix(group.getSuffix());
             groupTable.setPriority(group.getPriority());
@@ -228,13 +230,13 @@ public class DbLibProvider {
         user.setPrefix(userTable.getPrefix());
         user.setSuffix(userTable.getSuffix());
         user.setPriority(userTable.getPriority());
-        List<UsersPermTable> userPerms = userTable.getPermissions();
+        ForeignCollection<UsersPermTable> userPerms = userTable.getPermissions();
         for (UsersPermTable ut : userPerms) {
             if (ut.getWorld() == null || ut.getWorld().isEmpty())
                 user.setPermission(ut.getPermission(), ut.isPositive());
             else user.setPermission(ut.getWorld(), ut.getPermission(), ut.isPositive());
         }
-        List<UsersGroupTable> userGroups = userTable.getGroups();
+        ForeignCollection<UsersGroupTable> userGroups = userTable.getGroups();
         for (UsersGroupTable ug : userGroups) {
             if (ug.getWorld() == null || ug.getWorld().isEmpty())
                 user.addGroup(ug.getSubgroup());
@@ -254,4 +256,6 @@ public class DbLibProvider {
         TableUtils.clearTable(connection, GroupsGroupTable.class);
         TableUtils.clearTable(connection, GroupsTable.class);
     }
+
+
 }

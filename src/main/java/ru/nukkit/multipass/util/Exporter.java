@@ -15,21 +15,21 @@ public class Exporter {
 
     private File file;
 
-    public Exporter (String filename){
-        file = new File(MultipassPlugin.getPlugin().getDataFolder()+File.separator+filename+".yml");
+    public Exporter(String filename) {
+        file = new File(MultipassPlugin.getPlugin().getDataFolder() + File.separator + filename + ".yml");
     }
 
-    public Exporter (){
-        this ("import");
+    public Exporter() {
+        this("import");
     }
 
 
-    public boolean importPermissions(boolean overwrite){
+    public boolean importPermissions(boolean overwrite) {
         if (!file.exists()) return false;
-        Config cfg  = new Config (file, Config.YAML);
+        Config cfg = new Config(file, Config.YAML);
         ConfigSection groupCfg = cfg.getSection("groups");
         ConfigSection userCfg = cfg.getSection("users");
-        if (groupCfg.isEmpty()&&userCfg.isEmpty()) return false;
+        if (groupCfg.isEmpty() && userCfg.isEmpty()) return false;
         List<Group> groups = new ArrayList<>();
 
         groupCfg.getSections().entrySet().forEach(e -> {
@@ -58,16 +58,14 @@ public class Exporter {
             }
             users.add(user);
         });
-        if (groups.isEmpty()&&users.isEmpty()) return false;
+        if (groups.isEmpty() && users.isEmpty()) return false;
         Groups.updateGroups(groups, overwrite);
-        Users.updateUsers (users,overwrite);
+        Users.updateUsers(users, overwrite);
         return true;
     }
 
 
-
-
-    public boolean exportPermissions(){
+    public boolean exportPermissions() {
         ConfigSection groupSection = new ConfigSection();
         Groups.getAll().forEach(g -> {
             ConfigSection group = passToSection(g);
@@ -76,7 +74,7 @@ public class Exporter {
                 worlds.set(e.getKey(), passToSection(e.getValue()));
             });
             if (!worlds.isEmpty()) group.set("worlds", worlds);
-            groupSection.set(g.getName(),group);
+            groupSection.set(g.getName(), group);
         });
 
         ConfigSection userSection = new ConfigSection();
@@ -86,14 +84,14 @@ public class Exporter {
             u.getWorldPass().entrySet().forEach(e -> {
                 worlds.set(e.getKey(), passToSection(e.getValue()));
             });
-            if (!worlds.isEmpty()) users.set("worlds",worlds);
-            userSection.set(u.getName(),users);
+            if (!worlds.isEmpty()) users.set("worlds", worlds);
+            userSection.set(u.getName(), users);
         });
-        if (groupSection.isEmpty()&&userSection.isEmpty()) return false;
+        if (groupSection.isEmpty() && userSection.isEmpty()) return false;
         if (!file.exists()) file.delete();
-        Config cfg  = new Config ();
-        if (!groupSection.isEmpty()) cfg.set("groups",groupSection);
-        if (!userSection.isEmpty()) cfg.set("users",userSection);
+        Config cfg = new Config();
+        if (!groupSection.isEmpty()) cfg.set("groups", groupSection);
+        if (!userSection.isEmpty()) cfg.set("users", userSection);
         cfg.save(file);
         return true;
     }

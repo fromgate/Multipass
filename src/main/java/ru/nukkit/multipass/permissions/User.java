@@ -42,7 +42,7 @@ public class User extends BaseNode {
         super(playerName, node);
     }
 
-    public User (String playerName, BaseNode node){
+    public User(String playerName, BaseNode node) {
         super(playerName, node);
 
     }

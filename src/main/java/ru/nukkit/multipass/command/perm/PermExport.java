@@ -31,9 +31,9 @@ public class PermExport extends Cmd {
 
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {
-        String fileName = ((args.length>1) ? args[1] : "import").toLowerCase();
+        String fileName = ((args.length > 1) ? args[1] : "import").toLowerCase();
         Exporter exporter = new Exporter(fileName);
-        if (exporter.exportPermissions()) Message.PERM_EXPORT_OK.print(sender, fileName+".yml");
+        if (exporter.exportPermissions()) Message.PERM_EXPORT_OK.print(sender, fileName + ".yml");
         else Message.PERM_EXPORT_FAILED.print(sender);
         return true;
     }

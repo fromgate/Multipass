@@ -90,6 +90,13 @@ public class YamlSource extends DataSource {
     }
 
     @Override
+    public void saveUsers(Collection<User> users) {
+        for (User u : users) {
+            saveUser(u);
+        }
+    }
+
+    @Override
     public void saveGroups(Collection<Group> groups) {
         Config cfg = new Config();
         groups.forEach(g -> {
@@ -142,7 +149,7 @@ public class YamlSource extends DataSource {
 
     @Override
     public void clearUsers() {
-        for (File file: userDir.listFiles()) {
+        for (File file : userDir.listFiles()) {
             if (!file.isDirectory()) file.delete();
         }
     }
@@ -151,6 +158,7 @@ public class YamlSource extends DataSource {
     public void clearGroups() {
         if (groupFile.exists()) groupFile.delete();
     }
+
 
     @Override
     public boolean isEnabled() {

@@ -238,16 +238,16 @@ public class Users {
             DataProvider.clearUsers();
             users.clear();
         }
-        for (User user : newUsers ) {
-            users.put(user.getName(),user);
+        for (User user : newUsers) {
+            users.put(user.getName(), user);
             DataProvider.saveUser(user);
         }
-        Iterator<Map.Entry<String,User>> iterator = users.entrySet().iterator();
-        while (iterator.hasNext()){
+        Iterator<Map.Entry<String, User>> iterator = users.entrySet().iterator();
+        while (iterator.hasNext()) {
             Map.Entry<String, User> e = iterator.next();
             Player player = Server.getInstance().getPlayerExact(e.getKey());
             if (player == null) iterator.remove();
             else e.getValue().recalculatePermissions();
         }
-   }
+    }
 }

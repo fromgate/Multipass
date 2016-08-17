@@ -23,9 +23,6 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 @DatabaseTable(tableName = "mp_groups")
 public class GroupsTable {
@@ -81,7 +78,16 @@ public class GroupsTable {
         this.priority = priority;
     }
 
-    public List<GroupsPermTable> getPermissions() {
+    public ForeignCollection<GroupsPermTable> getPermissions() {
+        return this.permissions;
+    }
+
+
+    public ForeignCollection<GroupsGroupTable> getGroups() {
+        return this.groups;
+    }
+
+   /* public List<GroupsPermTable> getPermissions() {
         List<GroupsPermTable> perms = new ArrayList<>();
         if (permissions == null) return perms;
         permissions.forEach(p -> perms.add(p));
@@ -93,7 +99,7 @@ public class GroupsTable {
         if (groups == null) return grps;
         groups.forEach(g -> grps.add(g));
         return grps;
-    }
+    } */
 
     GroupsTable() {
     }

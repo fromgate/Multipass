@@ -29,12 +29,12 @@ import ru.nukkit.multipass.util.Message;
 public class PermImport extends Cmd {
     @Override
     public boolean execute(CommandSender sender, Player player, String[] args) {
-        boolean overwrite = args.length>1 ? args[1].matches("(?i)overwrite|over") : false;
-        String fileName = (args.length==2&&!args[args.length-1].matches("(?i)overwrite|over"))||
-                args.length>2 ? args[2] : "import";
+        boolean overwrite = args.length > 1 ? args[1].matches("(?i)overwrite|over") : false;
+        String fileName = (args.length == 2 && !args[args.length - 1].matches("(?i)overwrite|over")) ||
+                args.length > 2 ? args[2] : "import";
         Exporter exporter = new Exporter(fileName);
-        if (exporter.importPermissions(overwrite)) Message.PERM_IMPORT_OK.print(sender,fileName);
-        else Message.PERM_IMPORT_FAILED.print(sender,fileName);
+        if (exporter.importPermissions(overwrite)) Message.PERM_IMPORT_OK.print(sender, fileName);
+        else Message.PERM_IMPORT_FAILED.print(sender, fileName);
         return true;
     }
 }

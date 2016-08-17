@@ -31,7 +31,8 @@ import java.util.TreeMap;
 public enum DataProvider {
 
     YAML(YamlSource.class),
-    DATABASE(DatabaseSource.class);
+    DATABASE(DatabaseSource.class),
+    DB(DbSource.class);
 
     private Class<? extends DataSource> clazz;
     private DataSource source;
@@ -60,6 +61,7 @@ public enum DataProvider {
             dp = YAML;
         } else Message.LOG_DATAPROVIDER.log(dp.name());
         currentProvider = dp.getSource();
+        if (!currentProvider.isEnabled()) Message.LOG_DATAPROVIDER_FAIL.log(MultipassPlugin.getCfg().dataSource);
     }
 
     public static User loadUser(String playerName) {
@@ -74,8 +76,8 @@ public enum DataProvider {
         currentProvider.saveUser(user);
     }
 
-    public static void saveUsers(Collection<User> users){
-
+    public static void saveUsers(Collection<User> users) {
+        currentProvider.saveUsers(users);
     }
 
     public static void saveGroups() {
@@ -98,7 +100,7 @@ public enum DataProvider {
         currentProvider.clearUsers();
     }
 
-    public static void clearGroups(){
+    public static void clearGroups() {
         currentProvider.clearGroups();
     }
 

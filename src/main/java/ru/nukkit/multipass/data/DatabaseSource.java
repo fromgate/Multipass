@@ -20,13 +20,13 @@ package ru.nukkit.multipass.data;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import cn.nukkit.scheduler.AsyncTask;
 import ru.nukkit.multipass.MultipassPlugin;
 import ru.nukkit.multipass.data.dblib.DbLibProvider;
 import ru.nukkit.multipass.permissions.Group;
 import ru.nukkit.multipass.permissions.Groups;
 import ru.nukkit.multipass.permissions.User;
 import ru.nukkit.multipass.permissions.Users;
+import ru.nukkit.multipass.util.MultiTask;
 import ru.nukkit.multipass.util.TimeUtil;
 
 import java.sql.SQLException;
@@ -44,9 +44,9 @@ public class DatabaseSource extends DataSource {
         if (this.provider.isEnabled()) runRecheck();
     }
 
-    private void runRecheck(){
+    private void runRecheck() {
         Long rescanTime = TimeUtil.parseTime(MultipassPlugin.getCfg().multiServerRecheck);
-        if (rescanTime<=0) return;
+        if (rescanTime <= 0) return;
         int delay = Math.max(TimeUtil.timeToTicks(rescanTime).intValue(), 20);
         Server.getInstance().getScheduler().scheduleDelayedRepeatingTask(new Runnable() {
             @Override
@@ -55,15 +55,15 @@ public class DatabaseSource extends DataSource {
                 List<User> users = new ArrayList<>();
                 try {
                     groups = provider.loadGroups();
-                    for (Player player : Server.getInstance().getOnlinePlayers().values()){
+                    for (Player player : Server.getInstance().getOnlinePlayers().values()) {
                         User user = provider.loadUser(player.getName());
-                        if (user!=null) users.add(user);
+                        if (user != null) users.add(user);
                     }
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
-                if (groups!=null) updateAllGroups(groups);
-                if (users!=null&&!users.isEmpty()) updateUsers(users);
+                if (groups != null) updateAllGroups(groups);
+                if (users != null && !users.isEmpty()) updateUsers(users);
             }
         }, delay, delay, true);
     }
@@ -71,7 +71,7 @@ public class DatabaseSource extends DataSource {
     @Override
     public void saveUser(final User user) {
         if (!provider.isEnabled()) return;
-        Server.getInstance().getScheduler().scheduleAsyncTask(new AsyncTask() {
+        new MultiTask() {
             @Override
             public void onRun() {
                 try {
@@ -80,31 +80,47 @@ public class DatabaseSource extends DataSource {
                     e.printStackTrace();
                 }
             }
-        });
+        }.start();
     }
 
     @Override
+    public void saveUsers(Collection<User> users) {
+        if (!provider.isEnabled()) return;
+        new MultiTask() {
+            @Override
+            public void onRun() {
+                try {
+                    provider.saveUsers(users);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+
+
+    @Override
     public User loadUser(String playerName) {
-        if (provider.isEnabled())
-            Server.getInstance().getScheduler().scheduleAsyncTask(new AsyncTask() {
+        if (provider.isEnabled()) {
+            new MultiTask() {
                 @Override
                 public void onRun() {
-                    User user = null;
                     try {
-                        user = provider.loadUser(playerName);
+                        User user = provider.loadUser(playerName);
+                        updateUser(user);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                    if (user!=null) updateUser(user);
                 }
-            });
+            }.start();
+        }
         return new User(playerName);
     }
 
     @Override
     public void saveGroups(Collection<Group> all) {
         if (!provider.isEnabled()) return;
-        Server.getInstance().getScheduler().scheduleAsyncTask(new AsyncTask() {
+        new MultiTask() {
             @Override
             public void onRun() {
                 try {
@@ -113,26 +129,25 @@ public class DatabaseSource extends DataSource {
                     e.printStackTrace();
                 }
             }
-        });
+        }.start();
     }
 
     @Override
     public Collection<Group> loadGroups() {
-        if (provider.isEnabled())
-            Server.getInstance().getScheduler().scheduleAsyncTask(new AsyncTask() {
+        if (provider.isEnabled()) {
+            new MultiTask() {
                 @Override
                 public void onRun() {
-                    Collection<Group> groups = null;
                     try {
-                        groups = provider.loadGroups();
+                        Collection<Group> groups = provider.loadGroups();
+                        updateAllGroups(groups);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                    if (groups!=null) updateAllGroups(groups);
                 }
-            });
-        Collection<Group> groups = Groups.getAll();
-        return groups == null ? Collections.EMPTY_LIST : groups;
+            }.start();
+        }
+        return Collections.EMPTY_LIST;
     }
 
     @Override

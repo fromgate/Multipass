@@ -213,7 +213,7 @@ public class Groups {
     }
 
     public static void updateGroups(Collection<Group> newGroups) {
-        updateGroups (newGroups, true);
+        updateGroups(newGroups, true);
     }
 
     public static void updateGroups(Collection<Group> newGroups, boolean removeExist) {

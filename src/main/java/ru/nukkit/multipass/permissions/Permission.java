@@ -34,8 +34,7 @@ public class Permission {
 
     public Permission(String name) {
         positive = !(name.startsWith("-"));
-        if (this.positive) this.name = name;
-        else this.name = name.replaceFirst("-", "");
+        this.name = this.positive ? name : name.replaceFirst("-", "");
     }
 
     public String getName() {
@@ -47,7 +46,7 @@ public class Permission {
     }
 
     public String toString() {
-        return positive ? name : "-" + name;
+        return positive ? name : new StringBuilder("-").append(name).toString();
     }
 
 
