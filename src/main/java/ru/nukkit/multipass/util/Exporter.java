@@ -61,6 +61,8 @@ public class Exporter {
         if (groups.isEmpty() && users.isEmpty()) return false;
         Groups.updateGroups(groups, overwrite);
         Users.updateUsers(users, overwrite);
+        DataProvider.saveGroups();
+        DataProvider.saveUsers(users);
         return true;
     }
 

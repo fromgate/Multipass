@@ -159,7 +159,7 @@ public class Node {
         this.groups.forEach(g -> {
             Group group = Groups.getGroup(g);
             if (group != null) groups.add(group);
-            else Message.LOG_UNKNOWN_GROUP_DETECTED.log(g);
+            else Message.LOG_UNKNOWN_GROUP_DETECTED.logOnce(g);
         });
         return groups;
     }

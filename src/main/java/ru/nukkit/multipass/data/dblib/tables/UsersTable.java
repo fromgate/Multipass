@@ -82,27 +82,19 @@ public class UsersTable {
         return this.permissions;
     }
 
-    /*
-    public List<UsersPermTable> getPermissions() {
-        List<UsersPermTable> perms = new ArrayList<>();
-
-        if (permissions == null) return perms;
-        permissions.forEach(p -> perms.add(p));
-        return perms;
-    } */
+    public void clearPermissions(){
+        if (this.permissions!=null) this.permissions.clear();
+    }
 
 
     public ForeignCollection<UsersGroupTable> getGroups() {
         return this.groups;
     }
 
-    /*
-    public List<UsersGroupTable> getGroups() {
-        List<UsersGroupTable> grps = new ArrayList<>();
-        if (groups == null) return grps;
-        groups.forEach(g -> grps.add(g));
-        return grps;
-    } */
+    public void clearGroups(){
+        if (this.groups!=null) this.groups.clear();
+    }
+
 
     UsersTable() {
     }

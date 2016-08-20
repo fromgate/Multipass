@@ -30,6 +30,8 @@ import ru.nukkit.multipass.MultipassPlugin;
 import java.io.File;
 import java.io.InputStream;
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public enum Message {
@@ -185,6 +187,7 @@ public enum Message {
 
     private static PluginBase plugin = null;
 
+    private static Map<String,Long> logOnce = new HashMap<>();
 
     /**
      * This is my favorite debug routine :) I use it everywhere to print out variable values
@@ -213,6 +216,20 @@ public enum Message {
      */
     public boolean log(Object... s) {
         plugin.getLogger().info(getText(s));
+        return true;
+    }
+
+    public boolean logOnce (Object... s){
+        return logOnce(86400, s);
+    }
+
+    public boolean logOnce (int seconds, Object... s){
+        String msg = getText(s);
+        long curTime = System.currentTimeMillis();
+        if (!logOnce.containsKey(msg)||logOnce.get(msg)+(seconds*1000) < curTime) {
+            log(s);
+            logOnce.put(msg, curTime);
+        }
         return true;
     }
 

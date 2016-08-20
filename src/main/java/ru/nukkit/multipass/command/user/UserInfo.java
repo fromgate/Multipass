@@ -51,7 +51,6 @@ public class UserInfo extends Cmd {
         List<String> ln = Multipass.getPrefixes(userName);
         if (!ln.isEmpty()) print.add(Message.PERM_USER_PREFIX.getText(Util.join(ln)));
         ln = Multipass.getSuffixes(userName);
-        Message.debugMessage(Util.join(Multipass.getSuffixes(userName)));
         if (!ln.isEmpty()) print.add(Message.PERM_USER_SUFFIX.getText(Util.join(ln)));
 
         ln = user.getGroupList();
@@ -59,8 +58,9 @@ public class UserInfo extends Cmd {
         List<String> pln = user.getPermissionList();
         if (!pln.isEmpty()) {
             print.add(Message.PERM_USER_PERMS.getText());
-            for (String s : pln)
+            for (String s : pln){
                 print.add(Message.color2(s));
+            }
         }
         Paginator.printPage(sender, print, Message.PERM_USER_INFO.getText(userName), page);
         return true;

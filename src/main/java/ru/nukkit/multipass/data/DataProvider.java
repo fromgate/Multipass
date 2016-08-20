@@ -31,8 +31,7 @@ import java.util.TreeMap;
 public enum DataProvider {
 
     YAML(YamlSource.class),
-    DATABASE(DatabaseSource.class),
-    DB(DbSource.class);
+    DATABASE(DatabaseSource.class);
 
     private Class<? extends DataSource> clazz;
     private DataSource source;

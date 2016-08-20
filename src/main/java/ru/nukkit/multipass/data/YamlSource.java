@@ -71,7 +71,7 @@ public class YamlSource extends DataSource {
     @Override
     public void saveUser(User user) {
         File file = getUserFile(user.getName());
-        Message.debugMessage("Save user file: ", file.toString());
+        Message.debugMessage("Saving user file: ", file.toString());
         if (user.isEmpty()) {
             if (file.exists()) file.delete();
             Message.debugMessage(user.getName(), "data is empty. File removed");

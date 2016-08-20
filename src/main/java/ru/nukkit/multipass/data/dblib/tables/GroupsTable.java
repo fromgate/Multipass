@@ -82,9 +82,17 @@ public class GroupsTable {
         return this.permissions;
     }
 
+    public void clearPermissions(){
+        if (this.permissions != null) this.permissions.clear();
+    }
+
 
     public ForeignCollection<GroupsGroupTable> getGroups() {
         return this.groups;
+    }
+
+    public void clearGroups(){
+        if (this.groups != null) this.groups.clear();
     }
 
    /* public List<GroupsPermTable> getPermissions() {

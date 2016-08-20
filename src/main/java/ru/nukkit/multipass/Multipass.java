@@ -23,6 +23,7 @@ import cn.nukkit.Server;
 import ru.nukkit.multipass.permissions.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -209,6 +210,27 @@ public class Multipass {
      */
     public static void setPermission(String world, String player, String permission) {
         Users.setPermission(world, player, permission);
+    }
+
+    /**
+     * Check world-specific player permission. Will not work properly if player is offline
+     *
+     * @param world         World name
+     * @param player        Player name
+     * @param permission    Permission
+     * @return              true - player has permission in world
+     */
+    public static boolean hasPermission (String world, String player, String permission){
+        User user = Users.getUser(player);
+        Set<Permission> permissions = new HashSet<>();
+        permissions.addAll(user.getPermissions(world));
+        user.getGroups().forEach(g ->{
+            permissions.addAll(g.getPermissions(world));
+        });
+        for (Permission p : permissions){
+            if (p.getName().equalsIgnoreCase(permission)) return p.isPositive();
+        }
+        return false;
     }
 
     /**

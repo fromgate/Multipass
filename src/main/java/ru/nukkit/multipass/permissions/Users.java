@@ -235,12 +235,10 @@ public class Users {
 
     public static void updateUsers(List<User> newUsers, boolean overwrite) {
         if (overwrite) {
-            DataProvider.clearUsers();
             users.clear();
         }
         for (User user : newUsers) {
             users.put(user.getName(), user);
-            DataProvider.saveUser(user);
         }
         Iterator<Map.Entry<String, User>> iterator = users.entrySet().iterator();
         while (iterator.hasNext()) {
