@@ -34,12 +34,12 @@ public class PermImport extends Cmd {
         if (args.length == 1) {
             fileName = "import";
         } else if (args.length == 2) {
-            if (args[1].matches("(?i)overwrite|over")){
+            if (args[1].matches("(?i)overwrite|over")) {
                 overwrite = true;
                 fileName = "import";
             } else fileName = args[1];
-        } else if (args.length == 3){
-            if (args[1].matches("(?i)overwrite|over")){
+        } else if (args.length == 3) {
+            if (args[1].matches("(?i)overwrite|over")) {
                 overwrite = true;
             } else {
                 fileName = args[2];

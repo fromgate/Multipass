@@ -184,7 +184,7 @@ public class Groups {
         groups = new TreeMap<String, Group>(String.CASE_INSENSITIVE_ORDER);
         groups.putAll(DataProvider.loadGroups());
         if (!exist(MultipassPlugin.getCfg().defaultGroup)) {
-            Message.debugMessage("Createding default group","["+MultipassPlugin.getCfg().defaultGroup+"]");
+            Message.debugMessage("Createding default group", "[" + MultipassPlugin.getCfg().defaultGroup + "]");
             Groups.create(MultipassPlugin.getCfg().defaultGroup);
         }
         Users.recalculatePermissions();

@@ -164,8 +164,7 @@ public class Multipass {
      * @return true - player is in default group
      */
     public boolean isInDefaultGroup(Player player) {
-        if (player == null) return false;
-        return isInDefaultGroup(player.getName());
+        return  player == null ? false : isInDefaultGroup(player.getName());
     }
 
     /**
@@ -215,19 +214,19 @@ public class Multipass {
     /**
      * Check world-specific player permission. Will not work properly if player is offline
      *
-     * @param world         World name
-     * @param player        Player name
-     * @param permission    Permission
-     * @return              true - player has permission in world
+     * @param world      World name
+     * @param player     Player name
+     * @param permission Permission
+     * @return true - player has permission in world
      */
-    public static boolean hasPermission (String world, String player, String permission){
+    public static boolean hasPermission(String world, String player, String permission) {
         User user = Users.getUser(player);
         Set<Permission> permissions = new HashSet<>();
         permissions.addAll(user.getPermissions(world));
-        user.getGroups().forEach(g ->{
+        user.getGroups().forEach(g -> {
             permissions.addAll(g.getPermissions(world));
         });
-        for (Permission p : permissions){
+        for (Permission p : permissions) {
             if (p.getName().equalsIgnoreCase(permission)) return p.isPositive();
         }
         return false;
@@ -264,38 +263,95 @@ public class Multipass {
         Users.setGroup(world, player, group);
     }
 
+    /**
+     * Add player into a group. All other group membership will persists.
+     *
+     * @param player Player object
+     * @param group  Group name
+     */
     public static void addGroup(Player player, String group) {
         addGroup(player.getName(), group);
     }
 
+    /**
+     * Add player into a group. All other group membership will persists.
+     *
+     * @param player Player name
+     * @param group  Group name
+     */
     public static void addGroup(String player, String group) {
         Users.addGroup(player, group);
     }
 
+    /**
+     * Add player into a group (related to provided world). All other group membership will persists.
+     *
+     * @param world  World name
+     * @param player Player object
+     * @param group  Group name
+     */
     public static void addGroup(String world, String player, String group) {
         Users.addGroup(world, player, group);
     }
 
+    /**
+     * Remove permission from player
+     *
+     * @param player     Player object
+     * @param permission Permission
+     */
     public static void removePermission(Player player, String permission) {
         removePermission(player.getName(), permission);
     }
 
+    /**
+     * Remove permission  from player
+     *
+     * @param player     Player name
+     * @param permission Permission
+     */
     public static void removePermission(String player, String permission) {
         Users.removePermission(player, permission);
     }
 
+    /**
+     * Remove permission (related to provided world) from player
+     *
+     * @param world      World name
+     * @param player     Player name
+     * @param permission Permission
+     */
     public static void removePermission(String world, String player, String permission) {
         Users.removePermission(world, player, permission);
     }
 
+    /**
+     * Remove player from group
+     *
+     * @param player    Player object
+     * @param group     Group name
+     */
     public static void removeGroup(Player player, String group) {
         removeGroup(player.getName(), group);
     }
 
+    /**
+     * Remove player from group (related to provided world)
+     *
+     * @param player    Player name
+     * @param group     Group name
+     */
     public static void removeGroup(String player, String group) {
         Users.removeGroup(player, group);
     }
 
+    /**
+     * Remove player from group
+     *
+     * @param world     World name
+     * @param player    Player name
+     * @param group     Group name
+     */
     public static void removeGroup(String world, String player, String group) {
         Users.removeGroup(world, player, group);
     }

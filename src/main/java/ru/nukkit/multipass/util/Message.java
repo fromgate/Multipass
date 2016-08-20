@@ -187,7 +187,7 @@ public enum Message {
 
     private static PluginBase plugin = null;
 
-    private static Map<String,Long> logOnce = new HashMap<>();
+    private static Map<String, Long> logOnce = new HashMap<>();
 
     /**
      * This is my favorite debug routine :) I use it everywhere to print out variable values
@@ -219,14 +219,14 @@ public enum Message {
         return true;
     }
 
-    public boolean logOnce (Object... s){
+    public boolean logOnce(Object... s) {
         return logOnce(86400, s);
     }
 
-    public boolean logOnce (int seconds, Object... s){
+    public boolean logOnce(int seconds, Object... s) {
         String msg = getText(s);
         long curTime = System.currentTimeMillis();
-        if (!logOnce.containsKey(msg)||logOnce.get(msg)+(seconds*1000) < curTime) {
+        if (!logOnce.containsKey(msg) || logOnce.get(msg) + (seconds * 1000) < curTime) {
             log(s);
             logOnce.put(msg, curTime);
         }

@@ -58,7 +58,7 @@ public class UserInfo extends Cmd {
         List<String> pln = user.getPermissionList();
         if (!pln.isEmpty()) {
             print.add(Message.PERM_USER_PERMS.getText());
-            for (String s : pln){
+            for (String s : pln) {
                 print.add(Message.color2(s));
             }
         }

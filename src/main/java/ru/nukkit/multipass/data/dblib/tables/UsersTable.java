@@ -82,8 +82,8 @@ public class UsersTable {
         return this.permissions;
     }
 
-    public void clearPermissions(){
-        if (this.permissions!=null) this.permissions.clear();
+    public void clearPermissions() {
+        if (this.permissions != null) this.permissions.clear();
     }
 
 
@@ -91,8 +91,8 @@ public class UsersTable {
         return this.groups;
     }
 
-    public void clearGroups(){
-        if (this.groups!=null) this.groups.clear();
+    public void clearGroups() {
+        if (this.groups != null) this.groups.clear();
     }
 
 
