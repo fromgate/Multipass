@@ -44,10 +44,10 @@ public class User extends BaseNode {
 
     public User(String playerName, BaseNode node) {
         super(playerName, node);
-
     }
 
     public void recalculatePermissions() {
+        emptyToDefault();
         Message.debugMessage("Recalculate permissions:", this.getName());
         if (getAttachment() == null) return;
 
@@ -92,5 +92,12 @@ public class User extends BaseNode {
                 (groups.isEmpty() || (groups.size() == 1 && (Groups.isDefault(groups.stream().toArray(String[]::new)[0])))) &&
                 this.getWorldPass().isEmpty() &&
                 this.prefix.isEmpty() && this.suffix.isEmpty() && (this.priority == MultipassPlugin.getCfg().userPriority);
+    }
+
+    private void emptyToDefault(){
+        String groupDefault = MultipassPlugin.getCfg().defaultGroup;
+        if (groupDefault == null || groupDefault.isEmpty()) return;
+        if (!this.isEmpty()) return;
+        this.setGroup(groupDefault);
     }
 }

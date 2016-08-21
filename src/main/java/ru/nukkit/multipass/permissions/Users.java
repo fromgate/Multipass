@@ -20,7 +20,6 @@ package ru.nukkit.multipass.permissions;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import ru.nukkit.multipass.MultipassPlugin;
 import ru.nukkit.multipass.data.DataProvider;
 import ru.nukkit.multipass.event.PermissionsUpdateEvent;
 import ru.nukkit.multipass.util.Message;
@@ -42,8 +41,6 @@ public class Users {
 
     public static void loadUser(String playerName) {
         User user = users.containsKey(playerName) ? users.get(playerName) : DataProvider.loadUser(playerName);
-        if (user.isEmpty())
-            user.setGroup(MultipassPlugin.getCfg().defaultGroup);
         user.recalculatePermissions();
         users.put(playerName, user);
     }

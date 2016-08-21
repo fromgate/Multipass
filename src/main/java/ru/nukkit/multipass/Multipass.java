@@ -164,7 +164,7 @@ public class Multipass {
      * @return true - player is in default group
      */
     public boolean isInDefaultGroup(Player player) {
-        return  player == null ? false : isInDefaultGroup(player.getName());
+        return player == null ? false : isInDefaultGroup(player.getName());
     }
 
     /**
@@ -328,8 +328,8 @@ public class Multipass {
     /**
      * Remove player from group
      *
-     * @param player    Player object
-     * @param group     Group name
+     * @param player Player object
+     * @param group  Group name
      */
     public static void removeGroup(Player player, String group) {
         removeGroup(player.getName(), group);
@@ -338,8 +338,8 @@ public class Multipass {
     /**
      * Remove player from group (related to provided world)
      *
-     * @param player    Player name
-     * @param group     Group name
+     * @param player Player name
+     * @param group  Group name
      */
     public static void removeGroup(String player, String group) {
         Users.removeGroup(player, group);
@@ -348,9 +348,9 @@ public class Multipass {
     /**
      * Remove player from group
      *
-     * @param world     World name
-     * @param player    Player name
-     * @param group     Group name
+     * @param world  World name
+     * @param player Player name
+     * @param group  Group name
      */
     public static void removeGroup(String world, String player, String group) {
         Users.removeGroup(world, player, group);

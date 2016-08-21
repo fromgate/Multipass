@@ -183,10 +183,7 @@ public class Groups {
         Message.debugMessage("Loading groups");
         groups = new TreeMap<String, Group>(String.CASE_INSENSITIVE_ORDER);
         groups.putAll(DataProvider.loadGroups());
-        if (!exist(MultipassPlugin.getCfg().defaultGroup)) {
-            Message.debugMessage("Createding default group", "[" + MultipassPlugin.getCfg().defaultGroup + "]");
-            Groups.create(MultipassPlugin.getCfg().defaultGroup);
-        }
+        createDefaultGroup();
         Users.recalculatePermissions();
     }
 
@@ -227,6 +224,14 @@ public class Groups {
                 groups.put(g.getName(), g);
             }
         });
+        createDefaultGroup();
         Users.recalculatePermissions();
+    }
+
+    private static void createDefaultGroup() {
+        if (MultipassPlugin.getCfg().defaultGroup.isEmpty()) return;
+        if (exist(MultipassPlugin.getCfg().defaultGroup)) return;
+        Message.debugMessage("Creating default group", "[" + MultipassPlugin.getCfg().defaultGroup + "]");
+        Groups.create(MultipassPlugin.getCfg().defaultGroup);
     }
 }

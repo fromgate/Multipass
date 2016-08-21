@@ -90,8 +90,9 @@ public enum DataProvider {
     }
 
     public static DataProvider getByName(String name) {
-        for (DataProvider dp : values())
+        for (DataProvider dp : values()) {
             if (name.equalsIgnoreCase(dp.name())) return dp;
+        }
         return null;
     }
 
