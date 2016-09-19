@@ -23,6 +23,7 @@ import org.sql2o.Sql2o;
 import ru.nukkit.dblib.DbLib;
 import ru.nukkit.multipass.MultipassPlugin;
 import ru.nukkit.multipass.data.database.DatabaseSource;
+import ru.nukkit.multipass.data.yaml.YamlSource;
 import ru.nukkit.multipass.permissions.Group;
 import ru.nukkit.multipass.permissions.Groups;
 import ru.nukkit.multipass.permissions.User;
@@ -39,8 +40,7 @@ import java.util.concurrent.CompletableFuture;
 public enum Providers {
 
     YAML(YamlSource.class),
-    DATABASE(DatabaseSource.class),
-    DATABASE_OLD(DatabaseSourceOld.class);
+    DATABASE(DatabaseSource.class);
 
     private Class<? extends DataProvider> clazz;
     private DataProvider source;

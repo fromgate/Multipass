@@ -16,11 +16,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package ru.nukkit.multipass.data;
+package ru.nukkit.multipass.data.yaml;
 
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.ConfigSection;
 import ru.nukkit.multipass.MultipassPlugin;
+import ru.nukkit.multipass.data.DataProvider;
 import ru.nukkit.multipass.permissions.Group;
 import ru.nukkit.multipass.permissions.Groups;
 import ru.nukkit.multipass.permissions.Node;
