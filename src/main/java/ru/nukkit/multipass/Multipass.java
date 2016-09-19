@@ -20,12 +20,18 @@ package ru.nukkit.multipass;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import ru.nukkit.multipass.permissions.*;
+import ru.nukkit.multipass.permissions.BaseNode;
+import ru.nukkit.multipass.permissions.Group;
+import ru.nukkit.multipass.permissions.Groups;
+import ru.nukkit.multipass.permissions.Permission;
+import ru.nukkit.multipass.permissions.User;
+import ru.nukkit.multipass.permissions.Users;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 import static ru.nukkit.multipass.permissions.Users.getUser;
 
@@ -49,8 +55,13 @@ public class Multipass {
      */
     public static List<String> getGroups(String player) {
         List<String> list = new ArrayList<>();
-        User user = getUser(player);
-        user.getAllGroups().forEach(g -> list.add(g.getName()));
+        if (getUser(player).isDone()) {
+            try {
+                getUser(player).get().getAllGroups().forEach(g -> list.add(g.getName()));
+            } catch (Exception ignore) {
+                ///
+            }
+        }
         return list;
     }
 
@@ -62,13 +73,18 @@ public class Multipass {
      */
     public static List<String> getPrefixes(String player) {
         List<String> list = new ArrayList<>();
-        User user = getUser(player);
-        Set<BaseNode> nodes = user.getAllNodes();
-        nodes.forEach(p -> {
-            if (!p.getPrefix().isEmpty()) {
-                list.add(p.getPrefix());
-            }
-        });
+        if (!getUser(player).isDone()) return list;
+        try {
+            User user = getUser(player).get();
+            Set<BaseNode> nodes = user.getAllNodes();
+            nodes.forEach(p -> {
+                if (!p.getPrefix().isEmpty()) {
+                    list.add(p.getPrefix());
+                }
+            });
+        } catch (Exception ignore) {
+            //
+        }
         return list;
     }
 
@@ -90,13 +106,18 @@ public class Multipass {
      */
     public static List<String> getSuffixes(String player) {
         List<String> list = new ArrayList<>();
-        User user = getUser(player);
-        Set<BaseNode> passes = user.getAllNodes();
-        passes.forEach(p -> {
-            if (!p.getSuffix().isEmpty()) {
-                list.add(p.getSuffix());
-            }
-        });
+        if (!getUser(player).isDone()) return list;
+        try {
+            User user = getUser(player).get();
+            Set<BaseNode> nodes = user.getAllNodes();
+            nodes.forEach(p -> {
+                if (!p.getSuffix().isEmpty()) {
+                    list.add(p.getSuffix());
+                }
+            });
+        } catch (Exception ignore) {
+            //
+        }
         return list;
     }
 
@@ -140,10 +161,16 @@ public class Multipass {
      */
     public static boolean isInGroup(Player player, String group) {
         if (player == null) return false;
-        User user = getUser(player.getName());
-        if (user == null) return false;
-        if (user.inGroup(group)) return true;
-        return MultipassPlugin.getCfg().enableWorldSupport ? user.inGroup(player.getLevel().getName(), group) : false;
+        if (!getUser(player.getName()).isDone()) return false;
+        try {
+            User user = getUser(player.getName()).get();
+            if (user == null) return false;
+            if (user.inGroup(group)) return true;
+            return MultipassPlugin.getCfg().enableWorldSupport ? user.inGroup(player.getLevel().getName(), group) : false;
+        } catch (Exception ignore) {
+            //
+        }
+        return false;
     }
 
     /**
@@ -174,9 +201,15 @@ public class Multipass {
      * @return true - player is in default group
      */
     public boolean isInDefaultGroup(String player) {
-        User user = Users.getUser(player);
-        if (user == null) return false;
-        for (String group : user.getGroupList()) if (Groups.isDefault(group)) return true;
+        if (player == null) return false;
+        if (!getUser(player).isDone()) return false;
+        try {
+            User user = getUser(player).get();
+            if (user == null) return false;
+            for (String group : user.getGroupList()) if (Groups.isDefault(group)) return true;
+        } catch (Exception ignore) {
+            //
+        }
         return false;
     }
 
@@ -220,14 +253,22 @@ public class Multipass {
      * @return true - player has permission in world
      */
     public static boolean hasPermission(String world, String player, String permission) {
-        User user = Users.getUser(player);
-        Set<Permission> permissions = new HashSet<>();
-        permissions.addAll(user.getPermissions(world));
-        user.getGroups().forEach(g -> {
-            permissions.addAll(g.getPermissions(world));
-        });
-        for (Permission p : permissions) {
-            if (p.getName().equalsIgnoreCase(permission)) return p.isPositive();
+        if (player == null) return false;
+        if (!getUser(player).isDone()) return false;
+        try {
+            User user = getUser(player).get();
+            if (user == null) return false;
+            Set<Permission> permissions = new HashSet<>();
+            permissions.addAll(user.getPermissions(world));
+            user.getGroups().forEach(g -> {
+                permissions.addAll(g.getPermissions(world));
+            });
+            for (Permission p : permissions) {
+                if (p.getName().equalsIgnoreCase(permission)) return p.isPositive();
+            }
+
+        } catch (Exception ignore) {
+            //
         }
         return false;
     }
@@ -365,10 +406,14 @@ public class Multipass {
      * @param priority - negative values will be ignored
      */
     public static void setPlayerPrefix(String player, String prefix, String suffix, int priority) {
-        User user = getUser(player);
-        if (prefix != null) user.setPrefix(prefix);
-        if (suffix != null) user.setSuffix(suffix);
-        if (priority >= 0) user.setPriority(priority);
+        getUser(player).whenComplete((user, e) -> {
+            if (e == null) {
+                if (prefix != null) user.setPrefix(prefix);
+                if (suffix != null) user.setSuffix(suffix);
+                if (priority >= 0) user.setPriority(priority);
+                Users.saveUser(user);
+            }
+        });
     }
 
     /**
@@ -464,5 +509,37 @@ public class Multipass {
      */
     public static boolean isGroupExist(String group) {
         return Groups.exist(group);
+    }
+
+    /**
+     * Check player loaded or not
+     * Player data is always loaded for online players
+     * and could be loaded for oflline players using method loadUser
+     *
+     * @param playerName - player name
+     * @return - true if player permissions data already loaded
+     */
+    public static boolean isUserLoaded(String playerName) {
+        return Users.isLoaded(playerName);
+    }
+
+    /**
+     * Load user data
+     *
+     * @param playerName - player name
+     * @return - Completable future with boolean. When completed will contain
+     * true - if user data loaded
+     * false - if there was an loading error
+     */
+    public static CompletableFuture<Boolean> loadUser(String playerName) {
+        CompletableFuture<Boolean> result = new CompletableFuture<>();
+        Users.loadUser(playerName).whenComplete((loaded, e) -> {
+            if (e != null) {
+                result.complete(false);
+            } else {
+                result.complete(true);
+            }
+        });
+        return result;
     }
 }

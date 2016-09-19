@@ -28,7 +28,12 @@ import com.j256.ormlite.table.DatabaseTableConfig;
 import com.j256.ormlite.table.TableUtils;
 import ru.nukkit.dblib.DbLib;
 import ru.nukkit.multipass.MultipassPlugin;
-import ru.nukkit.multipass.data.dblib.tables.*;
+import ru.nukkit.multipass.data.dblib.tables.GroupsGroupTable;
+import ru.nukkit.multipass.data.dblib.tables.GroupsPermTable;
+import ru.nukkit.multipass.data.dblib.tables.GroupsTable;
+import ru.nukkit.multipass.data.dblib.tables.UsersGroupTable;
+import ru.nukkit.multipass.data.dblib.tables.UsersPermTable;
+import ru.nukkit.multipass.data.dblib.tables.UsersTable;
 import ru.nukkit.multipass.permissions.Group;
 import ru.nukkit.multipass.permissions.Permission;
 import ru.nukkit.multipass.permissions.User;
@@ -120,7 +125,7 @@ public class DbLibProvider {
                         cfg.mysqlPassword);
                 return;
             case "sqlite":
-                connection = DbLib.getConnectionSourceSQLite(MultipassPlugin.getPlugin(), cfg.customSQLite);
+                connection = DbLib.getConnectionSourceSQLite(cfg.customSQLite);
                 return;
 
         }

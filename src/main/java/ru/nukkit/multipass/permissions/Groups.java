@@ -20,18 +20,18 @@ package ru.nukkit.multipass.permissions;
 
 import cn.nukkit.Server;
 import ru.nukkit.multipass.MultipassPlugin;
-import ru.nukkit.multipass.data.DataProvider;
+import ru.nukkit.multipass.data.Providers;
 import ru.nukkit.multipass.event.PermissionsUpdateEvent;
 import ru.nukkit.multipass.util.Message;
 import ru.nukkit.multipass.util.WorldParam;
 
 import java.util.Collection;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 public class Groups {
 
-    private static Map<String, Group> groups;
+    private static ConcurrentMap<String, Group> groups;
 
     public static void init() {
         loadGroups();
@@ -50,10 +50,14 @@ public class Groups {
     }
 
     public static boolean create(String id, int priority) {
+        return create(id, priority, true);
+    }
+
+    public static boolean create(String id, int priority, boolean save) {
         if (id == null || id.isEmpty() || groups.containsKey(id)) return false;
         Group group = priority < 0 ? new Group(id) : new Group(id, priority);
         groups.put(id, group);
-        saveGroups();
+        if (save) saveGroup(group);
         return true;
     }
 
@@ -79,7 +83,7 @@ public class Groups {
         Group group2 = getGroup(groupId2);
         if (group1 == null || group2 == null) return false;
         group1.getWorldPassOrCreate(world).addGroup(group2);
-        saveGroups();
+        saveGroup(group1);
         return true;
     }
 
@@ -88,7 +92,7 @@ public class Groups {
         Group group2 = getGroup(groupId2);
         if (group1 == null || group2 == null) return false;
         group1.addGroup(group2);
-        saveGroups();
+        saveGroup(group1);
         return true;
     }
 
@@ -100,7 +104,7 @@ public class Groups {
         Group group = getGroup(id);
         if (group == null) return false;
         group.setPermission(world, perm);
-        saveGroups();
+        saveGroup(group);
         return true;
     }
 
@@ -108,7 +112,7 @@ public class Groups {
         Group group = getGroup(id);
         if (group == null) return false;
         group.setPermission(permStr);
-        saveGroups();
+        saveGroup(group);
         return true;
     }
 
@@ -121,7 +125,7 @@ public class Groups {
         Group group2 = getGroup(param);
         if (group1 == null || group2 == null) return false;
         group1.getWorldPassOrCreate(world).setGroup(group2);
-        saveGroups();
+        saveGroup(group1);
         return true;
     }
 
@@ -130,7 +134,7 @@ public class Groups {
         Group group2 = getGroup(id2);
         if (group1 == null || group2 == null) return false;
         group1.setGroup(group2);
-        saveGroups();
+        saveGroup(group1);
         return true;
     }
 
@@ -141,13 +145,23 @@ public class Groups {
     public static boolean removeGroup(String id1, String world, String id2) {
         Group group = getGroup(id1);
         if (group == null) return false;
-        return group.removeGroup(world, id2);
+        if (group.removeGroup(world, id2)) {
+            saveGroup(group);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static boolean removeGroup(String id1, String id2) {
         Group group = getGroup(id1);
         if (group == null) return false;
-        return group.removeGroup(id2);
+        if (group.removeGroup(id2)) {
+            saveGroup(group);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static boolean isPermissionSet(String id, String permStr) {
@@ -160,7 +174,7 @@ public class Groups {
         Group group = getGroup(id);
         if (group == null) return false;
         group.setPrefix(prefix);
-        saveGroups();
+        saveGroup(group);
         return true;
     }
 
@@ -168,23 +182,34 @@ public class Groups {
         Group group = getGroup(id);
         if (group == null) return false;
         group.setSuffix(suffix);
-        saveGroups();
+        saveGroup(group);
         PermissionsUpdateEvent event = new PermissionsUpdateEvent();
         Server.getInstance().getPluginManager().callEvent(event);
         return true;
     }
 
     public static void saveGroups() {
-        DataProvider.saveGroups();
+        Providers.saveGroups();
+        Users.recalculatePermissions();
+    }
+
+    public static void saveGroup(Group group) {
+        Providers.saveGroup(group);
         Users.recalculatePermissions();
     }
 
     public static void loadGroups() {
         Message.debugMessage("Loading groups");
-        groups = new TreeMap<String, Group>(String.CASE_INSENSITIVE_ORDER);
-        groups.putAll(DataProvider.loadGroups());
-        createDefaultGroup();
-        Users.recalculatePermissions();
+        groups = new ConcurrentSkipListMap<>(String.CASE_INSENSITIVE_ORDER);
+        Providers.loadGroups().whenComplete((resultGroups, e) -> {
+            if (e != null) {
+                e.printStackTrace();
+            } else {
+                groups.putAll(resultGroups);
+                createDefaultGroup();
+                Users.recalculatePermissions();
+            }
+        });
     }
 
     public static boolean removePermission(String id, String permStr) {
@@ -232,6 +257,6 @@ public class Groups {
         if (MultipassPlugin.getCfg().defaultGroup.isEmpty()) return;
         if (exist(MultipassPlugin.getCfg().defaultGroup)) return;
         Message.debugMessage("Creating default group", "[" + MultipassPlugin.getCfg().defaultGroup + "]");
-        Groups.create(MultipassPlugin.getCfg().defaultGroup);
+        Groups.create(MultipassPlugin.getCfg().defaultGroup, -1, false);
     }
 }

@@ -23,9 +23,17 @@ import ru.nukkit.multipass.MultipassPlugin;
 import ru.nukkit.multipass.util.HighBase;
 import ru.nukkit.multipass.util.LowBase;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
-import static com.sun.javafx.fxml.expression.Expression.add;
 
 public abstract class BaseNode extends Node {
 
@@ -121,11 +129,11 @@ public abstract class BaseNode extends Node {
     }
 
     public void addPermission(String world, String perm, boolean positive) {
-        add(world, new Permission(perm, positive));
+        setPermission(world, new Permission(perm, positive));
     }
 
     public void addPermission(String world, String perm) {
-        add(world, new Permission(perm));
+        setPermission(world, new Permission(perm));
     }
 
     public void addPermission(String world, Permission permission) {

@@ -3,8 +3,12 @@ package ru.nukkit.multipass.util;
 import cn.nukkit.utils.Config;
 import cn.nukkit.utils.ConfigSection;
 import ru.nukkit.multipass.MultipassPlugin;
-import ru.nukkit.multipass.data.DataProvider;
-import ru.nukkit.multipass.permissions.*;
+import ru.nukkit.multipass.data.Providers;
+import ru.nukkit.multipass.permissions.Group;
+import ru.nukkit.multipass.permissions.Groups;
+import ru.nukkit.multipass.permissions.Node;
+import ru.nukkit.multipass.permissions.User;
+import ru.nukkit.multipass.permissions.Users;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -61,8 +65,8 @@ public class Exporter {
         if (groups.isEmpty() && users.isEmpty()) return false;
         Groups.updateGroups(groups, overwrite);
         Users.updateUsers(users, overwrite);
-        DataProvider.saveGroups();
-        DataProvider.saveUsers(users);
+        Providers.saveGroups();
+        Providers.saveUsers(users);
         return true;
     }
 
@@ -80,7 +84,7 @@ public class Exporter {
         });
 
         ConfigSection userSection = new ConfigSection();
-        DataProvider.getAllUsers().forEach(u -> {
+        Providers.getCurrentProvider().getAllUsers().forEach(u -> {
             ConfigSection users = passToSection(u);
             ConfigSection worlds = new ConfigSection();
             u.getWorldPass().entrySet().forEach(e -> {

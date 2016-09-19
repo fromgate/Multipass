@@ -18,93 +18,42 @@
 
 package ru.nukkit.multipass.data;
 
-import ru.nukkit.multipass.MultipassPlugin;
 import ru.nukkit.multipass.permissions.Group;
 import ru.nukkit.multipass.permissions.Groups;
 import ru.nukkit.multipass.permissions.User;
-import ru.nukkit.multipass.util.Message;
+import ru.nukkit.multipass.permissions.Users;
 
 import java.util.Collection;
-import java.util.Map;
-import java.util.TreeMap;
 
-public enum DataProvider {
+public abstract class DataProvider {
 
-    YAML(YamlSource.class),
-    DATABASE(DatabaseSource.class);
+    public abstract void saveUser(User user);
 
-    private Class<? extends DataSource> clazz;
-    private DataSource source;
+    public abstract User loadUser(String playerName);
 
-    DataProvider(Class<? extends DataSource> clazz) {
-        this.clazz = clazz;
+    public abstract void saveGroups(Collection<Group> all);
+
+    public abstract Collection<Group> loadGroups();
+
+    public abstract boolean isStored(String userName);
+
+    public abstract Collection<User> getAllUsers();
+
+    public void updateUser(final User user) {
+        Users.setUser(new User(user.getName(), user));
     }
 
-    public DataSource getSource() {
-        try {
-            source = clazz.newInstance();
-        } catch (Exception e) {
-            source = null;
-            Message.PROVIDER_FAILED.log(this.name());
-        }
-        return this.source;
+    public void updateAllGroups(final Collection<Group> groups) {
+        Groups.updateGroups(groups);
     }
 
-    private static DataSource currentProvider;
+    public abstract boolean isEnabled();
 
+    public abstract void clearUsers();
 
-    public static void init() {
-        DataProvider dp = getByName(MultipassPlugin.getCfg().dataSource);
-        if (dp == null) {
-            Message.LOG_UNKNOWN_DATAPROVIDER.log(MultipassPlugin.getCfg().dataSource);
-            dp = YAML;
-        } else Message.LOG_DATAPROVIDER.log(dp.name());
-        currentProvider = dp.getSource();
-        if (!currentProvider.isEnabled()) Message.LOG_DATAPROVIDER_FAIL.log(MultipassPlugin.getCfg().dataSource);
-    }
+    public abstract void clearGroups();
 
-    public static User loadUser(String playerName) {
-        return currentProvider.loadUser(playerName);
-    }
+    public abstract void saveUsers(Collection<User> users);
 
-    public static boolean isRegistered(String userName) {
-        return currentProvider.isStored(userName);
-    }
-
-    public static void saveUser(User user) {
-        currentProvider.saveUser(user);
-    }
-
-    public static void saveUsers(Collection<User> users) {
-        currentProvider.saveUsers(users);
-    }
-
-    public static void saveGroups() {
-        currentProvider.saveGroups(Groups.getAll());
-    }
-
-    public static Map<String, Group> loadGroups() {
-        Map<String, Group> groups = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
-        currentProvider.loadGroups().forEach(group -> groups.put(group.getName(), group));
-        return groups;
-    }
-
-    public static DataProvider getByName(String name) {
-        for (DataProvider dp : values()) {
-            if (name.equalsIgnoreCase(dp.name())) return dp;
-        }
-        return null;
-    }
-
-    public static void clearUsers() {
-        currentProvider.clearUsers();
-    }
-
-    public static void clearGroups() {
-        currentProvider.clearGroups();
-    }
-
-    public static Collection<User> getAllUsers() {
-        return currentProvider.getAllUsers();
-    }
+    public abstract void saveGroup(Group group);
 }

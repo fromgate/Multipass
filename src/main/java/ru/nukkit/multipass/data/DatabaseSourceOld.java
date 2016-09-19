@@ -35,11 +35,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class DatabaseSource extends DataSource {
+public class DatabaseSourceOld extends DataProvider {
 
     DbLibProvider provider;
 
-    public DatabaseSource() {
+    public DatabaseSourceOld() {
         this.provider = new DbLibProvider();
         if (this.provider.isEnabled()) runRecheck();
     }
@@ -96,6 +96,11 @@ public class DatabaseSource extends DataSource {
                 }
             }
         }.start();
+    }
+
+    @Override
+    public void saveGroup(Group group) {
+        saveGroups(Groups.getAll());
     }
 
 

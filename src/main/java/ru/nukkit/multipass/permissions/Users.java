@@ -20,7 +20,7 @@ package ru.nukkit.multipass.permissions;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import ru.nukkit.multipass.data.DataProvider;
+import ru.nukkit.multipass.data.Providers;
 import ru.nukkit.multipass.event.PermissionsUpdateEvent;
 import ru.nukkit.multipass.util.Message;
 import ru.nukkit.multipass.util.WorldParam;
@@ -28,26 +28,42 @@ import ru.nukkit.multipass.util.WorldParam;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 
 public class Users {
 
-    private static Map<String, User> users = new TreeMap<String, User>(String.CASE_INSENSITIVE_ORDER);
+    private static ConcurrentMap<String, User> users = new ConcurrentSkipListMap<>(String.CASE_INSENSITIVE_ORDER);
 
-    public static void loadUser(Player player) {
-        loadUser(player.getName());
+    public static CompletableFuture<User> loadUser(Player player) {
+        return loadUser(player.getName());
     }
 
-    public static void loadUser(String playerName) {
-        User user = users.containsKey(playerName) ? users.get(playerName) : DataProvider.loadUser(playerName);
-        user.recalculatePermissions();
-        users.put(playerName, user);
+    public static CompletableFuture<User> loadUser(String playerName) {
+        CompletableFuture<User> result = new CompletableFuture<>();
+        Providers.loadUser(playerName).whenComplete((loadedUser, e) -> {
+            if (e != null) {
+                e.printStackTrace();
+            } else {
+                User user = loadedUser == null ? new User(playerName) : loadedUser;
+                user.recalculatePermissions();
+                users.put(playerName, user);
+                result.complete(user);
+            }
+        });
+        return result;
     }
 
-    public static User getUser(String playerName) {
-        if (!users.containsKey(playerName)) loadUser(playerName);
-        return users.get(playerName);
+    public static CompletableFuture<User> getUser(String playerName) {
+        if (users.containsKey(playerName)) {
+            CompletableFuture<User> result = new CompletableFuture<>();
+            result.complete(users.get(playerName));
+            return result;
+        } else {
+            return loadUser(playerName);
+        }
     }
 
     public static void closeUser(Player player) {
@@ -61,9 +77,14 @@ public class Users {
     }
 
 
-    public static boolean isRegistered(String userName) {
-        if (users.containsKey(userName)) return true;
-        return (DataProvider.isRegistered(userName));
+    public static CompletableFuture<Boolean> isRegistered(String userName) {
+        if (users.containsKey(userName)) {
+            CompletableFuture<Boolean> result = new CompletableFuture<>();
+            result.complete(true);
+            return result;
+        } else {
+            return Providers.isRegistered(userName);
+        }
     }
 
     public static void addGroup(String id, WorldParam wp) {
@@ -72,15 +93,21 @@ public class Users {
     }
 
     public static void addGroup(String world, String id, String group) {
-        User user = Users.getUser(id);
-        user.addGroup(world, group);
-        saveUser(user);
+        Users.getUser(id).whenComplete((user, e) -> {
+            if (e == null) {
+                user.addGroup(world, group);
+                saveUser(user);
+            }
+        });
     }
 
     public static void addGroup(String id, String group) {
-        User user = Users.getUser(id);
-        user.addGroup(group);
-        saveUser(user);
+        Users.getUser(id).whenComplete((user, e) -> {
+            if (e == null) {
+                user.addGroup(group);
+                saveUser(user);
+            }
+        });
     }
 
     public static boolean inGroup(String userName, WorldParam wp) {
@@ -88,13 +115,21 @@ public class Users {
     }
 
     public static boolean inGroup(String userName, String group) {
-        User user = Users.getUser(userName);
-        return user.inGroup(group);
+        try {
+            User user = Users.getUser(userName).get();
+            return user.inGroup(group);
+        } catch (Exception e) {
+        }
+        return false;
     }
 
     public static boolean inGroup(String world, String userName, String group) {
-        User user = Users.getUser(userName);
-        return user.inGroup(world, group);
+        try {
+            User user = Users.getUser(userName).get();
+            return user.inGroup(world, group);
+        } catch (Exception e) {
+        }
+        return false;
     }
 
     public static void removeGroup(String userName, WorldParam wp) {
@@ -103,15 +138,21 @@ public class Users {
     }
 
     public static void removeGroup(String userName, String group) {
-        User user = Users.getUser(userName);
-        if (user.inGroup(group)) user.removeGroup(group);
-        saveUser(user);
+        Users.getUser(userName).whenComplete((user, e) -> {
+            if (e == null) {
+                if (user.inGroup(group)) user.removeGroup(group);
+                saveUser(user);
+            }
+        });
     }
 
     public static void removeGroup(String world, String userName, String group) {
-        User user = Users.getUser(userName);
-        if (user.inGroup(group)) user.removeGroup(world, group);
-        saveUser(user);
+        Users.getUser(userName).whenComplete((user, e) -> {
+            if (e == null) {
+                if (user.inGroup(group)) user.removeGroup(world, group);
+                saveUser(user);
+            }
+        });
     }
 
     public static boolean isPermissionSet(String userName, WorldParam wp) {
@@ -120,13 +161,21 @@ public class Users {
     }
 
     public static boolean isPermissionSet(String world, String userName, String permStr) {
-        User user = Users.getUser(userName);
-        return user.isPermissionSet(world, permStr);
+        try {
+            User user = Users.getUser(userName).get();
+            return user.isPermissionSet(world, permStr);
+        } catch (Exception e) {
+        }
+        return false;
     }
 
     public static boolean isPermissionSet(String userName, String permStr) {
-        User user = Users.getUser(userName);
-        return user.isPermissionSet(permStr);
+        try {
+            User user = Users.getUser(userName).get();
+            return user.isPermissionSet(permStr);
+        } catch (Exception e) {
+        }
+        return false;
     }
 
     public static void removePermission(String userName, WorldParam wp) {
@@ -135,15 +184,21 @@ public class Users {
     }
 
     public static void removePermission(String userName, String permStr) {
-        User user = Users.getUser(userName);
-        user.removePermission(permStr);
-        saveUser(user);
+        Users.getUser(userName).whenComplete((user, e) -> {
+            if (e == null) {
+                user.removePermission(permStr);
+                saveUser(user);
+            }
+        });
     }
 
     public static void removePermission(String world, String userName, String permStr) {
-        User user = Users.getUser(userName);
-        user.removePermission(permStr);
-        saveUser(user);
+        Users.getUser(userName).whenComplete((user, e) -> {
+            if (e == null) {
+                user.removePermission(world, permStr);
+                saveUser(user);
+            }
+        });
     }
 
     public static void setGroup(String userName, WorldParam wp) {
@@ -152,55 +207,83 @@ public class Users {
     }
 
     public static void setGroup(String userName, String groupStr) {
-        User user = Users.getUser(userName);
-        user.setGroup(groupStr);
-        saveUser(user);
+        Users.getUser(userName).whenComplete((user, e) -> {
+            if (e == null) {
+                user.setGroup(groupStr);
+                saveUser(user);
+            }
+        });
     }
 
     public static void setGroup(String world, String userName, String groupStr) {
-        User user = Users.getUser(userName);
-        user.setGroup(groupStr);
-        saveUser(user);
+        Users.getUser(userName).whenComplete((user, e) -> {
+            if (e == null) {
+                user.setGroup(groupStr);
+                saveUser(user);
+            }
+        });
+
     }
 
     public static void setPrefix(String userName, String prefix) {
-        User user = Users.getUser(userName);
-        user.setPrefix(prefix);
-        saveUser(user);
+        Users.getUser(userName).whenComplete((user, e) -> {
+            if (e == null) {
+                user.setPrefix(prefix);
+                saveUser(user);
+            }
+        });
     }
 
     public static void setSuffix(String userName, String suffix) {
-        User user = Users.getUser(userName);
-        user.setSuffix(suffix);
-        saveUser(user);
+        Users.getUser(userName).whenComplete((user, e) -> {
+            if (e == null) {
+                user.setSuffix(suffix);
+                saveUser(user);
+            }
+        });
     }
 
     public static void setPriority(String userName, int priority) {
-        User user = Users.getUser(userName);
-        user.setPriority(priority);
-        saveUser(user);
+        Users.getUser(userName).whenComplete((user, e) -> {
+            if (e == null) {
+                user.setPriority(priority);
+                saveUser(user);
+            }
+        });
     }
 
-    public static void recalculatePermissions(String name) {
-        User user = Users.getUser(name);
-        user.recalculatePermissions();
+    public static void recalculatePermissions(String userName) {
+        Users.getUser(userName).whenComplete((user, e) -> {
+            if (e == null) {
+                Server.getInstance().getScheduler().scheduleTask(user::recalculatePermissions);
+            }
+        });
     }
 
     public static void setPermission(String userName, WorldParam wp) {
-        if (wp.hasWorld()) setPermission(wp.world, userName, wp.param);
-        else setPermission(userName, wp.param);
+        if (wp.hasWorld()) {
+            setPermission(wp.world, userName, wp.param);
+        } else {
+            setPermission(userName, wp.param);
+        }
     }
 
     public static void setPermission(String userName, String permStr) {
-        User user = Users.getUser(userName);
-        user.setPermission(permStr);
-        saveUser(user);
+        Users.getUser(userName).whenComplete((user, e) -> {
+            if (e == null) {
+                user.setPermission(permStr);
+                saveUser(user);
+            }
+        });
     }
 
     public static void setPermission(String world, String userName, String permission) {
-        User user = Users.getUser(userName);
-        user.setPermission(world, permission);
-        saveUser(user);
+        Users.getUser(userName).whenComplete((user, e) -> {
+            if (e == null) {
+                user.setPermission(world, permission);
+                saveUser(user);
+            }
+        });
     }
 
     public static void reloadUsers() {
@@ -211,15 +294,18 @@ public class Users {
     public static void recalculatePermissions() {
         Message.debugMessage("Recalculating online users permissions");
         Server.getInstance().getOnlinePlayers().values().forEach(player -> {
-            User user = getUser(player.getName());
-            user.recalculatePermissions();
+            Users.getUser(player.getName()).whenComplete((user, e) -> {
+                if (e == null) {
+                    user.recalculatePermissions();
+                }
+            });
         });
     }
 
     public static void saveUser(User user) {
         Message.debugMessage("Saving user: " + user.getName());
         user.recalculatePermissions();
-        DataProvider.saveUser(user);
+        Providers.saveUser(user);
         PermissionsUpdateEvent event = new PermissionsUpdateEvent(user.getName());
         Server.getInstance().getPluginManager().callEvent(event);
     }
@@ -244,5 +330,10 @@ public class Users {
             if (player == null) iterator.remove();
             else e.getValue().recalculatePermissions();
         }
+    }
+
+
+    public static boolean isLoaded(String playerName) {
+        return users.containsKey(playerName);
     }
 }

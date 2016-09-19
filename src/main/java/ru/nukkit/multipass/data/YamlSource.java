@@ -22,6 +22,7 @@ import cn.nukkit.utils.Config;
 import cn.nukkit.utils.ConfigSection;
 import ru.nukkit.multipass.MultipassPlugin;
 import ru.nukkit.multipass.permissions.Group;
+import ru.nukkit.multipass.permissions.Groups;
 import ru.nukkit.multipass.permissions.Node;
 import ru.nukkit.multipass.permissions.User;
 import ru.nukkit.multipass.util.Message;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class YamlSource extends DataSource {
+public class YamlSource extends DataProvider {
 
     private File userDir;
     private File groupFile;
@@ -94,6 +95,11 @@ public class YamlSource extends DataSource {
         for (User u : users) {
             saveUser(u);
         }
+    }
+
+    @Override
+    public void saveGroup(Group group) {
+        saveGroups(Groups.getAll());
     }
 
     @Override

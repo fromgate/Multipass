@@ -38,6 +38,14 @@ public class User extends BaseNode {
         this.priority = MultipassPlugin.getCfg().userPriority;
     }
 
+    public User(String playerName, String prefix, String suffix, int priority) {
+        super(playerName);
+        this.prefix = prefix;
+        this.suffix = suffix;
+        this.priority = priority;
+    }
+
+
     public User(String playerName, Node node) {
         super(playerName, node);
     }
@@ -94,7 +102,7 @@ public class User extends BaseNode {
                 this.prefix.isEmpty() && this.suffix.isEmpty() && (this.priority == MultipassPlugin.getCfg().userPriority);
     }
 
-    private void emptyToDefault(){
+    private void emptyToDefault() {
         String groupDefault = MultipassPlugin.getCfg().defaultGroup;
         if (groupDefault == null || groupDefault.isEmpty()) return;
         if (!this.isEmpty()) return;

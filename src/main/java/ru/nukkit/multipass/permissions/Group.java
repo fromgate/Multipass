@@ -35,6 +35,13 @@ public class Group extends BaseNode {
         this.priority = priority;
     }
 
+    public Group(String name, String prefix, String suffix, int priority) {
+        super(name);
+        this.prefix = prefix;
+        this.suffix = suffix;
+        this.priority = priority;
+    }
+
     public boolean isDefault() {
         if (MultipassPlugin.getCfg().defaultGroup == null || MultipassPlugin.getCfg().defaultGroup.isEmpty())
             return false;
