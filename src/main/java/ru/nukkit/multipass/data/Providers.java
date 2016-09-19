@@ -225,4 +225,29 @@ public enum Providers {
     public static DataProvider getCurrentProvider() {
         return currentProvider;
     }
+
+    public static CompletableFuture<Boolean> removeGroup(String groupId) {
+        CompletableFuture<Boolean> result = new CompletableFuture<>();
+        new MultiTask() {
+            @Override
+            public void onRun() {
+                getCurrentProvider().removeGroup(groupId);
+                result.complete(true);
+            }
+        }.start();
+        return result;
+    }
+
+
+    public static CompletableFuture<Boolean> removeUser(String userName) {
+        CompletableFuture<Boolean> result = new CompletableFuture<>();
+        new MultiTask() {
+            @Override
+            public void onRun() {
+                getCurrentProvider().removeUser(userName);
+                result.complete(true);
+            }
+        }.start();
+        return result;
+    }
 }

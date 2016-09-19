@@ -31,6 +31,8 @@ public abstract class DataProvider {
 
     public abstract User loadUser(String playerName);
 
+    public abstract void removeUser(String playerName);
+
     public abstract void saveGroups(Collection<Group> all);
 
     public abstract Collection<Group> loadGroups();
@@ -56,4 +58,6 @@ public abstract class DataProvider {
     public abstract void saveUsers(Collection<User> users);
 
     public abstract void saveGroup(Group group);
+
+    public abstract void removeGroup(String groupId);
 }

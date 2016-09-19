@@ -40,6 +40,7 @@ import ru.nukkit.multipass.command.perm.PermRefresh;
 import ru.nukkit.multipass.command.perm.PermReload;
 import ru.nukkit.multipass.command.user.UserAddGroup;
 import ru.nukkit.multipass.command.user.UserInfo;
+import ru.nukkit.multipass.command.user.UserRemove;
 import ru.nukkit.multipass.command.user.UserRemoveGroup;
 import ru.nukkit.multipass.command.user.UserRemovePerm;
 import ru.nukkit.multipass.command.user.UserSetGroup;
@@ -82,6 +83,7 @@ public class Commander {
 
         //User command
         addNewCommand(UserInfo.class);
+        addNewCommand(UserRemove.class);
         addNewCommand(UserAddGroup.class);
         addNewCommand(UserRemoveGroup.class);
         addNewCommand(UserRemovePerm.class);

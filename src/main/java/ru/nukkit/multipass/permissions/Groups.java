@@ -64,7 +64,7 @@ public class Groups {
     public static boolean remove(String id) {
         if (!groups.containsKey(id)) return false;
         groups.remove(id);
-        saveGroups();
+        Providers.removeGroup(id);
         Users.recalculatePermissions();
         return true;
     }

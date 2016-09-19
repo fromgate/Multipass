@@ -71,6 +71,14 @@ public class YamlSource extends DataProvider {
     }
 
     @Override
+    public void removeUser(String playerName) {
+        File file = getUserFile(playerName);
+        if (file.exists()) {
+            file.delete();
+        }
+    }
+
+    @Override
     public void saveUser(User user) {
         File file = getUserFile(user.getName());
         Message.debugMessage("Saving user file: ", file.toString());
@@ -101,6 +109,11 @@ public class YamlSource extends DataProvider {
     @Override
     public void saveGroup(Group group) {
         saveGroups(Groups.getAll());
+    }
+
+    @Override
+    public void removeGroup(String groupId) {
+        saveGroups(Groups.getAll()); // просто сохраняем, поскольку сама группа из списка уже удалена
     }
 
     @Override

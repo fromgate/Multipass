@@ -41,11 +41,11 @@ import java.util.List;
 import java.util.Map;
 
 public class DatabaseSource extends DataProvider {
-
     private String createUserTable;
     private String createUsersGroupTable;
     private String createUsersPermTable;
     private String createOrReplaceUser;
+    private String deleteUser;
     private String deleteUserPerm;
     private String deleteUserGroup;
     private String deleteAllUsers;
@@ -61,6 +61,7 @@ public class DatabaseSource extends DataProvider {
     private String createGroupsGroupTable;
     private String createGroupsPermTable;
     private String createOrReplaceGroup;
+    private String deleteGroup;
     private String deleteGroupPerm;
     private String deleteGroupGroup;
     private String addGroup;
@@ -125,6 +126,8 @@ public class DatabaseSource extends DataProvider {
 
         createOrReplaceUser = "REPLACE INTO " + mpUsers + " VALUES (:name, :prefix, :suffix, :priority)";
 
+        deleteUser = "DELETE FROM " + mpUsers + " WHERE name = :name";
+
         deleteUserPerm = "DELETE FROM " + mpUsersPerm + " WHERE user_id = :name";
 
         deleteUserGroup = "DELETE FROM " + mpUsersGroup + " WHERE user_id = :name";
@@ -168,6 +171,8 @@ public class DatabaseSource extends DataProvider {
         deleteAllGroups = "DELETE FROM " + mpGroups;
 
         deleteAllGroupsPerm = "DELETE FROM " + mpGroupsPerm;
+
+        deleteGroup = "DELETE FROM " + mpGroups + " WHERE name = :name";
 
         deleteGroupPerm = "DELETE FROM " + mpGroupsPerm + " WHERE group_id = :name";
 
@@ -284,6 +289,23 @@ public class DatabaseSource extends DataProvider {
             }
         }
         return user;
+    }
+
+    @Override
+    public void removeUser(String playerName) {
+        if (!enabled) return;
+        try (Connection con = sql2o.beginTransaction(java.sql.Connection.TRANSACTION_SERIALIZABLE)) {
+            con.createQuery(deleteUser)
+                    .addParameter("name", playerName)
+                    .executeUpdate();
+            con.createQuery(deleteUserGroup)
+                    .addParameter("name", playerName)
+                    .executeUpdate();
+            con.createQuery(deleteUserPerm)
+                    .addParameter("name", playerName)
+                    .executeUpdate();
+            con.commit();
+        }
     }
 
     @Override
@@ -560,4 +582,22 @@ public class DatabaseSource extends DataProvider {
             con.commit();
         }
     }
+
+    @Override
+    public void removeGroup(String groupId) {
+        if (!enabled) return;
+        try (Connection con = sql2o.beginTransaction(java.sql.Connection.TRANSACTION_SERIALIZABLE)) {
+            con.createQuery(deleteGroup)
+                    .addParameter("name", groupId)
+                    .executeUpdate();
+            con.createQuery(deleteGroupGroup)
+                    .addParameter("name", groupId)
+                    .executeUpdate();
+            con.createQuery(deleteGroupPerm)
+                    .addParameter("name", groupId)
+                    .executeUpdate();
+            con.commit();
+        }
+    }
+
 }

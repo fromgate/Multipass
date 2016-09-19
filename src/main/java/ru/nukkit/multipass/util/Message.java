@@ -55,6 +55,7 @@ public enum Message {
     CMD_PERM_UPDATE("/perm refresh - recalculate permissions for all players"),
     CMD_PERM_RELOAD("/perm reload - reload Multipass configuration"),
     CMD_USER("/user <player> - show info about player permissions"),
+    CMD_USER_REMOVE("/user remove <group> - remove user"),
     CMD_USER_SETPERM("/user <player> setperm [world] <permission> - add permission to player"),
     CMD_USER_REMOVEPERM("/user <player> rmvperm [world] <permission> - remove player permission"),
     CMD_USER_SETGROUP("/user <player> setgroup [world] <group> - move player in group"),
@@ -113,11 +114,13 @@ public enum Message {
     USER_REMOVEGROUPW_OK("Player %2% removed from group %1% (world %3%)"),
     USER_REMOVEGROUP_OK_INFORM("You was removed from the group %1%"),
     USER_REMOVEGROUPW_OK_INFORM("You was removed from the group %1% (world %2%)"),
+    USER_NOTEXIST("Failed to remove user. User %1% is not exist", 'c', '4'),
+    USER_REMOVE_OK("User %1% removed"),
+
     GROUP_EXIST("Failed to create new group. Group %1% already exists", 'c', '4'),
     GROUP_NOTEXIST("Failed to remove group. Group %1% is not exist", 'c', '4'),
     GROUP_CREATE_OK("Group %1% created"),
     GROUP_REMOVE_OK("Group %1% removed"),
-
     GROUP_ADDGROUP_NOTEXIST("Group %1% is not exist. Please check group name or create new group", 'c', '4'),
     GROUP_ADDGROUP_OK("Group %2% was added to group %1%"),
     GROUP_ADDGROUPW_OK("Group %2% was added to group %1% (world %3%)"),
