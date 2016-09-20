@@ -31,7 +31,6 @@ import ru.nukkit.multipass.permissions.Group;
 import ru.nukkit.multipass.permissions.Permission;
 import ru.nukkit.multipass.permissions.User;
 import ru.nukkit.multipass.permissions.Users;
-import ru.nukkit.multipass.util.Message;
 import ru.nukkit.multipass.util.TimeUtil;
 
 import java.util.ArrayList;
@@ -331,7 +330,6 @@ public class DatabaseSource extends DataProvider {
                 Map<String, List<Permission>> perms = group.getPermissionsMap();
                 if (!perms.isEmpty()) {
                     groupPermQuery = con.createQuery(addGroupPerm);
-                    Message.debugMessage("QUERY:", addGroupPerm);
                     for (Map.Entry<String, List<Permission>> e : perms.entrySet()) {
                         for (Permission p : e.getValue())
                             groupPermQuery
@@ -538,7 +536,6 @@ public class DatabaseSource extends DataProvider {
                     }
                 }
             }
-            Message.debugMessage(userQuery.toString());
             userQuery.executeUpdate();
             if (userPermQuery != null) userPermQuery.executeUpdate();
             if (userGroupQuery != null) userGroupQuery.executeUpdate();

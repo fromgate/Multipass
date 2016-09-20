@@ -15,6 +15,7 @@ cmd_perm_help: '/perm help [sayfa] - yardımı göster'
 cmd_perm_update: '/perm refresh - tüm oyuncular için izinleri yeniden denetle'
 cmd_perm_reload: '/perm reload - Multipass yapılanırmasını yeniden yükle'
 cmd_user: '/user <oyuncu> - oyuncu izinleri hakkında bilgileri göster'
+cmd_user_remove: '/user remove <group> - remove user'
 cmd_user_setperm: '/user <oyuncu> setperm [dünya] <izin> - oyuncuya izin ekle'
 cmd_user_removeperm: '/user <oyuncu> rmvperm [dünya] <izin> - oyuncu izini kaldır'
 cmd_user_setgroup: '/user <oyuncu> setgroup [dünya] <grup> - oyuncuyu gruba taşı'
@@ -31,8 +32,8 @@ cmd_group_remove: '/group remove <grup> - grubu kaldır'
 cmd_perm_check: '/perm check <oyuncu> <izin> - oyuncu iznini kontrol et'
 cmd_user_setprefix: '/user <oyuncu> setprefix <kullanıcı öneki> - önek ayarla'
 cmd_user_setsuffix: '/user <oyuncu> setsuffix <kullanıcı soneki> - sonek ayarla'
-cmd_perm_export: '/perm export [fileName] - export all permissions to file'
-cmd_perm_import: '/perm import [overwrite] [filename] - import permissions from file'
+cmd_perm_export: '/perm export [dosyaAdı] - tüm izinleri dosyaya dışa aktar'
+cmd_perm_import: '/perm import [üzerineYaz] [dosyaAdı] - izinleri dosyadan içeri al'
 perm_user_notregister: 'Kullanıcı %1% bu sunucuda kayıtlı değil!'
 perm_user_info: "%1%'in izin bilgileri"
 perm_user_groups: 'Gruplar: %1%'
@@ -67,6 +68,8 @@ user_removegroup_ok: "Oyuncu %2% grup %1%'den kaldırıldı"
 user_removegroupw_ok: "Oyuncu %2% grup %1%'den kaldırıldı (dünya %3%)"
 user_removegroup_ok_inform: "Grup %1%'den kaldırıldınız"
 user_removegroupw_ok_inform: "Grup %1%'den kaldırıldınız (dünya %2%)"
+user_notexist: 'Failed to remove user. User %1% is not exist'
+user_remove_ok: 'User %1% removed'
 group_exist: 'Yeni grup oluşturulamadı. Grup %1% zaten var'
 group_notexist: 'Grup kaldırılamadı. Grup %1% yok'
 group_create_ok: 'Grup %1% oluşturuldu'
@@ -113,11 +116,13 @@ user_suffix_ok_inform: 'Sonekiniz %1% olarak değiştirildi'
 user_addgroup_notexist: "Kulanıcı %1% grup %2%'ye eklenemedi. Grup yok"
 user_setgroup_notexist: "Kulanıcı %1% grup %2%'ye taşınamadı. Grup yok"
 log_unknown_group_detected: 'Bilinmeyen alt-gruo %1% tespit edildi. Grup yapılandırmalarınızı kontrol edin'
+log_unknown_group_detected_user: 'User %2% is member of unknown group: %1%. Please check user configuration'
+log_unknown_group_detected_group: 'Group %2% is contains unknown subgroup %1%. Pleas check group configuration'
 db_dblib_notfound: MySQL/SQLite desteği için DbLib gerekli
 log_unknown_dataprovider: 'Bilinmeyen veri sağlayıcı: %1%. YAML sağlayıcı kullanılacak'
 log_dataprovider: 'Veri sağlayıcısı: %1%'
-perm_export_ok: 'Permissions exported to file: %1%'
-perm_export_failed: Permissions export failed
-perm_import_ok: 'Permissions imported from file: %1%'
-perm_import_failed: Permissions import failed
-log_dataprovider_fail: Failed to enable Data Provider. Please check your configuration
+perm_export_ok: 'İzinler dosyaya dışarı aktarıldı: %1%'
+perm_export_failed: İzinleri dışa aktarma başarısız oldu
+perm_import_ok: 'İzinler dosyadan içe alındı: %1%'
+perm_import_failed: İzinleri içe alma başarısız oldu
+log_dataprovider_fail: Veri Sağlayıcısı etkinleştirilemedi. Lütfen yapılandırmanızı kontrol edin

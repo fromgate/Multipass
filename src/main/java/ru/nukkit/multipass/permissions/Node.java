@@ -164,7 +164,23 @@ public class Node {
         this.groups.forEach(g -> {
             Group group = Groups.getGroup(g);
             if (group != null) groups.add(group);
-            else Message.LOG_UNKNOWN_GROUP_DETECTED.logOnce(g);
+            else {
+                Message m = Message.LOG_UNKNOWN_GROUP_DETECTED;
+                String logId = g;
+                String id = "";
+                if (this instanceof User) {
+                    User user = (User) this;
+                    m = Message.LOG_UNKNOWN_GROUP_DETECTED_USER;
+                    logId = g+user.getName();
+                    id = user.getName();
+                } else if (this instanceof Group) {
+                    Group subgroup = (Group) this;
+                    id = subgroup.getName();
+                    m = Message.LOG_UNKNOWN_GROUP_DETECTED_GROUP;
+                    logId = g+subgroup.getName();
+                }
+                m.logOnce(logId,id);
+            }
         });
         return groups;
     }

@@ -83,7 +83,9 @@ public class YamlSource extends DataProvider {
         File file = getUserFile(user.getName());
         Message.debugMessage("Saving user file: ", file.toString());
         if (user.isEmpty()) {
-            if (file.exists()) file.delete();
+            if (file.exists()) {
+                file.delete();
+            }
             Message.debugMessage(user.getName(), "data is empty. File removed");
         } else {
             Config cfg = new Config(file, Config.YAML);
