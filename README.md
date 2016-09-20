@@ -71,6 +71,16 @@ Examples:
 
 Shows full user info (Groups, permissions, prefixes, suffixes)
 
+#### Remove user
+>**/user remove \<user\>**<br>
+>**/user rmv \<user\>**<br>
+>**/user delete \<user\>**<br>
+>**/user del \<user\>**
+
+Delete user information. If player is online user record will be recreated
+and user will add to default group (if it defined in config).
+
+
 #### Set user permission
 >**/user \<user\> setperm \[\<world\>\] \<permission.node\>**<br>
 >**/user \<user\> sp \[\<world\>\] \<permission.node\>**<br>

@@ -413,7 +413,9 @@ public class DatabaseSource extends DataProvider {
         if (!enabled) return false;
         EntityTable userRecord;
         try (Connection con = sql2o.open()) {
-            userRecord = con.createQuery(selectUser).executeAndFetchFirst(EntityTable.class);
+            userRecord = con.createQuery(selectUser)
+                    .addParameter("name", userName)
+                    .executeAndFetchFirst(EntityTable.class);
         }
         return userRecord != null;
     }
