@@ -190,7 +190,7 @@ public class Multipass {
      * @param player Player object
      * @return true - player is in default group
      */
-    public boolean isInDefaultGroup(Player player) {
+    public static boolean isInDefaultGroup(Player player) {
         return player == null ? false : isInDefaultGroup(player.getName());
     }
 
@@ -200,7 +200,7 @@ public class Multipass {
      * @param player Player name
      * @return true - player is in default group
      */
-    public boolean isInDefaultGroup(String player) {
+    public static boolean isInDefaultGroup(String player) {
         if (player == null) return false;
         if (!getUser(player).isDone()) return false;
         try {
