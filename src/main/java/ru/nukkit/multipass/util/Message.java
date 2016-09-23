@@ -55,7 +55,7 @@ public enum Message {
     CMD_PERM_UPDATE("/perm refresh - recalculate permissions for all players"),
     CMD_PERM_RELOAD("/perm reload - reload Multipass configuration"),
     CMD_USER("/user <player> - show info about player permissions"),
-    CMD_USER_REMOVE("/user remove <group> - remove user"),
+    CMD_USER_REMOVE("/user remove <user> - remove user"),
     CMD_USER_SETPERM("/user <player> setperm [world] <permission> - add permission to player"),
     CMD_USER_REMOVEPERM("/user <player> rmvperm [world] <permission> - remove player permission"),
     CMD_USER_SETGROUP("/user <player> setgroup [world] <group> - move player in group"),
