@@ -42,7 +42,16 @@ public class Users {
     }
 
     public static CompletableFuture<User> loadUser(String playerName) {
-        CompletableFuture<User> result = new CompletableFuture<>();
+        CompletableFuture<User> result = Providers.loadUser(playerName).thenApply((loadedUser) -> {
+            User user = loadedUser == null ? new User(playerName) : loadedUser;
+            user.recalculatePermissions();
+            users.put(playerName, user);
+
+        });
+        /*
+
+
+
         Providers.loadUser(playerName).whenComplete((loadedUser, e) -> {
             if (e != null) {
                 e.printStackTrace();
@@ -52,7 +61,7 @@ public class Users {
                 users.put(playerName, user);
                 result.complete(user);
             }
-        });
+        }); */
         return result;
     }
 
