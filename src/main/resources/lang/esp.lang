@@ -1,0 +1,128 @@
+---
+lng_load_fail: Error al cargar idiomas del archivo. Se ha utilizado el mensaje predeterminado
+lng_save_fail: Error al guardar el archivo de idioma
+lng_print_fail: Error al imprimir mensaje %1%. El objeto remitente es nulo.
+lng_config: '[MESSAGES] Mensajes: %1% Idioma: %2% Guardar archivo de traducción: %1% Modo de depuración: %3%'
+word_unknown: Desconocido
+wrong_permission: No tienes suficientes permisos para ejecutar este comando
+permission_fail: No tienes suficientes permisos para ejecutar este comando
+player_commad_only: '¡Solo puedes utilizar este comando dentro del juego!'
+cmd_registered: 'Comando registrado: %1%'
+cmd_failed: Error al ejecutar comando. ¡Escribe %1% para ver la ayuda!
+hlp_title: '%1% | Ayuda'
+cmd_perm_desc: Comando principal de Multipass, escribe "/perm help" para obtener más información
+cmd_perm_help: /perm help [page] - Muestra la ayuda
+cmd_perm_update: /perm refresh - Recarga el archivo de permisos de los jugadores
+cmd_perm_reload: /perm reload - Recarga la configuración de Multipass
+cmd_user: /user <player> - Muestra información acerca de los permisos del jugador
+cmd_user_remove: /user remove <user> - Elimina a un usuario
+cmd_user_setperm: /user <player> setperm [world] <permission> - Añade el permiso al jugador
+cmd_user_removeperm: /user <player> rmvperm [world] <permission> - Quitas el permiso al jugador
+cmd_user_setgroup: /user <player> setgroup [world] <group> - Mueves al jugador a un grupo de permisos
+cmd_user_addgroup: /user <player> addgroup [world] <group> - Añades a un jugador al grupo de permisos
+cmd_user_removegroup: /user <player> removegroup [world] <group> - Eliminas a un jugador del grupo de permisos
+cmd_group_create: /group create <group> - Crear nuevo grupo de permisos
+cmd_group_addgroup: /group <group1> addgroup [world] <group2> - Añadir "grupo 2" al "grupo 1"
+cmd_group_removegroup: /group <group1> remove [world] <group2> - Eliminar "grupo 1" de "grupo 2"
+cmd_group_setperm: /group <group> setperm [world] <permission> - Añade el permiso al grupo
+cmd_group_setprefix: /group <group> setprefix <prefix> - Establece un prefijo para el grupo
+cmd_group_setsuffix: /group <group> setsuffix <suffix> - Establece un sufijo para el grupo
+cmd_group_removeperm: /group <group> removeperm <permission> - Elimina un permiso del grupo
+cmd_group_remove: /group remove <group> - Elimina un grupo
+cmd_perm_check: /perm check <player> <permission> - Comprueba la línea del permiso del jugador
+cmd_user_setprefix: /user <player> setprefix <user prefix> - Estable un prefijo a un jugador
+cmd_user_setsuffix: /user <player> setsuffix <user suffix> - Establece un sufijo a un jugador
+cmd_perm_export: /perm export [fileName] - Exporta todo los permisos a un archivo
+cmd_perm_import: /perm import [overwrite] [filename] - Importa los permisos de un archivo
+perm_user_notregister: '¡El usuario %1% no está registrado en el servidor!'
+perm_user_info: 'Información de permisos de %1%'
+perm_user_groups: 'Grupos: %1%'
+perm_user_perms: 'Permisos:'
+perm_group_notfound: '¡El grupo %1% es desconocido!'
+perm_group_groups: 'Grupos: %1%'
+perm_group_perms: 'Permisos:'
+perm_group_info: Información del grupo %1%
+user_setperm_ok: 'Permiso del usuario %1% configurado: %2%'
+user_setpermw_ok: 'Permiso del usuario %1% configurado: %2% (mundo: %3%)'
+user_setperm_ok_inform: 'Tus permisos se han establecido: %1%'
+user_setpermw_ok_inform: 'Tus permisos se han establecido: %1% (mundo: %3%)'
+user_removeperm_notfound: Usuario %1% no encontrado. No se puede quitar el permiso
+user_removeperm_notset: Error al quitar el permiso %1% del usuario %2%. No se ha configurado
+user_removepermw_notset: 'Error al quitar el permiso %1% (mundo: %3) del usuario %2%. No se ha configurado'
+user_removeperm_ok: El permiso %1% se ha eliminado del usuario %2%
+user_removepermw_ok: 'El permiso %1% (mundo: %3%) se ha eliminado del usuario %2%'
+user_removeperm_ok_inform: El permiso %1% se te ha eliminado
+user_removepermw_ok_inform: El permiso %1% se ha eliminado del usuario %2%
+user_setgroup_ok: El jugador %1% se ha movido al grupo %2%
+user_setgroupw_ok: 'El jugador %1% se ha movido al grupo %2% (mundo: %3%)'
+user_setgroup_ok_inform: Has sido movido al grupo %1%
+user_setgroupw_ok_inform: 'Has sido movido al grupo %1% (mundo: %2%)'
+user_addgroup_ok: El jugador %1% se ha añadido al grupo %2%
+user_addgroupw_ok: 'El jugador %1% se ha añadido al grupo %2% (mundo: %3%)'
+user_addgroup_ok_inform: Has sido añadido al grupo %1%
+user_addgroupw_ok_inform: 'Te has añadido al grupo %1% (mundo: %2%)'
+user_removegroup_notfound: No se ha encontrado el usuario %1%. No se puede eliminar del grupo
+user_removegroup_notset: Error al eliminar al jugador %2% del grupo %1%. No ha sido configurado
+user_removegroupw_notset: Error al eliminar al jugador %2% del grupo %1% (mundo %3%). No ha sido configurado
+user_removegroup_ok: El jugador %2% ha sido eliminado del grupo %1%
+user_removegroupw_ok: 'El jugador %2% ha sido eliminado del grupo %1% (mundo: %3%)'
+user_removegroup_ok_inform: Has sido eliminado del grupo %1%
+user_removegroupw_ok_inform: 'Has sido eliminado del grupo %1% (mundo: %2%)'
+user_notexist: Error al eliminar usuario. El usuario %1% no existe
+user_remove_ok: Se ha eliminado el usuario %1%
+group_exist: Error al crear un nuevo grupo. El grupo %1% ya existe
+group_notexist: Error al eliminar grupo. El grupo %1% no existe
+group_create_ok: Grupo %1% creado
+group_remove_ok: Grupo %1% eliminado
+group_addgroup_notexist: El grupo %1% no existe. Comprueba el nombre del grupo o crea uno nuevo
+group_addgroup_ok: El grupo %2% ha sido añadido al grupo %1%
+group_addgroupw_ok: 'El grupo %2% ha sido añadido al grupo %1% (mundo: %3%)'
+group_removegroup_notexist: El grupo %1% no existe. Comprueba el nombre del grupo o crea uno nuevo
+group_removegroup_ok: El grupo %2% ha sido eliminado del grupo %1%
+group_removegroupw_ok: 'El grupo %2% ha sido eliminado del grupo %1% (mundo: %3%)'
+group_setgroup_notexist: El grupo %1% no existe. Comprueba el nombre del grupo o crea uno nuevo
+group_setgroup_ok: El grupo %2% ha sido añadido al grupo %1%. Los demás grupos se han eliminado
+group_setgroupw_ok: 'El grupo %2% ha sido añadido al grupo %1% (mundo: %3%). Los demás grupos se han eliminado'
+group_setperm_notexist: Error al establecer los permisos. El grupo %1% no existe
+group_setperm_ok: 'Se ha configurado los permisos del grupo %1%: %2%'
+group_setpermw_ok: 'Se ha configurado los permisos del grupo %1%: %2% (mundo: %3%)'
+group_removeperm_notexist: Error al eliminar los permisos. El grupo %1% no existe
+group_removeperm_permunset: Error al eliminar los permisos. El permiso %2% no está configurado para el grupo %1%
+group_removeperm_ok: El permiso %2% se ha eliminado del grupo %1%
+group_removepermw_ok: 'El permiso %2% se ha eliminado del grupo %1% (mundo: %3%)'
+group_setprefix_notexist: Error al establecer el prefijo. El grupo %1% no existe
+group_setsuffix_notexist: Error al establecer el sufijo. El grupo %1% no existe
+group_setprefix_ok: El prefijo del grupo %1% ha sido cambiado a %2%
+group_setsuffix_ok: El sufijo del grupo %1% ha sido cambiado a %2%
+group_list: 'Grupos disponibles: %1%'
+group_listnotfound: '¡Error al buscar un grupo!'
+group_infounknown: Error al mostrar la información del grupo. El grupo %1% no existe
+group_info_groups: 'Grupos: %1%'
+group_info_title: Información del grupo %1%
+group_info_permtitle: 'Permisos:'
+perm_check_nullplayer: No se ha podido comprobar el permiso. El jugador %1% está desconectado
+perm_check_has: El jugador %1% tiene el permiso %2%
+perm_check_hasnt: El jugador %1% no tiene el permiso %2%
+perm_reloaded: Configuración recargada!
+perm_updated: Permisos del jugador actualizados
+removed_group_detected: El usuario %1% está intentando utilizar un grupo desconocido %2%. Comprueba los permisos de usuarios/grupos
+perm_user_prefix: 'Prefijos: %1%'
+perm_user_suffix: 'Sufijos: %1%'
+provider_failed: 'Error al iniciar los datos del proveedor: %1%'
+user_prefix_ok: El prefijo del usuario %1% ha sido establecido a %2%
+user_prefix_ok_inform: Tu prefijo ha sido cambiado a %1%
+user_suffix_ok: El sufijo del usuario %1% ha sido establecido a %2%
+user_suffix_ok_inform: Tu sufijo ha sido cambiado a %1%
+user_addgroup_notexist: Error al añadir el usuario %1% al grupo %2%. El grupo no existe
+user_setgroup_notexist: Error al mover el usuario %1% al grupo %2%. El grupo no existe
+log_unknown_group_detected: 'Sub-grupo desconocido detectado: %1%. Comprueba tu configuración de usuarios y grupos'
+log_unknown_group_detected_user: 'El usuario %2% es miembro de un grupo desconocido: %1%. Por favor comprueba la configuración de usuario'
+log_unknown_group_detected_group: El grupo %2% contiene un sub-grupo desconocido %1%. Por favor comprueba la configuración de grupos
+db_dblib_notfound: Se requiere el plugin/librería "DbLib" para el soporte de MySQL y SQLite
+log_unknown_dataprovider: 'Proveedor de datos desconocido: %1%. Utiliza el proveedor YAML'
+log_dataprovider: 'Proveedor de datos: %1%'
+perm_export_ok: 'Permisos exportados al archivo: %1%'
+perm_export_failed: Error al exportar permisos
+perm_import_ok: 'Permisos importados desde el archivo: %1%'
+perm_import_failed: Error al importar permisos
+log_dataprovider_fail: Error al activar el proveedor de datos. Por favor comprueba tu configuración

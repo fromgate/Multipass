@@ -1,123 +1,123 @@
 ---
 lng_load_fail: Dosyadan diller yüklenemedi. Varsayılan mesaj kullanıldı
 lng_save_fail: Dil dosyası kaydedilemedi
-lng_print_fail: 'Mesaj %1% yazdırılamadı. Gönerici nesne boş.'
+lng_print_fail: Mesaj %1% yazdırılamadı. Gönerici nesne boş.
 lng_config: '[MESAJLAR] Mesajlar: %1% Dil: %2% Çeviri dosyasını kaydet: %1% Hata ayıklama modu: %3%'
 word_unknown: Bilinmeyen
 wrong_permission: Bu komutu yürütmek için yeterli izne sahip değilsin
 permission_fail: Bu komutu yürütmek için yeterli izne sahip değilsin
 player_commad_only: Bu komutu sadece oyun sırasında kullanabilirsin!
 cmd_registered: 'Komut kaydedildi: %1%'
-cmd_failed: 'Komut yürütülemedi. Yardım için %1% yazınız!'
+cmd_failed: Komut yürütülemedi. Yardım için %1% yazınız!
 hlp_title: '%1% | Yardım'
 cmd_perm_desc: Ana Multipass komutu, daha fazla bilgi için /perm help yazın
-cmd_perm_help: '/perm help [sayfa] - yardımı göster'
-cmd_perm_update: '/perm refresh - tüm oyuncular için izinleri yeniden denetle'
-cmd_perm_reload: '/perm reload - Multipass yapılanırmasını yeniden yükle'
-cmd_user: '/user <oyuncu> - oyuncu izinleri hakkında bilgileri göster'
-cmd_user_remove: '/user remove <group> - remove user'
-cmd_user_setperm: '/user <oyuncu> setperm [dünya] <izin> - oyuncuya izin ekle'
-cmd_user_removeperm: '/user <oyuncu> rmvperm [dünya] <izin> - oyuncu izini kaldır'
-cmd_user_setgroup: '/user <oyuncu> setgroup [dünya] <grup> - oyuncuyu gruba taşı'
-cmd_user_addgroup: '/user <oyuncu> addgroup [dünya] <grup> - oyuncuyu gruba ekle'
-cmd_user_removegroup: '/user <oyuncu> removegroup [dünya] <grup> - oyuncuyu gruptan kaldır'
-cmd_group_create: '/group create <grup> - yeni grup oluştur'
-cmd_group_addgroup: "/grup <grup1> addgroup [dünya] <grup2> - grup2'yi grup1'e ekle"
-cmd_group_removegroup: "/grup <grup1> remove [dünya] <grup2> - grup2'yi grup1'den kaldır"
-cmd_group_setperm: '/group <grup> setperm [dünya] <izin> - grupa izin ekle'
-cmd_group_setprefix: '/group <grup> setprefix <önek> - grup önekini ayarla'
-cmd_group_setsuffix: '/group <grup> setsuffix <sonek> - grup sonekini ayarla'
-cmd_group_removeperm: '/group <grup> removeperm <izin> - gruptan izni kaldır'
-cmd_group_remove: '/group remove <grup> - grubu kaldır'
-cmd_perm_check: '/perm check <oyuncu> <izin> - oyuncu iznini kontrol et'
-cmd_user_setprefix: '/user <oyuncu> setprefix <kullanıcı öneki> - önek ayarla'
-cmd_user_setsuffix: '/user <oyuncu> setsuffix <kullanıcı soneki> - sonek ayarla'
-cmd_perm_export: '/perm export [dosyaAdı] - tüm izinleri dosyaya dışa aktar'
-cmd_perm_import: '/perm import [üzerineYaz] [dosyaAdı] - izinleri dosyadan içeri al'
-perm_user_notregister: 'Kullanıcı %1% bu sunucuda kayıtlı değil!'
-perm_user_info: "%1%'in izin bilgileri"
+cmd_perm_help: /perm help [sayfa] - yardımı göster
+cmd_perm_update: /perm refresh - tüm oyuncular için izinleri yeniden denetle
+cmd_perm_reload: /perm reload - Multipass yapılanırmasını yeniden yükle
+cmd_user: /user <oyuncu> - oyuncu izinleri hakkında bilgileri göster
+cmd_user_remove: /user remove <grup> - kullanıcıyı kaldır
+cmd_user_setperm: /user <oyuncu> setperm [dünya] <izin> - oyuncuya izin ekle
+cmd_user_removeperm: /user <oyuncu> rmvperm [dünya] <izin> - oyuncu izini kaldır
+cmd_user_setgroup: /user <oyuncu> setgroup [dünya] <grup> - oyuncuyu gruba taşı
+cmd_user_addgroup: /user <oyuncu> addgroup [dünya] <grup> - oyuncuyu gruba ekle
+cmd_user_removegroup: /user <oyuncu> removegroup [dünya] <grup> - oyuncuyu gruptan kaldır
+cmd_group_create: /group create <grup> - yeni grup oluştur
+cmd_group_addgroup: /grup <grup1> addgroup [dünya] <grup2> - grup2'yi grup1'e ekle
+cmd_group_removegroup: /grup <grup1> remove [dünya] <grup2> - grup2'yi grup1'den kaldır
+cmd_group_setperm: /group <grup> setperm [dünya] <izin> - grupa izin ekle
+cmd_group_setprefix: /group <grup> setprefix <önek> - grup önekini ayarla
+cmd_group_setsuffix: /group <grup> setsuffix <sonek> - grup sonekini ayarla
+cmd_group_removeperm: /group <grup> removeperm <izin> - gruptan izni kaldır
+cmd_group_remove: /group remove <grup> - grubu kaldır
+cmd_perm_check: /perm check <oyuncu> <izin> - oyuncu iznini kontrol et
+cmd_user_setprefix: /user <oyuncu> setprefix <kullanıcı öneki> - önek ayarla
+cmd_user_setsuffix: /user <oyuncu> setsuffix <kullanıcı soneki> - sonek ayarla
+cmd_perm_export: /perm export [dosyaAdı] - tüm izinleri dosyaya dışa aktar
+cmd_perm_import: /perm import [üzerineYaz] [dosyaAdı] - izinleri dosyadan içeri al
+perm_user_notregister: Kullanıcı %1% bu sunucuda kayıtlı değil!
+perm_user_info: '%1%''in izin bilgileri'
 perm_user_groups: 'Gruplar: %1%'
 perm_user_perms: 'İzinler:'
-perm_group_notfound: 'Grup %1% bilinmiyor!'
+perm_group_notfound: Grup %1% bilinmiyor!
 perm_group_groups: 'Gruplar: %1%'
 perm_group_perms: 'İzinler:'
-perm_group_info: 'Grup %1% bilgileri'
-user_setperm_ok: "Kullanıcı %1%'in izni yapılandırıldı: %2%"
-user_setpermw_ok: "Kullanıcı %1%'in izni yapılandırıldı: %2% (dünya %3%)"
+perm_group_info: Grup %1% bilgileri
+user_setperm_ok: 'Kullanıcı %1%''in izni yapılandırıldı: %2%'
+user_setpermw_ok: 'Kullanıcı %1%''in izni yapılandırıldı: %2% (dünya %3%)'
 user_setperm_ok_inform: 'İzinleriniz ayarlandı: %1%'
 user_setpermw_ok_inform: 'İzinleriniz ayarlandı: %1% (dünya %3%)'
-user_removeperm_notfound: 'Kullanıcı %1% bulunamadı. İzin kaldırılamıyor'
-user_removeperm_notset: "İzin %1% kullanıcı %2%'den kaldırılamadı. Yapılandırma yapılmamış"
-user_removepermw_notset: "İzin %1% (dünya %3%) kullanıcı %2%'den kaldırılamadı. Yapılandırma yapılmamış"
-user_removeperm_ok: "İzin %1% kullanıcı %2%'den kaldırıldı"
-user_removepermw_ok: "İzin %1% (dünya %3%) kullanıcı %2%'den kaldırıldı"
-user_removeperm_ok_inform: 'İzin %1% sizden kaldırıldı'
-user_removepermw_ok_inform: "İzin %1% kullanıcı %2%'den kaldırıldı"
-user_setgroup_ok: "Oyuncu %1% grup %2%'ye taşındı"
-user_setgroupw_ok: "Oyuncu %1% grup %2%'ye taşındı (dünya %3%)"
-user_setgroup_ok_inform: "Grup %1%'e taşındınız"
-user_setgroupw_ok_inform: "Grup %1%'e taşındınız (dünya %2%)"
-user_addgroup_ok: "Oyuncu %1% grup %2%'ye eklendi"
-user_addgroupw_ok: "Oyuncu %1% grup %2%'ye eklendi (dünya %3%)"
-user_addgroup_ok_inform: "Grup %1%'e eklendiniz"
-user_addgroupw_ok_inform: "Grup %1%'e eklendiniz (dünya %2%)"
-user_removegroup_notfound: 'Kullanıcı %1% bulunamadı. Gruptan kaldırılamıyor'
-user_removegroup_notset: "Oyuncu %2% grup %1%'den kaldırılamadı. Yapılandırma yapılmamış"
-user_removegroupw_notset: "Oyuncu %2% grup %1%'den kaldırılamadı (dünya %3%). Yapılandırma yapılmamış"
-user_removegroup_ok: "Oyuncu %2% grup %1%'den kaldırıldı"
-user_removegroupw_ok: "Oyuncu %2% grup %1%'den kaldırıldı (dünya %3%)"
-user_removegroup_ok_inform: "Grup %1%'den kaldırıldınız"
-user_removegroupw_ok_inform: "Grup %1%'den kaldırıldınız (dünya %2%)"
-user_notexist: 'Failed to remove user. User %1% is not exist'
-user_remove_ok: 'User %1% removed'
-group_exist: 'Yeni grup oluşturulamadı. Grup %1% zaten var'
-group_notexist: 'Grup kaldırılamadı. Grup %1% yok'
-group_create_ok: 'Grup %1% oluşturuldu'
-group_remove_ok: 'Grup %1% kaldırıldı'
-group_addgroup_notexist: 'Grup %1% yok. Lütfen grup adını kontrol edin ya da yeni grup oluşturun'
-group_addgroup_ok: "Grup %2%, grup %1%'e eklendi"
-group_addgroupw_ok: "Grup %2%, grup %1%'e eklendi (dünya %3%)"
-group_removegroup_notexist: 'Grup %1% yok. Lütfen grup adını kontrol edin ya da yeni grup oluşturun'
-group_removegroup_ok: "Grup %2%, grup %1%'den kaldırıldı"
-group_removegroupw_ok: "Grup %2%, grup %1%'den kaldırıldı (dünya %3%)"
-group_setgroup_notexist: 'Grup %1% yok. Lütfen grup adını kontrol edin ya da yeni grup oluşturun'
-group_setgroup_ok: "Grup %2% grup %1%'e eklendi. Diğer tüm gruplar kaldırıldı"
-group_setgroupw_ok: "Grup %2% grup %1%'e eklendi (dünya %3%). Diğer tüm gruplar kaldırıldı"
-group_setperm_notexist: 'İzin ayarlanamadı. Grup %1% yok'
-group_setperm_ok: "Grup %1%'in izni yapılandırıldı: %2%"
-group_setpermw_ok: "Grup %1%'in izni yapılandırıldı: %2% (dünya %3%)"
-group_removeperm_notexist: 'İzin ayarlanamadı. Grup %1% yok'
-group_removeperm_permunset: 'İzin kaldırılamadı. İzin %2% grup %1% için yapılandırılmamış'
-group_removeperm_ok: "İzin %2% grup %1%'den kaldırıldı"
-group_removepermw_ok: "İzin %2% grup %1%'den kaldırıldı (dünya %3%)"
-group_setprefix_notexist: 'Önek ayarlanamadı. Grup %1% yok'
-group_setsuffix_notexist: 'Sonek ayarlanamadı. Grup %1% yok'
-group_setprefix_ok: "Grup %1%'in öneki %2% olarak değiştirildi"
-group_setsuffix_ok: "Grup %1%'in soneki %2% olarak değiştirildi"
+user_removeperm_notfound: Kullanıcı %1% bulunamadı. İzin kaldırılamıyor
+user_removeperm_notset: İzin %1% kullanıcı %2%'den kaldırılamadı. Yapılandırma yapılmamış
+user_removepermw_notset: İzin %1% (dünya %3%) kullanıcı %2%'den kaldırılamadı. Yapılandırma yapılmamış
+user_removeperm_ok: İzin %1% kullanıcı %2%'den kaldırıldı
+user_removepermw_ok: İzin %1% (dünya %3%) kullanıcı %2%'den kaldırıldı
+user_removeperm_ok_inform: İzin %1% sizden kaldırıldı
+user_removepermw_ok_inform: İzin %1% kullanıcı %2%'den kaldırıldı
+user_setgroup_ok: Oyuncu %1% grup %2%'ye taşındı
+user_setgroupw_ok: Oyuncu %1% grup %2%'ye taşındı (dünya %3%)
+user_setgroup_ok_inform: Grup %1%'e taşındınız
+user_setgroupw_ok_inform: Grup %1%'e taşındınız (dünya %2%)
+user_addgroup_ok: Oyuncu %1% grup %2%'ye eklendi
+user_addgroupw_ok: Oyuncu %1% grup %2%'ye eklendi (dünya %3%)
+user_addgroup_ok_inform: Grup %1%'e eklendiniz
+user_addgroupw_ok_inform: Grup %1%'e eklendiniz (dünya %2%)
+user_removegroup_notfound: Kullanıcı %1% bulunamadı. Gruptan kaldırılamıyor
+user_removegroup_notset: Oyuncu %2% grup %1%'den kaldırılamadı. Yapılandırma yapılmamış
+user_removegroupw_notset: Oyuncu %2% grup %1%'den kaldırılamadı (dünya %3%). Yapılandırma yapılmamış
+user_removegroup_ok: Oyuncu %2% grup %1%'den kaldırıldı
+user_removegroupw_ok: Oyuncu %2% grup %1%'den kaldırıldı (dünya %3%)
+user_removegroup_ok_inform: Grup %1%'den kaldırıldınız
+user_removegroupw_ok_inform: Grup %1%'den kaldırıldınız (dünya %2%)
+user_notexist: Kullanıcı kaldırılamadı. Kullanıcı %1% yok
+user_remove_ok: Kullanıcı %1% kaldırıldı
+group_exist: Yeni grup oluşturulamadı. Grup %1% zaten var
+group_notexist: Grup kaldırılamadı. Grup %1% yok
+group_create_ok: Grup %1% oluşturuldu
+group_remove_ok: Grup %1% kaldırıldı
+group_addgroup_notexist: Grup %1% yok. Lütfen grup adını kontrol edin ya da yeni grup oluşturun
+group_addgroup_ok: Grup %2%, grup %1%'e eklendi
+group_addgroupw_ok: Grup %2%, grup %1%'e eklendi (dünya %3%)
+group_removegroup_notexist: Grup %1% yok. Lütfen grup adını kontrol edin ya da yeni grup oluşturun
+group_removegroup_ok: Grup %2%, grup %1%'den kaldırıldı
+group_removegroupw_ok: Grup %2%, grup %1%'den kaldırıldı (dünya %3%)
+group_setgroup_notexist: Grup %1% yok. Lütfen grup adını kontrol edin ya da yeni grup oluşturun
+group_setgroup_ok: Grup %2% grup %1%'e eklendi. Diğer tüm gruplar kaldırıldı
+group_setgroupw_ok: Grup %2% grup %1%'e eklendi (dünya %3%). Diğer tüm gruplar kaldırıldı
+group_setperm_notexist: İzin ayarlanamadı. Grup %1% yok
+group_setperm_ok: 'Grup %1%''in izni yapılandırıldı: %2%'
+group_setpermw_ok: 'Grup %1%''in izni yapılandırıldı: %2% (dünya %3%)'
+group_removeperm_notexist: İzin ayarlanamadı. Grup %1% yok
+group_removeperm_permunset: İzin kaldırılamadı. İzin %2% grup %1% için yapılandırılmamış
+group_removeperm_ok: İzin %2% grup %1%'den kaldırıldı
+group_removepermw_ok: İzin %2% grup %1%'den kaldırıldı (dünya %3%)
+group_setprefix_notexist: Önek ayarlanamadı. Grup %1% yok
+group_setsuffix_notexist: Sonek ayarlanamadı. Grup %1% yok
+group_setprefix_ok: Grup %1%'in öneki %2% olarak değiştirildi
+group_setsuffix_ok: Grup %1%'in soneki %2% olarak değiştirildi
 group_list: 'Var olan gruplar: %1%'
 group_listnotfound: Hiçbir grup bulunamadı!
-group_infounknown: 'Grup bilgileri gösterilemedi. Grup %1% bulunamadı'
+group_infounknown: Grup bilgileri gösterilemedi. Grup %1% bulunamadı
 group_info_groups: 'Gruplar: %1%'
-group_info_title: 'Grup %1% bilgileri'
+group_info_title: Grup %1% bilgileri
 group_info_permtitle: 'İzinler:'
-perm_check_nullplayer: 'İzin kontrol edilemedi. Oyuncu %1% çevrimdışı'
-perm_check_has: "Oyuncu %1%, izin %2%'ye sahip"
-perm_check_hasnt: "Oyuncu %1%, izin %2%'ye sahip değil"
+perm_check_nullplayer: İzin kontrol edilemedi. Oyuncu %1% çevrimdışı
+perm_check_has: Oyuncu %1%, izin %2%'ye sahip
+perm_check_hasnt: Oyuncu %1%, izin %2%'ye sahip değil
 perm_reloaded: Yapılandırma yeniden yüklendi!
 perm_updated: Oyuncu izinleri güncellendi
-removed_group_detected: "Kullanıcı %1%, bilinmeyen grup %2%'yi kullanmaya çalışıyor. Lütfen kullanıcı izinlerini/gruplarını kontrol edin"
+removed_group_detected: Kullanıcı %1%, bilinmeyen grup %2%'yi kullanmaya çalışıyor. Lütfen kullanıcı izinlerini/gruplarını kontrol edin
 perm_user_prefix: 'Önekler: %1%'
 perm_user_suffix: 'Sonekler: %1%'
 provider_failed: 'Veri sağlayıcı başlatılamadı: %1%'
-user_prefix_ok: "Kullanıcı %1%'in öneki %2% olarak ayarlandı"
-user_prefix_ok_inform: 'Önekiniz %1% olarak değiştirildi'
-user_suffix_ok: "Kullanıcı %1%'in soneki %2% olarak ayarlandı"
-user_suffix_ok_inform: 'Sonekiniz %1% olarak değiştirildi'
-user_addgroup_notexist: "Kulanıcı %1% grup %2%'ye eklenemedi. Grup yok"
-user_setgroup_notexist: "Kulanıcı %1% grup %2%'ye taşınamadı. Grup yok"
-log_unknown_group_detected: 'Bilinmeyen alt-gruo %1% tespit edildi. Grup yapılandırmalarınızı kontrol edin'
-log_unknown_group_detected_user: 'User %2% is member of unknown group: %1%. Please check user configuration'
-log_unknown_group_detected_group: 'Group %2% is contains unknown subgroup %1%. Pleas check group configuration'
+user_prefix_ok: Kullanıcı %1%'in öneki %2% olarak ayarlandı
+user_prefix_ok_inform: Önekiniz %1% olarak değiştirildi
+user_suffix_ok: Kullanıcı %1%'in soneki %2% olarak ayarlandı
+user_suffix_ok_inform: Sonekiniz %1% olarak değiştirildi
+user_addgroup_notexist: Kulanıcı %1% grup %2%'ye eklenemedi. Grup yok
+user_setgroup_notexist: Kulanıcı %1% grup %2%'ye taşınamadı. Grup yok
+log_unknown_group_detected: Bilinmeyen alt-grup %1% tespit edildi. Kullanıcı/grup yapılandırmalarınızı kontrol edin
+log_unknown_group_detected_user: 'Kullanıcı %2% bilinmeyen bir grubun üyesi: %1%. Lütfen kullanıcı yapılandırmalarınızı kontrol edin'
+log_unknown_group_detected_group: Grup %2% bilinmeyen alt grub %1%'i içeriyor. Lütfen grup yapılandırmalarını kontrol edin
 db_dblib_notfound: MySQL/SQLite desteği için DbLib gerekli
 log_unknown_dataprovider: 'Bilinmeyen veri sağlayıcı: %1%. YAML sağlayıcı kullanılacak'
 log_dataprovider: 'Veri sağlayıcısı: %1%'

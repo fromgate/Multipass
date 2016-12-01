@@ -1,111 +1,111 @@
 ---
 lng_load_fail: Не удалось загрузить файл перевода. Будут использованы сообщения по умолчанию
 lng_save_fail: Не удалось сохранить файл языка
-lng_print_fail: 'Не удалось отобразить сообщение %1%. Получатель не определён.'
+lng_print_fail: Не удалось отобразить сообщение %1%. Получатель не определён.
 lng_config: '[MESSAGES] Сообщения: %1% Язык: %2% Сохранять перевод: %1% Режим отладки: %3%'
 word_unknown: Неизвестное
 wrong_permission: Недостаточный уровень полномочий, для выполнения этой команды
 permission_fail: Недостаточный уровень полномочий, для выполнения этой команды
 player_commad_only: Эту команду можно запускать только из игры!
 cmd_registered: 'Команда зарегистрирована: %1%'
-cmd_failed: 'Не удалось выполнить команду. Напишите %1% для вывода справки!'
+cmd_failed: Не удалось выполнить команду. Напишите %1% для вывода справки!
 hlp_title: '%1% | Справка'
 cmd_perm_desc: Главная команда Multipass, наберите /perm help для получения справки по командам
-cmd_perm_help: '/perm help [страница] — отобразить справку'
+cmd_perm_help: /perm help [страница] — отобразить справку
 cmd_perm_update: /perm refresh — перерасчёт полномочий для всех игроков
 cmd_perm_reload: /perm reload — перезагрузка настроек
-cmd_user: '/user <игрок> — отобразить информацию об игроке'
-cmd_user_remove: '/user remove <group> — удалить пользователя'
-cmd_user_setperm: '/user <игрок> setperm [world] <полномочие> — выдать игроку полномочие'
-cmd_user_removeperm: '/user <игрок> rmvperm [world] <полномочие> — снять полномочие с игрока'
-cmd_user_setgroup: '/user <игрок> setgroup [world] <группа> — переместить игрока в заданную группу'
-cmd_user_addgroup: '/user <игрок> addgroup [world] <группа> — добавить игрока в заданную группу'
-cmd_user_removegroup: '/user <игрок> removegroup [world] <group> — исключить игрока из группы'
-cmd_group_create: '/group create <группа> — создать новую группу'
-cmd_group_addgroup: '/group <группа1> addgroup [мир] <группа2> — добавить группу 2 в группу 1'
-cmd_group_removegroup: '/group <группа1> remove [мир] <группа2> — удалить группу1 из группы2'
-cmd_group_setperm: '/group <группа> setperm [мир] <полномочие> — назначить полномочие группе'
-cmd_group_setprefix: '/group <группа> setprefix <префикс> — задать префикс для группы'
-cmd_group_setsuffix: '/group <группа> setsuffix <суффикс> — задать суффикс для группы'
-cmd_group_removeperm: '/group <группа> removeperm <полномочие> — удалить полномочие группы'
-cmd_group_remove: '/group remove <группа> — удалить группу'
-cmd_perm_check: '/perm check <игрок> <полномочие> — проверить наличие полномочия у игрока'
-cmd_user_setprefix: '/user <игрок> setprefix <префикс> — задать префикс игрока'
-cmd_user_setsuffix: '/user <игрок> setsuffix <суффикс> — задать суффикс игрока'
-cmd_perm_export: '/perm export [fileName] — экспортировать параметры полномочий в файл'
-cmd_perm_import: '/perm import [overwrite] [filename] — импортировать параметры полномочий из файла'
-perm_user_notregister: 'Игрок %1% не зарегистрирован на этом сервере!'
+cmd_user: /user <игрок> — отобразить информацию об игроке
+cmd_user_remove: /user remove <group> — удалить пользователя
+cmd_user_setperm: /user <игрок> setperm [world] <полномочие> — выдать игроку полномочие
+cmd_user_removeperm: /user <игрок> rmvperm [world] <полномочие> — снять полномочие с игрока
+cmd_user_setgroup: /user <игрок> setgroup [world] <группа> — переместить игрока в заданную группу
+cmd_user_addgroup: /user <игрок> addgroup [world] <группа> — добавить игрока в заданную группу
+cmd_user_removegroup: /user <игрок> removegroup [world] <group> — исключить игрока из группы
+cmd_group_create: /group create <группа> — создать новую группу
+cmd_group_addgroup: /group <группа1> addgroup [мир] <группа2> — добавить группу 2 в группу 1
+cmd_group_removegroup: /group <группа1> remove [мир] <группа2> — удалить группу1 из группы2
+cmd_group_setperm: /group <группа> setperm [мир] <полномочие> — назначить полномочие группе
+cmd_group_setprefix: /group <группа> setprefix <префикс> — задать префикс для группы
+cmd_group_setsuffix: /group <группа> setsuffix <суффикс> — задать суффикс для группы
+cmd_group_removeperm: /group <группа> removeperm <полномочие> — удалить полномочие группы
+cmd_group_remove: /group remove <группа> — удалить группу
+cmd_perm_check: /perm check <игрок> <полномочие> — проверить наличие полномочия у игрока
+cmd_user_setprefix: /user <игрок> setprefix <префикс> — задать префикс игрока
+cmd_user_setsuffix: /user <игрок> setsuffix <суффикс> — задать суффикс игрока
+cmd_perm_export: /perm export [fileName] — экспортировать параметры полномочий в файл
+cmd_perm_import: /perm import [overwrite] [filename] — импортировать параметры полномочий из файла
+perm_user_notregister: Игрок %1% не зарегистрирован на этом сервере!
 perm_user_info: 'Информация о полномочиях игрока %1%'
 perm_user_groups: 'Группы: %1%'
 perm_user_perms: 'Полномочия:'
-perm_group_notfound: 'Группа %1% неизвестна!'
+perm_group_notfound: Группа %1% неизвестна!
 perm_group_groups: 'Группы: %1%'
 perm_group_perms: 'Полномочия:'
-perm_group_info: 'Информация о группе %1%'
+perm_group_info: Информация о группе %1%
 user_setperm_ok: 'Произведена настройка полномочий игрока %1%: %2%'
 user_setpermw_ok: 'Произведена настройка полномочий игрока %1%: %2% (мир %3%)'
 user_setperm_ok_inform: 'Вам выдано полномочие: %1%'
 user_setpermw_ok_inform: 'Вам выдано полномочие: %1% (мир %3%)'
-user_removeperm_notfound: 'Не удлоась удалить полномочие. Игрок %1% не найден'
-user_removeperm_notset: 'Не удалось снять полномочие %1% с игрока %2%. Полномочие не было предоставлено'
-user_removepermw_notset: 'Не удалось снять полномочие %1% (мир %3%) с игрока %2%. Полномочие не было предоставлено'
-user_removeperm_ok: 'С игрока %2% снято полномочие %1%'
-user_removepermw_ok: 'С игрока %2% снято полномочие %1% (мир %3%)'
-user_removeperm_ok_inform: 'С вас снято полномочие %1%'
-user_removepermw_ok_inform: 'Полномочие %1% снято с польззователя %2%'
-user_setgroup_ok: 'Игрок %1% перемещён в группу %2%'
-user_setgroupw_ok: 'Игрок %1% перемещён в группу %2% (мир %3%)'
-user_setgroup_ok_inform: 'Вы перемещены в группу %1%'
-user_setgroupw_ok_inform: 'Вы перемещены в группу %1% (мир %2%)'
-user_addgroup_ok: 'Игрок %1% добавлен в группу %2%'
-user_addgroupw_ok: 'Игрок %1% добавлен в группу %2% (мир %3%)'
-user_addgroup_ok_inform: 'Вы добавлены в группу %1%'
-user_addgroupw_ok_inform: 'Вы добавлены в группу %1% (мир %2%)'
-user_removegroup_notfound: 'Не удалось исключить игрока %1% из группы. Игрок не найден'
-user_removegroup_notset: 'Не удалось исключить игрока %2% из группы %1%. Он не состоял в этой группе'
-user_removegroupw_notset: 'Не удалось исключить игрока %2% из группы %1% (мир %3%). Он не состоял в этой группе'
-user_removegroup_ok: 'Игрок %2% исключён из группы %1%'
-user_removegroupw_ok: 'Игрок %2% исключён из группы %1% (мир %3%)'
-user_removegroup_ok_inform: 'Вы были исключены из группы %1%'
-user_removegroupw_ok_inform: 'Вы были исключены из группы %1% (мир %2%)'
-user_notexist: 'Не удалось удалить пользователя. Пользователь %1% не существует'
-user_remove_ok: 'Удалён пользователь %1%'
-group_exist: 'Не удалось создать новую группу. Группа %1% уже существует'
-group_notexist: 'Не удалось удалить группу. Группа %1% не существует'
-group_create_ok: 'Создана группа %1%'
-group_remove_ok: 'Группа %1% удалена'
-group_addgroup_notexist: 'Группа %1% не существует. Пожалуйста проверьте название группы или создайте новую'
-group_addgroup_ok: 'Группа %2% добавлена в группу %1%'
-group_addgroupw_ok: 'Группа %2% добавлена в группу %1% (мир %3%)'
-group_removegroup_notexist: 'Группа %1% не существует. Пожалуйста проверьте название группы или создайте новую'
-group_removegroup_ok: 'Группа %2% удалена из группы %1%'
-group_removegroupw_ok: 'Группа %2% удалена из группы %1% (мир %3%)'
-group_setgroup_notexist: 'Группа %1% не существует. Пожалуйста проверьте название группы или создайте новую'
-group_setgroup_ok: 'Группа %2% добавлена в группу %1%. Прочие группы удалены'
-group_setgroupw_ok: 'Группа %2% добавлена в группу %1% (мир %3%). Прочие группы удалены'
-group_setperm_notexist: 'Не удалось настроить полномочие. Группа %1% не существует'
+user_removeperm_notfound: Не удлоась удалить полномочие. Игрок %1% не найден
+user_removeperm_notset: Не удалось снять полномочие %1% с игрока %2%. Полномочие не было предоставлено
+user_removepermw_notset: Не удалось снять полномочие %1% (мир %3%) с игрока %2%. Полномочие не было предоставлено
+user_removeperm_ok: С игрока %2% снято полномочие %1%
+user_removepermw_ok: С игрока %2% снято полномочие %1% (мир %3%)
+user_removeperm_ok_inform: С вас снято полномочие %1%
+user_removepermw_ok_inform: Полномочие %1% снято с польззователя %2%
+user_setgroup_ok: Игрок %1% перемещён в группу %2%
+user_setgroupw_ok: Игрок %1% перемещён в группу %2% (мир %3%)
+user_setgroup_ok_inform: Вы перемещены в группу %1%
+user_setgroupw_ok_inform: Вы перемещены в группу %1% (мир %2%)
+user_addgroup_ok: Игрок %1% добавлен в группу %2%
+user_addgroupw_ok: Игрок %1% добавлен в группу %2% (мир %3%)
+user_addgroup_ok_inform: Вы добавлены в группу %1%
+user_addgroupw_ok_inform: Вы добавлены в группу %1% (мир %2%)
+user_removegroup_notfound: Не удалось исключить игрока %1% из группы. Игрок не найден
+user_removegroup_notset: Не удалось исключить игрока %2% из группы %1%. Он не состоял в этой группе
+user_removegroupw_notset: Не удалось исключить игрока %2% из группы %1% (мир %3%). Он не состоял в этой группе
+user_removegroup_ok: Игрок %2% исключён из группы %1%
+user_removegroupw_ok: Игрок %2% исключён из группы %1% (мир %3%)
+user_removegroup_ok_inform: Вы были исключены из группы %1%
+user_removegroupw_ok_inform: Вы были исключены из группы %1% (мир %2%)
+user_notexist: Не удалось удалить пользователя. Пользователь %1% не существует
+user_remove_ok: Удалён пользователь %1%
+group_exist: Не удалось создать новую группу. Группа %1% уже существует
+group_notexist: Не удалось удалить группу. Группа %1% не существует
+group_create_ok: Создана группа %1%
+group_remove_ok: Группа %1% удалена
+group_addgroup_notexist: Группа %1% не существует. Пожалуйста проверьте название группы или создайте новую
+group_addgroup_ok: Группа %2% добавлена в группу %1%
+group_addgroupw_ok: Группа %2% добавлена в группу %1% (мир %3%)
+group_removegroup_notexist: Группа %1% не существует. Пожалуйста проверьте название группы или создайте новую
+group_removegroup_ok: Группа %2% удалена из группы %1%
+group_removegroupw_ok: Группа %2% удалена из группы %1% (мир %3%)
+group_setgroup_notexist: Группа %1% не существует. Пожалуйста проверьте название группы или создайте новую
+group_setgroup_ok: Группа %2% добавлена в группу %1%. Прочие группы удалены
+group_setgroupw_ok: Группа %2% добавлена в группу %1% (мир %3%). Прочие группы удалены
+group_setperm_notexist: Не удалось настроить полномочие. Группа %1% не существует
 group_setperm_ok: 'Группе %1% выдано полномочие: %2%'
 group_setpermw_ok: 'Группе %1% выдано полномочие: %2% (мир %3%)'
-group_removeperm_notexist: 'Не удалось удалить полномочие. Группа %1% не существует'
-group_removeperm_permunset: 'Не удалось удалить полномочие. Полномочие %2%  не предоставлено группе %1%'
-group_removeperm_ok: 'Полномочие %2% снято с группы %1%'
-group_removepermw_ok: 'Полномочие %2% снято с группы %1% (мир %3%)'
-group_setprefix_notexist: 'Не удалось задать префикс. Группа %1% не существует'
-group_setsuffix_notexist: 'Не удалось задать суффикс. Группа %1% не существует'
-group_setprefix_ok: 'Префикс группы %1% изменён на %2%'
-group_setsuffix_ok: 'Суффикс группы %1% изменён на %2%'
+group_removeperm_notexist: Не удалось удалить полномочие. Группа %1% не существует
+group_removeperm_permunset: Не удалось удалить полномочие. Полномочие %2%  не предоставлено группе %1%
+group_removeperm_ok: Полномочие %2% снято с группы %1%
+group_removepermw_ok: Полномочие %2% снято с группы %1% (мир %3%)
+group_setprefix_notexist: Не удалось задать префикс. Группа %1% не существует
+group_setsuffix_notexist: Не удалось задать суффикс. Группа %1% не существует
+group_setprefix_ok: Префикс группы %1% изменён на %2%
+group_setsuffix_ok: Суффикс группы %1% изменён на %2%
 group_list: 'Группы: %1%'
 group_listnotfound: Группы не обнаружены!
-group_infounknown: 'Не удалось добавить информацю о группе. Группа %1% не обнаружена'
+group_infounknown: Не удалось добавить информацю о группе. Группа %1% не обнаружена
 group_info_groups: 'Группы: %1%'
-group_info_title: 'Информация о группе %1%'
+group_info_title: Информация о группе %1%
 group_info_permtitle: 'Полномочия:'
-perm_check_nullplayer: 'Не удалось проверить полномочие. Игрок %1% отключён от сервера'
-perm_check_has: 'Игрок %1% обладает полномочием %2%'
-perm_check_hasnt: 'Игрок %1% не обладает полномочием %2%'
+perm_check_nullplayer: Не удалось проверить полномочие. Игрок %1% отключён от сервера
+perm_check_has: Игрок %1% обладает полномочием %2%
+perm_check_hasnt: Игрок %1% не обладает полномочием %2%
 perm_reloaded: Настройки перезагружены!
 perm_updated: Полномочия игрока обновлены
-removed_group_detected: 'Игрок %1% пытается обратиться к неизвестной группе %2%. Пожалуйста проверьте настройки игрока'
+removed_group_detected: Игрок %1% пытается обратиться к неизвестной группе %2%. Пожалуйста проверьте настройки игрока
 perm_user_prefix: 'Префиксы: %1%'
 perm_user_suffix: 'Суффиксы: %1%'
 provider_failed: 'Ошибка инициализации хранилища данных: %1%'
@@ -113,8 +113,8 @@ user_prefix_ok: 'Игроку %1% задан префикс: %2%'
 user_prefix_ok_inform: 'Ваш установлен префикс: %1%'
 user_suffix_ok: 'Игроку %1% задан суффикс: %2%'
 user_suffix_ok_inform: 'Ваш установлен суффикс: %1%'
-user_addgroup_notexist: 'Не удалось добавить игрока %1% в группу %2%. Группа не существует'
-user_setgroup_notexist: 'Не удалось переместить игрока %1% в группу %2%. Группа не существует'
+user_addgroup_notexist: Не удалось добавить игрока %1% в группу %2%. Группа не существует
+user_setgroup_notexist: Не удалось переместить игрока %1% в группу %2%. Группа не существует
 log_unknown_group_detected: 'Обнаружена ссылка на неизвестную группу: %1%. Проверьте настройки пользователей или группы'
 log_unknown_group_detected_user: 'Пользователь %2% является участником неизвестной группы: %1%. Проверьте настройки пользователя'
 log_unknown_group_detected_group: 'Группа %2% содержит неизвестную подгруппу: %1%. Проверьте настройки группы'

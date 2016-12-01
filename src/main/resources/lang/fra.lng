@@ -1,128 +1,128 @@
 ---
 lng_load_fail: Impossible de charger le nouveau langage. Message par défaut utilisé
 lng_save_fail: Impossible d’enregistrer le fichier langue
-lng_print_fail: "Impossible d’afficher le message %1 %. Expéditeur de l'objet non renseigné."
+lng_print_fail: Impossible d’afficher le message %1 %. Expéditeur de l'objet non renseigné.
 lng_config: '[MESSAGES] Messages : %1% Langage: %2% Sauvegarde du fichier de traduction: %1% Mode debug: %3 %'
 word_unknown: Mot inconnu
-wrong_permission: "Vous n’avez pas la permission d'exécuter cette commande"
-permission_fail: "Vous n’avez pas la permission d'exécuter cette commande"
+wrong_permission: Vous n’avez pas la permission d'exécuter cette commande
+permission_fail: Vous n’avez pas la permission d'exécuter cette commande
 player_commad_only: Vous ne pouvez utiliser cet commande que dans le jeu !
 cmd_registered: 'Commande enregistrée : %1%'
-cmd_failed: 'Impossible d’exécuter la commande. Faites %1% pour obtenir de l’aide !'
+cmd_failed: Impossible d’exécuter la commande. Faites %1% pour obtenir de l’aide !
 hlp_title: '%1% | Aide'
 cmd_perm_desc: Commande principale de Multipass, tapez /perm aide pour plus d’informations
-cmd_perm_help: "/perm help [page] - affiche l'aide"
-cmd_perm_update: '/perm refresh - actualise les permissions de tous les joueurs'
-cmd_perm_reload: '/perm reload - rétablit la config par défaut'
-cmd_user: '/user <player> - affiche des informations sur les permissions du joueur'
-cmd_user_remove: '/user remove <group> - remove user'
-cmd_user_setperm: '/user <player> setperm [world] <permission> - Ajoute la permission au joueur'
-cmd_user_removeperm: '/user <player> rmvperm [world] <permission> - retire la permission du joueur'
-cmd_user_setgroup: '/user <player> setgroup [world] <group> - déplace le joueur dans le groupe'
-cmd_user_addgroup: '/user <player> addgroup [world] <group> - ajoute un joueur au groupe'
-cmd_user_removegroup: '/user <player> removegroup [world] <group> - supprime le joueur du groupe'
-cmd_group_create: '/group create <group> - crée un nouveau groupe'
-cmd_group_addgroup: '/group <group1> addgroup [world] <group2> - attache le groupe 2 au groupe 1'
-cmd_group_removegroup: '/group <group1> remove [world] <group2> - détache le groupe1 du groupe2'
-cmd_group_setperm: "/group <group> setperm [world] <permission> - ajoute la permission à l'ensemble du groupe"
-cmd_group_setprefix: "/group <group> setprefix <prefix> - ajoute un préfixe à l'ensemble du groupe"
-cmd_group_setsuffix: "/group <group> setsuffix <suffix> - ajoute un suffixe à l'ensemble du groupe"
-cmd_group_removeperm: "/group <group> removeperm <permission> - supprime la permission de l'ensemble du groupe"
-cmd_group_remove: '/group remove <group> - supprime le groupe'
-cmd_perm_check: '/perm check <player> <permission> - vérifie les permissions du joueur'
-cmd_user_setprefix: '/user <player> setprefix <user prefix> - ajoute un préfixe au joueur'
-cmd_user_setsuffix: '/user <player> setsuffix <user suffix> - ajoute un suffixe au joueur'
-cmd_perm_export: '/perm export [fileName] - exporte toutes les permissions dans le fichier indiqué'
-cmd_perm_import: '/perm import [overwrite] [filename] - importe les permissions du fichier indiqué'
-perm_user_notregister: "L'utilisateur %1% n’est pas enregistré sur ce serveur !"
+cmd_perm_help: /perm help [page] - affiche l'aide
+cmd_perm_update: /perm refresh - actualise les permissions de tous les joueurs
+cmd_perm_reload: /perm reload - rétablit la config par défaut
+cmd_user: /user <player> - affiche des informations sur les permissions du joueur
+cmd_user_remove: /user remove <user> - supprimer l'utilisateur
+cmd_user_setperm: /user <player> setperm [world] <permission> - Ajoute la permission au joueur
+cmd_user_removeperm: /user <player> rmvperm [world] <permission> - retire la permission du joueur
+cmd_user_setgroup: /user <player> setgroup [world] <group> - déplace le joueur dans le groupe
+cmd_user_addgroup: /user <player> addgroup [world] <group> - ajoute un joueur au groupe
+cmd_user_removegroup: /user <player> removegroup [world] <group> - supprime le joueur du groupe
+cmd_group_create: /group create <group> - crée un nouveau groupe
+cmd_group_addgroup: /group <group1> addgroup [world] <group2> - attache le groupe 2 au groupe 1
+cmd_group_removegroup: /group <group1> remove [world] <group2> - détache le groupe1 du groupe2
+cmd_group_setperm: /group <group> setperm [world] <permission> - ajoute la permission à l'ensemble du groupe
+cmd_group_setprefix: /group <group> setprefix <prefix> - ajoute un préfixe à l'ensemble du groupe
+cmd_group_setsuffix: /group <group> setsuffix <suffix> - ajoute un suffixe à l'ensemble du groupe
+cmd_group_removeperm: /group <group> removeperm <permission> - supprime la permission de l'ensemble du groupe
+cmd_group_remove: /group remove <group> - supprime le groupe
+cmd_perm_check: /perm check <player> <permission> - vérifie les permissions du joueur
+cmd_user_setprefix: /user <player> setprefix <user prefix> - ajoute un préfixe au joueur
+cmd_user_setsuffix: /user <player> setsuffix <user suffix> - ajoute un suffixe au joueur
+cmd_perm_export: /perm export [fileName] - exporte toutes les permissions dans le fichier indiqué
+cmd_perm_import: /perm import [overwrite] [filename] - importe les permissions du fichier indiqué
+perm_user_notregister: L'utilisateur %1% n’est pas enregistré sur ce serveur !
 perm_user_info: 'Informations sur les permissions de %1%'
 perm_user_groups: 'Groupes : %1%'
 perm_user_perms: 'Permissions:'
-perm_group_notfound: 'Groupe %1% inconnu !'
+perm_group_notfound: Groupe %1% inconnu !
 perm_group_groups: 'Groupes : %1%'
 perm_group_perms: 'Permissions:'
-perm_group_info: 'Informations sur le groupe %1%'
-user_setperm_ok: 'Utilisateur %1% permission configurée %2%'
-user_setpermw_ok: 'Utilisateur %1% permission configurée %2% (monde %3%)'
+perm_group_info: Informations sur le groupe %1%
+user_setperm_ok: Utilisateur %1% permission configurée %2%
+user_setpermw_ok: Utilisateur %1% permission configurée %2% (monde %3%)
 user_setperm_ok_inform: 'Permissions enregistrées: %1%'
 user_setpermw_ok_inform: 'Permissions enregistrées: %1% (monde: %3%)'
-user_removeperm_notfound: 'Utilisateur %1% introuvable. Impossible de supprimer la permission'
-user_removeperm_notset: "Impossible de retirer l’autorisation %1% à l'utilisateur %2%, il ne l'avait pas"
-user_removepermw_notset: "Impossible de retirer l’autorisation %1% à l'utilisateur %2%, il ne l'avait pas (monde %3%)"
-user_removeperm_ok: "Permission %1% retirée à l'utilisateur %2%"
-user_removepermw_ok: "Permission %1% retirée à l'utilisateur %2% (monde %3%)"
-user_removeperm_ok_inform: 'La permission %1% vous a été retirée'
-user_removepermw_ok_inform: "Permission %1% retirée à l'utilisateur %2%"
-user_setgroup_ok: 'Joueur %1% déplacé vers le groupe %2%'
-user_setgroupw_ok: 'Joueur %1% déplacé vers le groupe %2% (monde %3%)'
-user_setgroup_ok_inform: 'Vous avez été déplacé vers le groupe %1%'
-user_setgroupw_ok_inform: 'Vous avez été déplacé vers le groupe %1% (monde %2%)'
-user_addgroup_ok: 'Joueur %1% ajouté au groupe %2%'
-user_addgroupw_ok: 'Joueur %1% ajouté au groupe %2% (monde %3%)'
-user_addgroup_ok_inform: 'Vous avez été ajouté au groupe %1%'
-user_addgroupw_ok_inform: 'Vous avez été ajouté au groupe %1% (monde %2%)'
-user_removegroup_notfound: 'Utilisateur %1% introuvable. Impossible de le retirer du groupe'
-user_removegroup_notset: "Impossible de retirer le joueur %2% du groupe %1%, il n'y était pas"
-user_removegroupw_notset: "Impossible de retirer le joueur %2% du groupe %1%, il n'y était pas (monde %3%)"
-user_removegroup_ok: 'Joueur %2% retiré du groupe %1%'
-user_removegroupw_ok: 'Joueur %1% retiré du groupe %2% (monde %3%)'
-user_removegroup_ok_inform: 'Vous avez été retiré du groupe %1%'
-user_removegroupw_ok_inform: 'Vous avez été retiré du groupe %1% (monde %2%)'
-user_notexist: 'Failed to remove user. User %1% is not exist'
-user_remove_ok: 'User %1% removed'
-group_exist: 'Impossible de créer un nouveau groupe. Le groupe %1% existe déjà'
-group_notexist: 'Impossible de supprimer le groupe. Le groupe %1 % n’existe pas'
-group_create_ok: 'Groupe %1% créé avec succès'
-group_remove_ok: 'Groupe %1% supprimé avec succès'
-group_addgroup_notexist: "Le groupe %1% n'existe pas. S'il vous plaît, vérifiez le nom du groupe ou créez-en un nouveau"
-group_addgroup_ok: 'Groupe %2% attaché au groupe %1%'
-group_addgroupw_ok: 'Groupe %2% attaché au groupe %1% (monde %3%)'
-group_removegroup_notexist: "Le groupe %1% n'existe pas. S'il vous plaît, vérifiez le nom du groupe ou créez-en un nouveau"
-group_removegroup_ok: 'Groupe %2% détaché du groupe %1%'
-group_removegroupw_ok: 'Groupe %2% détaché du groupe %1% (monde %3%)'
-group_setgroup_notexist: "Le groupe %1% n'existe pas. S'il vous plaît, vérifiez le nom du groupe ou créez-en un nouveau"
-group_setgroup_ok: 'Groupe %2% attaché au groupe %1%. Tous les autres groupes ont été supprimés'
-group_setgroupw_ok: 'Groupe %2% attaché au groupe %1% (monde %3%). Tous les autres groupes ont été supprimés'
-group_setperm_notexist: "Impossible d'ajouter la permission. Le groupe %1% n’existe pas"
-group_setperm_ok: 'Groupe %1% permission configurées %2%'
-group_setpermw_ok: 'Groupe %1% permission configurée %2% (monde %3%)'
-group_removeperm_notexist: 'Impossible de retirer la permission. Le groupe %1% n’existe pas'
-group_removeperm_permunset: "Impossible de retirer la permission %2% du groupe %1%, il ne l'a pas"
-group_removeperm_ok: 'Permission %2% retirée du groupe %1%'
-group_removepermw_ok: 'Permission %1% retiré du groupe %2% (monde %3%)'
-group_setprefix_notexist: "Impossible d'ajouter le préfixe. Le groupe %1% n’existe pas"
-group_setsuffix_notexist: "Impossible d'ajouter le suffixe. Le groupe %1% n’existe pas"
-group_setprefix_ok: 'Le préfixe du groupe %1% est fixé à %2%'
-group_setsuffix_ok: 'Le suffixe du groupe %1% est fixé à %2%'
+user_removeperm_notfound: Utilisateur %1% introuvable. Impossible de supprimer la permission
+user_removeperm_notset: Impossible de retirer l’autorisation %1% à l'utilisateur %2%, il ne l'avait pas
+user_removepermw_notset: Impossible de retirer l’autorisation %1% à l'utilisateur %2%, il ne l'avait pas (monde %3%)
+user_removeperm_ok: Permission %1% retirée à l'utilisateur %2%
+user_removepermw_ok: Permission %1% retirée à l'utilisateur %2% (monde %3%)
+user_removeperm_ok_inform: La permission %1% vous a été retirée
+user_removepermw_ok_inform: Permission %1% retirée à l'utilisateur %2%
+user_setgroup_ok: Joueur %1% déplacé vers le groupe %2%
+user_setgroupw_ok: Joueur %1% déplacé vers le groupe %2% (monde %3%)
+user_setgroup_ok_inform: Vous avez été déplacé vers le groupe %1%
+user_setgroupw_ok_inform: Vous avez été déplacé vers le groupe %1% (monde %2%)
+user_addgroup_ok: Joueur %1% ajouté au groupe %2%
+user_addgroupw_ok: Joueur %1% ajouté au groupe %2% (monde %3%)
+user_addgroup_ok_inform: Vous avez été ajouté au groupe %1%
+user_addgroupw_ok_inform: Vous avez été ajouté au groupe %1% (monde %2%)
+user_removegroup_notfound: Utilisateur %1% introuvable. Impossible de le retirer du groupe
+user_removegroup_notset: Impossible de retirer le joueur %2% du groupe %1%, il n'y était pas
+user_removegroupw_notset: Impossible de retirer le joueur %2% du groupe %1%, il n'y était pas (monde %3%)
+user_removegroup_ok: Joueur %2% retiré du groupe %1%
+user_removegroupw_ok: Joueur %1% retiré du groupe %2% (monde %3%)
+user_removegroup_ok_inform: Vous avez été retiré du groupe %1%
+user_removegroupw_ok_inform: Vous avez été retiré du groupe %1% (monde %2%)
+user_notexist: Impossible de supprimer l'utilisateur. L'utilisateur %1 % n’existe pas
+user_remove_ok: Utilisateur %1% supprimé avec succès
+group_exist: Impossible de créer un nouveau groupe. Le groupe %1% existe déjà
+group_notexist: Impossible de supprimer le groupe. Le groupe %1 % n’existe pas
+group_create_ok: Groupe %1% créé avec succès
+group_remove_ok: Groupe %1% supprimé avec succès
+group_addgroup_notexist: Le groupe %1% n'existe pas. S'il vous plaît, vérifiez le nom du groupe ou créez-en un nouveau
+group_addgroup_ok: Groupe %2% attaché au groupe %1%
+group_addgroupw_ok: Groupe %2% attaché au groupe %1% (monde %3%)
+group_removegroup_notexist: Le groupe %1% n'existe pas. S'il vous plaît, vérifiez le nom du groupe ou créez-en un nouveau
+group_removegroup_ok: Groupe %2% détaché du groupe %1%
+group_removegroupw_ok: Groupe %2% détaché du groupe %1% (monde %3%)
+group_setgroup_notexist: Le groupe %1% n'existe pas. S'il vous plaît, vérifiez le nom du groupe ou créez-en un nouveau
+group_setgroup_ok: Groupe %2% attaché au groupe %1%. Tous les autres groupes ont été supprimés
+group_setgroupw_ok: Groupe %2% attaché au groupe %1% (monde %3%). Tous les autres groupes ont été supprimés
+group_setperm_notexist: Impossible d'ajouter la permission. Le groupe %1% n’existe pas
+group_setperm_ok: Groupe %1% permission configurées %2%
+group_setpermw_ok: Groupe %1% permission configurée %2% (monde %3%)
+group_removeperm_notexist: Impossible de retirer la permission. Le groupe %1% n’existe pas
+group_removeperm_permunset: Impossible de retirer la permission %2% du groupe %1%, il ne l'a pas
+group_removeperm_ok: Permission %2% retirée du groupe %1%
+group_removepermw_ok: Permission %1% retiré du groupe %2% (monde %3%)
+group_setprefix_notexist: Impossible d'ajouter le préfixe. Le groupe %1% n’existe pas
+group_setsuffix_notexist: Impossible d'ajouter le suffixe. Le groupe %1% n’existe pas
+group_setprefix_ok: Le préfixe du groupe %1% est fixé à %2%
+group_setsuffix_ok: Le suffixe du groupe %1% est fixé à %2%
 group_list: 'Groupes disponibles: %1%'
 group_listnotfound: Aucun groupe disponible !
-group_infounknown: "Impossible d'afficher les informations sur le groupe. Le groupe %1% n'a pas été trouvé"
+group_infounknown: Impossible d'afficher les informations sur le groupe. Le groupe %1% n'a pas été trouvé
 group_info_groups: 'Groupes: %1%'
-group_info_title: 'Informations sur le groupe %1%'
+group_info_title: Informations sur le groupe %1%
 group_info_permtitle: 'Permissions:'
-perm_check_nullplayer: 'Impossible de vérifier la permission. Le joueur %1 % est actuellement hors ligne'
-perm_check_has: 'Le joueur %1% a la permission %2%'
-perm_check_hasnt: 'Le joueur %1% n’a pas la permission %2%'
+perm_check_nullplayer: Impossible de vérifier la permission. Le joueur %1 % est actuellement hors ligne
+perm_check_has: Le joueur %1% a la permission %2%
+perm_check_hasnt: Le joueur %1% n’a pas la permission %2%
 perm_reloaded: Config par défaut rétablie !
 perm_updated: Permissions du joueur mises à jour
-removed_group_detected: "L'utilisateur %1% essaie d’utiliser un groupe inconnu %2%. S’il vous plaît, vérifiez les permissions des utilisateurs/groupes"
+removed_group_detected: L'utilisateur %1% essaie d’utiliser un groupe inconnu %2%. S’il vous plaît, vérifiez les permissions des utilisateurs/groupes
 perm_user_prefix: 'Préfixes : %1%'
 perm_user_suffix: 'Suffixes : %1%'
-provider_failed: "Impossible d'initialiser le fournisseur de données: %1%"
-user_prefix_ok: "Le préfixe de l'utilisateur %1% est fixé à %2%"
-user_prefix_ok_inform: 'Votre préfixe a été changé pour %1%'
-user_suffix_ok: "Le suffixe de l'utilisateur %1% est fixé à %2%"
-user_suffix_ok_inform: 'Votre suffixe a été changé pour %1%'
-user_addgroup_notexist: 'Impossible d’ajouter l’utilisateur %1% au groupe %2%. Groupe inexistant'
-user_setgroup_notexist: 'Impossible de déplacer l’utilisateur %1% dans le groupe %2%. Groupe inexistant'
-log_unknown_group_detected: 'Sous-groupe inconnu détecté %1%. Vérifiez votre configuration utilisateur ou groupe'
-log_unknown_group_detected_user: 'User %2% is member of unknown group: %1%. Please check user configuration'
-log_unknown_group_detected_group: 'Group %2% is contains unknown subgroup %1%. Pleas check group configuration'
+provider_failed: 'Impossible d''initialiser le fournisseur de données: %1%'
+user_prefix_ok: Le préfixe de l'utilisateur %1% est fixé à %2%
+user_prefix_ok_inform: Votre préfixe a été changé pour %1%
+user_suffix_ok: Le suffixe de l'utilisateur %1% est fixé à %2%
+user_suffix_ok_inform: Votre suffixe a été changé pour %1%
+user_addgroup_notexist: Impossible d’ajouter l’utilisateur %1% au groupe %2%. Groupe inexistant
+user_setgroup_notexist: Impossible de déplacer l’utilisateur %1% dans le groupe %2%. Groupe inexistant
+log_unknown_group_detected: Sous-groupe inconnu détecté %1%. Vérifiez votre configuration utilisateur ou groupe
+log_unknown_group_detected_user: 'L''utilisateur %2% est membre du groupe inconnu : %1 %. Veuillez vérifier la configuration de l’utilisateur'
+log_unknown_group_detected_group: Le groupe %2% contient un sous-groupe inconnu %1%. Veuillez vérifier la configuration du groupe
 db_dblib_notfound: La prise en charge MySQL/SQLite requiert DbLiB
 log_unknown_dataprovider: 'Fournisseur de données inconnu : %1%. Language YAML utilisé'
 log_dataprovider: 'Fournisseur de données : %1%'
 perm_export_ok: 'Permissions exportées vers le fichier: %1%'
-perm_export_failed: "Échec de l'exportation des permissions"
+perm_export_failed: Échec de l'exportation des permissions
 perm_import_ok: 'Permissions importées du fichier: %1%'
-perm_import_failed: "Échec de l'importation des permissions"
-log_dataprovider_fail: Failed to enable Data Provider. Please check your configuration
+perm_import_failed: Échec de l'importation des permissions
+log_dataprovider_fail: Impossible d’activer le fournisseur de données. Veuillez vérifier votre configuration

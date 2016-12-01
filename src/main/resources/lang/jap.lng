@@ -1,0 +1,128 @@
+---
+lng_load_fail: ファイルから言語を読み込めませんでした。原文のメッセージを使用します
+lng_save_fail: 言語ファイルを保存できませんでした
+lng_print_fail: メッセージ %1% を出力できませんでした。Senderオブジェクトがnullです
+lng_config: '[MESSAGES] メッセージ: %1% 言語: %2% 保存された翻訳ファイル: %1% デバッグモード: %3%'
+word_unknown: 不明
+wrong_permission: このコマンドを実行する権限がありません
+permission_fail: このコマンドを実行する権限がありません
+player_commad_only: このコマンドはゲーム内のみで使用できます
+cmd_registered: コマンド %1% が登録されました
+cmd_failed: コマンドを実行できませんでした。%1%でヘルプを表示します
+hlp_title: '%1% | ヘルプ'
+cmd_perm_desc: Multipassのメインコマンド。/perm helpでさらに詳細な情報を表示できます
+cmd_perm_help: /perm help [ページ番号] - ヘルプを表示します
+cmd_perm_update: /perm refresh - すべてのプレイヤーの権限情報を更新します
+cmd_perm_reload: /perm reload - Multipassの設定を再読み込みします
+cmd_user: /user <プレイヤー> - プレイヤーの権限情報を表示します
+cmd_user_remove: /user remove <ユーザー> - ユーザーをグループから削除します
+cmd_user_setperm: /user <プレイヤー> setperm [ワールド] <権限> - プレイヤーに指定した権限を設定します
+cmd_user_removeperm: /user <プレイヤー> rmvperm [ワールド] <権限> - プレイヤーから指定した権限を剥奪します
+cmd_user_setgroup: /user <プレイヤー> setgroup [ワールド] <グループ> - プレイヤーを指定したグループへ移動します
+cmd_user_addgroup: /user <プレイヤー> addgroup [ワールド] <グループ> - プレイヤーを指定したグループに追加します
+cmd_user_removegroup: /user <プレイヤー> removegroup [ワールド] <グループ> - プレイヤーを指定したグループから除外します
+cmd_group_create: /group create <グループ> - グループを作成します
+cmd_group_addgroup: /group <グループ1> addgroup [ワールド] <グループ2> - グループ1にグループ2を追加します
+cmd_group_removegroup: /group <グループ1> remove [ワールド] <グループ2> - グループ2からグループ1を削除します
+cmd_group_setperm: /group <グループ> setperm [ワールド] <権限> - グループに指定した権限を設定します
+cmd_group_setprefix: /group <グループ> setprefix <接頭辞> - グループに接頭辞を指定します
+cmd_group_setsuffix: /group <グループ> setsuffix <接尾辞> - グループに接尾辞を指定します
+cmd_group_removeperm: /group <グループ> removeperm <権限> - グループから指定した権限を剥奪します
+cmd_group_remove: /group remove <グループ> - グループを削除します
+cmd_perm_check: /perm check <プレイヤー> <権限> - プレイヤーが指定した権限に属しているか確認します
+cmd_user_setprefix: /user <プレイヤー> setprefix <ユーザーの接頭辞> - プレイヤーに接頭辞を指定します
+cmd_user_setsuffix: /user <プレイヤー> setsuffix <ユーザーの接尾辞> - プレイヤーに接尾辞を指定します
+cmd_perm_export: /perm export [ファイル名] - ファイルにすべての権限をエクスポートします
+cmd_perm_import: /perm import [overwrite] [ファイル名] - ファイルから権限をインポートします
+perm_user_notregister: ユーザー %1% はこのサーバーに登録されていません
+perm_user_info: '%1% の権限情報'
+perm_user_groups: 'グループ: %1%'
+perm_user_perms: '権限:'
+perm_group_notfound: グループ %1% は存在しません
+perm_group_groups: 'グループ: %1%'
+perm_group_perms: '権限:'
+perm_group_info: グループ %1% の情報
+user_setperm_ok: ユーザー %1% に 権限 %2% を付与しました
+user_setpermw_ok: ユーザー %1% に 権限 %2% を設定しました（ワールド %3%）
+user_setperm_ok_inform: 権限 %1% が設定されました
+user_setpermw_ok_inform: 権限 %1% が設定されました（ワールド %3%）
+user_removeperm_notfound: ユーザー %1% が見つからないため、権限を剥奪できません
+user_removeperm_notset: 権限 %1% は設定されていないため、ユーザー %2% から指定した権限を剥奪できません
+user_removepermw_notset: 権限 %1% は設定されていないため、ユーザー %2% から指定した権限を剥奪できません（ワールド %3%）
+user_removeperm_ok: ユーザー %2% から権限 %1% を剥奪しました
+user_removepermw_ok: ユーザー %2% から権限 %1% を剥奪しました（ワールド %3%）
+user_removeperm_ok_inform: 権限 %1% が剥奪されました
+user_removepermw_ok_inform: ユーザー %2% から権限 %1% を剥奪しました
+user_setgroup_ok: プレイヤー %1% をグループ %2% へ移動しました
+user_setgroupw_ok: プレイヤー %1% をグループ %2% へ移動しました（ワールド %3%）
+user_setgroup_ok_inform: グループ %1% へ移動されました
+user_setgroupw_ok_inform: グループ %1% へ移動されました（ワールド %2%）
+user_addgroup_ok: プレイヤー %1% をグループ %2% に追加しました
+user_addgroupw_ok: プレイヤー %1% をグループ %2% に追加しました（ワールド %3%）
+user_addgroup_ok_inform: グループ %1% に追加されました
+user_addgroupw_ok_inform: グループ %1% に追加されました（ワールド %2%）
+user_removegroup_notfound: ユーザー %1% が見つからないため、グループから除外できません
+user_removegroup_notset: グループ %1% は設定されていないため、プレイヤー %2% を指定したグループから除外できません
+user_removegroupw_notset: グループ %1% は設定されていないため、プレイヤー %2% を指定したグループから除外できません（ワールド %3%）
+user_removegroup_ok: プレイヤー %2% をグループ %1% から除外しました
+user_removegroupw_ok: プレイヤー %2% をグループ %1% から除外しました（ワールド %3%）
+user_removegroup_ok_inform: グループ %1% から除外されました
+user_removegroupw_ok_inform: グループ %1% から除外されました（ワールド %2%）
+user_notexist: ユーザー %1% は存在しないため、削除できません
+user_remove_ok: ユーザー %1% を削除しました
+group_exist: グループ %1% はすでに存在するため、作成することができません
+group_notexist: グループ %1% は存在しないため、削除できません
+group_create_ok: グループ %1% を作成しました
+group_remove_ok: グループ %1% を削除しました
+group_addgroup_notexist: グループ %1% は存在しません。グループ名を確認するか、新たにグループを作成してください
+group_addgroup_ok: グループ %2% をグループ %1% に追加しました
+group_addgroupw_ok: グループ %2% をグループ %1% に追加しました（ワールド %3%）
+group_removegroup_notexist: グループ %1% は存在しません。グループ名を確認するか、新たにグループを作成してください
+group_removegroup_ok: グループ %1% からグループ %2% を削除しました
+group_removegroupw_ok: グループ %1% からグループ %2% を削除しました（ワールド %3%）
+group_setgroup_notexist: グループ %1% は存在しません。グループ名を確認するか、新たにグループを作成してください
+group_setgroup_ok: グループ %2% をグループ %1% に追加し、他のすべてのグループを削除しました
+group_setgroupw_ok: グループ %2% をグループ %1% に追加し、他のすべてのグループを削除しました（ワールド %3%）
+group_setperm_notexist: グループ %1% は存在しないため、権限を設定できません
+group_setperm_ok: グループ %1% に権限 %2% を設定しました
+group_setpermw_ok: グループ %1% に権限 %2% を設定しました（ワールド %3%）
+group_removeperm_notexist: グループ %1% は存在しないため、権限を削除できません
+group_removeperm_permunset: グループ %1% に権限 %2% が設定されていないため、権限を削除できません
+group_removeperm_ok: グループ %1% から権限 %2% を削除しました
+group_removepermw_ok: グループ %1% から権限 %2% を削除しました（ワールド %3%）
+group_setprefix_notexist: グループ %1% は存在しないため、接頭辞を設定できません
+group_setsuffix_notexist: グループ %1% が存在しないため、接尾辞を設定できません
+group_setprefix_ok: グループ %1% の接頭辞を %2% に変更しました
+group_setsuffix_ok: グループ %1% の接尾辞を %2% に変更しました
+group_list: 'グループ一覧: %1%'
+group_listnotfound: グループを検索できませんでした
+group_infounknown: グループ %1% は存在しないため、グループ情報を表示できません
+group_info_groups: 'グループ: %1%'
+group_info_title: グループ %1% の情報
+group_info_permtitle: '権限:'
+perm_check_nullplayer: プレイヤー %1% はサーバーに接続していないため、権限を確認できません
+perm_check_has: プレイヤー %1% は権限 %2% を利用できます
+perm_check_hasnt: プレイヤー %1% は権限 %2% を利用できません
+perm_reloaded: 設定を再読み込みしました
+perm_updated: プレイヤーの権限を更新しました
+removed_group_detected: ユーザー %1% が存在しないグループ %2% を利用しようとしています。ユーザーの権限 / グループを確認してください
+perm_user_prefix: '接頭辞: %1%'
+perm_user_suffix: '接尾辞: %1%'
+provider_failed: 'データプロバイダーを初期化できませんでした: %1%'
+user_prefix_ok: ユーザー %1% の接頭辞を %2% に変更しました
+user_prefix_ok_inform: 接頭辞が %1% に変更されました
+user_suffix_ok: ユーザー %1% の接尾辞を %2% に変更しました
+user_suffix_ok_inform: 接尾辞が %1% に変更されました
+user_addgroup_notexist: グループ %2% は存在しないため、ユーザー %1% を指定したグループに追加できません
+user_setgroup_notexist: グループ %2% は存在しないため、ユーザー %1% を指定したグループに移動できません
+log_unknown_group_detected: 存在しないサブグループ %1% が検出されました。ユーザー / グループの設定を確認してください
+log_unknown_group_detected_user: ユーザー %2% は存在しないグループ %1% に追加されています。ユーザーの設定を確認してください
+log_unknown_group_detected_group: グループ %2% に存在しないサブグループ %1% が追加されています。グループの設定を確認してください
+db_dblib_notfound: MySQL / SQLiteのサポートにはDbLibが要求されます
+log_unknown_dataprovider: データプロバイダー %1% は存在しません。YAMLプロバイダーを使用してください
+log_dataprovider: 'データプロバイダー: %1%'
+perm_export_ok: 権限をファイル %1% にエクスポートしました
+perm_export_failed: 権限をエクスポートできませんでした
+perm_import_ok: 権限をファイル %1% からインポートしました
+perm_import_failed: 権限をインポートできませんでした
+log_dataprovider_fail: データプロバイダーを有効化できませんでした。設定を確認してください
