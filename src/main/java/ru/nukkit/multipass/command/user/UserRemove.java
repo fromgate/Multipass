@@ -13,7 +13,7 @@ public class UserRemove extends Cmd {
     public boolean execute(CommandSender sender, Player player, String[] args) {
         String id = args[1];
 
-        Users.isRegistered(id).whenComplete((exist, e) ->{
+        Users.isRegistered(id).whenComplete((exist, e) -> {
             if (e != null) {
                 e.printStackTrace();
             } else {

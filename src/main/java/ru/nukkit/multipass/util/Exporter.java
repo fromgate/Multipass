@@ -4,11 +4,7 @@ import cn.nukkit.utils.Config;
 import cn.nukkit.utils.ConfigSection;
 import ru.nukkit.multipass.MultipassPlugin;
 import ru.nukkit.multipass.data.Providers;
-import ru.nukkit.multipass.permissions.Group;
-import ru.nukkit.multipass.permissions.Groups;
-import ru.nukkit.multipass.permissions.Node;
-import ru.nukkit.multipass.permissions.User;
-import ru.nukkit.multipass.permissions.Users;
+import ru.nukkit.multipass.permissions.*;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -33,11 +33,7 @@ import ru.nukkit.multipass.permissions.User;
 import ru.nukkit.multipass.permissions.Users;
 import ru.nukkit.multipass.util.TimeUtil;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DatabaseSource extends DataProvider {
     private String createUserTable;

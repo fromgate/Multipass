@@ -169,9 +169,9 @@ public enum Message {
 
     USER_ADDGROUP_NOTEXIST("Failed to add user %1% to group %2%. Group is not exist", 'c'),
     USER_SETGROUP_NOTEXIST("Failed to move user %1% to group %2%. Group is not exist", 'c'),
-    LOG_UNKNOWN_GROUP_DETECTED ("Unknown subgroup detected: %1%. Please check your users/groups configuration", 'c'),
-    LOG_UNKNOWN_GROUP_DETECTED_USER ("User %2% is member of unknown group: %1%. Please check user configuration", 'c'),
-    LOG_UNKNOWN_GROUP_DETECTED_GROUP ("Group %2% is contains unknown subgroup %1%. Please check group configuration", 'c'),
+    LOG_UNKNOWN_GROUP_DETECTED("Unknown subgroup detected: %1%. Please check your users/groups configuration", 'c'),
+    LOG_UNKNOWN_GROUP_DETECTED_USER("User %2% is member of unknown group: %1%. Please check user configuration", 'c'),
+    LOG_UNKNOWN_GROUP_DETECTED_GROUP("Group %2% is contains unknown subgroup %1%. Please check group configuration", 'c'),
 
     DB_DBLIB_NOTFOUND("DbLib required for MySQL/SQLite support", 'c'),
     LOG_UNKNOWN_DATAPROVIDER("Unknown data provider: %1%. Will use YAML provider", 'c', '4'),

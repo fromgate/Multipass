@@ -20,12 +20,7 @@ package ru.nukkit.multipass;
 
 import cn.nukkit.Player;
 import cn.nukkit.Server;
-import ru.nukkit.multipass.permissions.BaseNode;
-import ru.nukkit.multipass.permissions.Group;
-import ru.nukkit.multipass.permissions.Groups;
-import ru.nukkit.multipass.permissions.Permission;
-import ru.nukkit.multipass.permissions.User;
-import ru.nukkit.multipass.permissions.Users;
+import ru.nukkit.multipass.permissions.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;

@@ -20,12 +20,7 @@ package ru.nukkit.multipass.permissions;
 
 import ru.nukkit.multipass.util.Message;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Node {
     Set<String> groups;
@@ -171,15 +166,15 @@ public class Node {
                 if (this instanceof User) {
                     User user = (User) this;
                     m = Message.LOG_UNKNOWN_GROUP_DETECTED_USER;
-                    logId = g+user.getName();
+                    logId = g + user.getName();
                     id = user.getName();
                 } else if (this instanceof Group) {
                     Group subgroup = (Group) this;
                     id = subgroup.getName();
                     m = Message.LOG_UNKNOWN_GROUP_DETECTED_GROUP;
-                    logId = g+subgroup.getName();
+                    logId = g + subgroup.getName();
                 }
-                m.logOnce(logId,id);
+                m.logOnce(logId, id);
             }
         });
         return groups;

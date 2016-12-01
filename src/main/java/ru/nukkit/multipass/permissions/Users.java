@@ -338,16 +338,16 @@ public class Users {
     }
 
     public static void remove(String id) {
-        if (users.containsKey(id)){
+        if (users.containsKey(id)) {
             users.remove(id);
         }
-        Providers.removeUser(id).whenComplete((remove, e) ->{
+        Providers.removeUser(id).whenComplete((remove, e) -> {
             if (e != null) {
                 e.printStackTrace();
             } else {
                 Player player = Server.getInstance().getPlayerExact(id);
                 if (player != null) {
-                    setUser (new User(id));
+                    setUser(new User(id));
                 }
             }
         });
