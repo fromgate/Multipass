@@ -84,7 +84,7 @@ public class User extends BaseNode {
             Message.debugMessage(e.getValue() ? "+" : "-", e.getKey());
         });
 
-        Server.getInstance().getScheduler().scheduleDelayedTask(() -> player.sendCommandData(), 1);
+        Server.getInstance().getScheduler().scheduleDelayedTask(() -> player.sendCommandData(), 10);
     }
 
     public PermissionAttachment getAttachment() {

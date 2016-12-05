@@ -144,7 +144,19 @@ public class Multipass {
      * @return
      */
     public static String getSuffix(Player player) {
-        return getPrefix(player.getName());
+        return getSuffix(player.getName());
+    }
+
+
+    /**
+     * Get one suffix with highest priority
+     *
+     * @param player
+     * @return
+     */
+    public static String getSuffix(String player) {
+        List<String> prefixes = getSuffixes(player);
+        return prefixes.isEmpty() ? "" : prefixes.get(0);
     }
 
     /**
