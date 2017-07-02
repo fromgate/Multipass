@@ -133,8 +133,11 @@ public class Users {
     }
 
     public static void removeGroup(String userName, WorldParam wp) {
-        if (wp == null) removeGroup(userName, wp.param);
-        else removeGroup(wp.world, userName, wp.param);
+        if (wp == null) {
+            removeGroup(userName, wp.param);
+        } else {
+            removeGroup(wp.world, userName, wp.param);
+        }
     }
 
     public static void removeGroup(String userName, String group) {
@@ -149,7 +152,9 @@ public class Users {
     public static void removeGroup(String world, String userName, String group) {
         Users.getUser(userName).whenComplete((user, e) -> {
             if (e == null) {
-                if (user.inGroup(group)) user.removeGroup(world, group);
+                if (user.inGroup(group)) {
+                    user.removeGroup(world, group);
+                }
                 saveUser(user);
             }
         });

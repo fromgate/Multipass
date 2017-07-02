@@ -54,11 +54,8 @@ public class Permission {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Permission that = (Permission) o;
-
         return name != null && name.equalsIgnoreCase(that.name);
-
     }
 
     @Override
