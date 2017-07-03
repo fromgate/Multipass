@@ -216,6 +216,7 @@ public class Groups {
         Group group = getGroup(id);
         if (group == null) return false;
         group.removePermission(permStr);
+        saveGroup(group);
         return true;
     }
 
@@ -223,6 +224,7 @@ public class Groups {
         Group group = getGroup(id);
         if (group == null) return false;
         group.removePermission(world, permStr);
+        saveGroup(group);
         return true;
     }
 
